@@ -37,7 +37,7 @@ class OrderServiceImplTest {
 	
 	@Test
 	void testAddOrder1()throws OrderNotFoundException,InvalidOrderIdException{
-		custEnt=new CustomerEntity(1,"Rama","9873562781",LocalDate.parse("1995-09-30"),)
+		//custEnt=new CustomerEntity(1,"Rama","9873562781",LocalDate.parse("1995-09-30"),)
 	}
 
 }
