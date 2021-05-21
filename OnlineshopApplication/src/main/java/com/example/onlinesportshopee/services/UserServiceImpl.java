@@ -24,6 +24,19 @@ public class UserServiceImpl implements IUserService {
 
 
     @Override
+	public User addUser(UserEntity user) throws UserException {
+    	LOGGER.info("addUser() service is initiated");
+    	UserEntity userEntity;
+		if(user==null)
+			userEntity=null;
+		else {
+			userEntity=Userrepo.save(user);	
+		}
+		LOGGER.info("addUser() service has executed");
+		return UserUtils.convertToOrder(userEntity);
+	}
+    
+    @Override
     public UserEntity signIn(UserEntity user) throws UserException {
     	LOGGER.info("signin() service is initiated");
         Long userid = user.getId();

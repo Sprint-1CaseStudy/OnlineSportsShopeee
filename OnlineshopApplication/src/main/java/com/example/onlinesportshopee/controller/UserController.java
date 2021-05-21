@@ -27,6 +27,17 @@ public class UserController {
 	@Autowired
 	private IUserService iUserService;
 	
+	@PostMapping("/add-user")
+	public  ResponseEntity<Object> addUser(@RequestBody UserEntity User)throws UserException{
+		LOGGER.info("add-user URL is opened");
+		LOGGER.info("addUserEntity() is initiated");
+		ResponseEntity<Object> orderResponse = null;
+		User user = iUserService.addUser(User);
+		orderResponse = new ResponseEntity<>(user,HttpStatus.ACCEPTED);
+		LOGGER.info("addUser() has executed");
+		return orderResponse;
+	}
+	
 	@GetMapping("/signin/{userId}/{password}")
 	public ResponseEntity<Object> signin(@PathVariable Long userId,@PathVariable String Password) throws UserException
 	{
