@@ -32,7 +32,7 @@ public class UserController {
 	{
 		LOGGER.info("sign-in URL is opened");
 		LOGGER.info("signin() is initiated");
-		UserEntity userdata = new UserEntity(userId,Password);
+		UserEntity userdata = new UserEntity(userId,null,Password);
 		UserEntity user = iUserService.signIn(userdata);
 		ResponseEntity<Object> response = new ResponseEntity<>(user,HttpStatus.ACCEPTED);
 		LOGGER.info("signin() has Executed");
