@@ -46,6 +46,7 @@ class OrderServiceImplTest {
 		//addenti = new AddressEntity();
 		//ordenti = new OrderEntity();
 		custEnt=new CustomerEntity((long)1,"Rama","","9873562781",LocalDate.parse("1995-09-30"),addenti,ordenti);
+
 	}
 
 }
