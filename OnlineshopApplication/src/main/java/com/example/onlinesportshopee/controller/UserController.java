@@ -2,6 +2,7 @@ package com.example.onlinesportshopee.controller;
 
 
 import org.slf4j.Logger;
+
 import org.slf4j.LoggerFactory;
 
 //import java.util.List;
@@ -16,7 +17,6 @@ import com.example.onlinesportshopee.entities.UserEntity;
 import com.example.onlinesportshopee.exception.UserException;
 import com.example.onlinesportshopee.model.User;
 import com.example.onlinesportshopee.services.IUserService;
-import com.example.onlinesportshopee.services.UserServiceImpl;
 
 @RestController
 @RequestMapping("/login")
@@ -27,12 +27,23 @@ public class UserController {
 	@Autowired
 	private IUserService iUserService;
 	
+	@PostMapping("/add-user")
+	public  ResponseEntity<Object> addUser(@RequestBody UserEntity User)throws UserException{
+		LOGGER.info("add-user URL is opened");
+		LOGGER.info("addUserEntity() is initiated");
+		ResponseEntity<Object> orderResponse = null;
+		User user = iUserService.addUser(User);
+		orderResponse = new ResponseEntity<>(user,HttpStatus.ACCEPTED);
+		LOGGER.info("addUser() has executed");
+		return orderResponse;
+	}
+	
 	@GetMapping("/signin/{userId}/{password}")
 	public ResponseEntity<Object> signin(@PathVariable Long userId,@PathVariable String Password) throws UserException
 	{
 		LOGGER.info("sign-in URL is opened");
 		LOGGER.info("signin() is initiated");
-		UserEntity userdata = new UserEntity(userId,Password);
+		UserEntity userdata = new UserEntity(userId,null,Password);
 		UserEntity user = iUserService.signIn(userdata);
 		ResponseEntity<Object> response = new ResponseEntity<>(user,HttpStatus.ACCEPTED);
 		LOGGER.info("signin() has Executed");

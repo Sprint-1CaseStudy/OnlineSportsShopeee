@@ -16,14 +16,16 @@ public class UserUtils {
     public static UserEntity convertToOrder(User dto) {
         UserEntity user = new UserEntity();
         
-        user.setId(Long.parseLong(dto.getUserId()));
+        user.setId(dto.getId());
+        user.setUsername(dto.getUsername());
         user.setPassword(dto.getPassword());
         return user;
     }        
     
     public static User convertToOrder(UserEntity userEntity) {
         User dto = new User();
-        dto.setUserId(userEntity.getId().toString());
+        dto.setId(userEntity.getId());
+        dto.setUsername(userEntity.getUsername());
         dto.setPassword(userEntity.getPassword());
         return dto;
     }
