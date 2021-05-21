@@ -40,7 +40,7 @@ public class OrderServiceImpl implements IOrderService {
 		OrderEntity ordEntity;
 		OrderEntity existOrd= iOrderRepository.findById(id).orElse(null);
 		if (existOrd == null)
-			throw new InvalidOrderIdException("orderIdNotAvailable");
+			throw new OrderNotFoundException("orderNotAvailable");
 		else {
 			
 			ordEntity = iOrderRepository.save(orderEntity);
@@ -53,7 +53,7 @@ public class OrderServiceImpl implements IOrderService {
 		LOGGER.info("deleteOrder() service is initiated");
 		OrderEntity ordEntity = iOrderRepository.findById(id).orElse(null);
 		if (ordEntity == null)
-			throw new InvalidOrderIdException("orderNotFound");
+			throw new InvalidOrderIdException("orderIdIncorrect");
 		else
 			iOrderRepository.delete(ordEntity);
 		LOGGER.info("deleteOrder() service has executed");
@@ -64,7 +64,7 @@ public class OrderServiceImpl implements IOrderService {
 		LOGGER.info("viewOrder() service is initiated");
 		OrderEntity ordEntity = iOrderRepository.findById(id).orElse(null);
 		if (ordEntity == null)
-			throw new InvalidOrderIdException("orderNotFound");
+			throw new InvalidOrderIdException("orderIdIncorrect");
 		LOGGER.info("viewOrder() service has executed");//gh
 		return OrderUtils.convertToOrder(ordEntity);
 	}
