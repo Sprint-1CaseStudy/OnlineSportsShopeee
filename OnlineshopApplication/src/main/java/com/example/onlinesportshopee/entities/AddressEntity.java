@@ -16,6 +16,16 @@ public class AddressEntity
 	private String street;
 	@Column(name = "area")
 	private String area;
+	@Column(name = "city")
+	private String city;
+	@Column(name = "state")
+	private String state;
+	@Column(name = "pincode")
+	private Integer pincode;
+	@ManyToOne
+    @JoinColumn
+    private CustomerEntity customerEntity;
+	
 	@Override
 	public String toString() {
 		return "AddressEntity [id=" + id + ", street=" + street + ", area=" + area + ", city=" + city + ", state="
@@ -63,15 +73,20 @@ public class AddressEntity
 	public void setCustomerEntity(CustomerEntity customerEntity) {
 		this.customerEntity = customerEntity;
 	}
-	@Column(name = "city")
-	private String city;
-	@Column(name = "state")
-	private String state;
-	@Column(name = "pincode")
-	private Integer pincode;
-	@ManyToOne
-    @JoinColumn
-    private CustomerEntity customerEntity;
+	public AddressEntity(Long id, String street, String area, String city, String state, Integer pincode,
+			CustomerEntity customerEntity) {
+		super();
+		this.id = id;
+		this.street = street;
+		this.area = area;
+		this.city = city;
+		this.state = state;
+		this.pincode = pincode;
+		this.customerEntity = customerEntity;
+	}
+	public AddressEntity() {
+		
+	}
 
 	
 	
