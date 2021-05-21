@@ -2,6 +2,7 @@ package com.example.onlinesportshopee.controller;
 
 
 import org.slf4j.Logger;
+
 import org.slf4j.LoggerFactory;
 
 //import java.util.List;
@@ -16,7 +17,6 @@ import com.example.onlinesportshopee.entities.UserEntity;
 import com.example.onlinesportshopee.exception.UserException;
 import com.example.onlinesportshopee.model.User;
 import com.example.onlinesportshopee.services.IUserService;
-import com.example.onlinesportshopee.services.UserServiceImpl;
 
 @RestController
 @RequestMapping("/login")
