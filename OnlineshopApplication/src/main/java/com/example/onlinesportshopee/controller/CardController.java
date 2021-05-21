@@ -25,7 +25,7 @@ import com.example.onlinesportshopee.model.Card;
 import com.example.onlinesportshopee.services.CardServiceImpl;
 
 @RestController
-@RequestMapping("/cards")
+@RequestMapping("/onlinesportshopee")
 public class CardController {
 	
 	static final Logger LOGGER = LoggerFactory.getLogger(CardController.class);
@@ -33,7 +33,7 @@ public class CardController {
 	@Autowired
 	private CardServiceImpl cardServiceImpl;
 	
-	@PostMapping("/add-card")
+	@PostMapping("/cards/add-card")
 	public ResponseEntity<Object> addCard(@RequestBody CardEntity card) throws CardNotFoundException
 	{
 		LOGGER.info("add-card URL is opened");
@@ -46,7 +46,7 @@ public class CardController {
 		return cardResponse;
 	}
 
-	@DeleteMapping("/remove-card/card/{id}")
+	@DeleteMapping("/cards/remove-card/card/{id}")
 	public ResponseEntity<Object> removeCard(@PathVariable long id) throws CardNotFoundException
 	{
 		LOGGER.info("remove-card URL is opened");
@@ -60,7 +60,7 @@ public class CardController {
 	 
 	}
 	
-	@PutMapping("/update-card/{id}")
+	@PutMapping("/cards/update-card/{id}")
 	public ResponseEntity<Object> updateCard(@PathVariable long id, @RequestBody CardEntity card)
 	{
 		LOGGER.info("update-card URL is opened");
@@ -73,7 +73,7 @@ public class CardController {
 		return cardResponse;
 		
 	}
-	@GetMapping("/get-card-details/{id}")
+	@GetMapping("/cards/get-card-details/{id}")
 	public ResponseEntity<Object> getCardDetails(@PathVariable long id)
 	{
 		LOGGER.info("get-card-details URL is opened");
@@ -86,7 +86,7 @@ public class CardController {
 		return cardResponse;
 	}
 	
-	@GetMapping("/get-all-cards")
+	@GetMapping("/cards/get-all-cards")
 
 	public List<Card> getAllCards()
 	{

@@ -1,6 +1,7 @@
 package com.example.onlinesportshopee.services;
 
 import org.slf4j.Logger;
+
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,10 +28,13 @@ public class UserServiceImpl implements IUserService {
 	public User addUser(UserEntity user) throws UserException {
     	LOGGER.info("addUser() service is initiated");
     	UserEntity userEntity;
-		if(user==null)
+    	User existUser = null;
+		if(UserValidationimpl.validateUser(user) == null)
 			userEntity=null;
 		else {
-			userEntity=Userrepo.save(user);	
+				existUser = Userrepo.findByUserName(user.getUsername());
+				if(existUser != null)	throw new UserException("User Name already exists, Try another name");
+				else userEntity=Userrepo.save(user);	
 		}
 		LOGGER.info("addUser() service has executed");
 		return UserUtils.convertToOrder(userEntity);
@@ -39,17 +43,16 @@ public class UserServiceImpl implements IUserService {
     @Override
     public UserEntity signIn(UserEntity user) throws UserException {
     	LOGGER.info("signin() service is initiated");
-        Long userid = user.getId();
-        String password = user.getPassword();
-        UserEntity useridrepo = Userrepo.findById(userid).orElse(null);
+        if( user.getId() == null || user.getPassword() == null) throw new UserException("Userid or password cannot be empty");
+        UserEntity useridrepo = Userrepo.findById(user.getId()).orElse(null);
         if (useridrepo == null)
         {
-            String usernotfound = "No user found by the userid "+userid;
+            String usernotfound = "No user found by the userid "+user.getId();
             throw new UserException(usernotfound);
         }
         else 
         {
-            if(userid.equals(useridrepo.getId()) && password.equals(useridrepo.getPassword())) 
+            if(user.getId().equals(useridrepo.getId()) && user.getPassword().equals(useridrepo.getPassword())) 
             {
             	LOGGER.info("signin() service has Executed");
                 return useridrepo;
@@ -60,19 +63,16 @@ public class UserServiceImpl implements IUserService {
         }
     }
 
- 
-
     @Override
     public String signOut(UserEntity user) {
     	LOGGER.info("signout() service is initiated");
         return "Signout Successfully";
     }
 
- 
-
     @Override
     public User changePassword(long id, UserEntity user) throws UserException {
     	LOGGER.info("changepassword() service is initiated");
+    	if( id == 0) throw new UserException("Userid or password cannot be empty");
         UserEntity userEnti;
         UserEntity changePassword = Userrepo.findById(id).orElse(null);
         if(changePassword == null)
@@ -84,7 +84,4 @@ public class UserServiceImpl implements IUserService {
         LOGGER.info("changepassword() service has Executed");
         return UserUtils.convertToOrder(userEnti);
     }
-
- 
-
 }

@@ -15,7 +15,7 @@ import com.example.onlinesportshopee.model.Cart;
 import com.example.onlinesportshopee.services.ICartService;
 
 @RestController
-@RequestMapping("/cart")
+@RequestMapping("/onlinesportshopee")
 public class CartController {
 	
 	static final Logger LOGGER = LoggerFactory.getLogger(CartController.class);
@@ -23,7 +23,7 @@ public class CartController {
 	@Autowired
 	private ICartService cartService;
 	
-	@PostMapping("/addtocart")
+	@PostMapping("/cart/addtocart")
 	public  ResponseEntity<Object> addtocart(@RequestBody CartEntity cartEntity) throws CartException{
 		LOGGER.info("add-cart URL is opened");
 		LOGGER.info("addtocart() is initiated");
@@ -35,7 +35,7 @@ public class CartController {
 		return cartResponse;
 	}
 	
-	@DeleteMapping("/removefromcart/{delID}")
+	@DeleteMapping("/cart/removefromcart/{delID}")
 	public ResponseEntity<Object> deletecart(@PathVariable long delID)throws CartException{
 		LOGGER.info("remove-cart URL is opened");
 		LOGGER.info("deletecart() is initiated");
@@ -46,7 +46,7 @@ public class CartController {
 
 	}
 	
-	@GetMapping("/getallcartdetials")
+	@GetMapping("/cart/getallcartdetials")
 	public List<Cart> getAllProduct()
 	{
 		LOGGER.info("getall-cartdetails URL is opened");

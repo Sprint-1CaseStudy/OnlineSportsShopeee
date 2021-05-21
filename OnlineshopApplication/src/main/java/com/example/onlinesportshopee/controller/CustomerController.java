@@ -17,7 +17,7 @@ import com.example.onlinesportshopee.services.ICustomerService;
 
 //
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("/onlinesportshopee")
 public class CustomerController 
 {
 	static final Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
@@ -25,7 +25,7 @@ public class CustomerController
 	@Autowired
 	private ICustomerService iCustomerService;
 	
-	@PostMapping("/addCustomer")
+	@PostMapping("/customers/addCustomer")
 	public Customer addCustomer(@RequestBody CustomerEntity customer) throws CustomerNotFoundException {
 		LOGGER.info("addCustomer URL is opened");
 		LOGGER.info("addCustomer() is initiated");
@@ -33,7 +33,7 @@ public class CustomerController
 		return iCustomerService.addCustomer(customer);
 	}
 	
-	@DeleteMapping("/removeCustomer/Customer/{custId}")
+	@DeleteMapping("/customers/removeCustomer/Customer/{custId}")
 	public Customer removeCustomer(@PathVariable long custId) throws CustomerNotFoundException {
 		LOGGER.info("removeCustomer URL is opened");
 		LOGGER.info("removeCustomer() is initiated");
@@ -41,7 +41,7 @@ public class CustomerController
 		return iCustomerService.removeCustomer(custId);
 	}
 
-	@PutMapping("/updateCustomer/{custId}")
+	@PutMapping("/customers/updateCustomer/{custId}")
 	public Customer updateCustomer(@PathVariable long custId,@RequestBody CustomerEntity customer) throws CustomerNotFoundException {
 		LOGGER.info("updateCustomer URL is opened");
 		LOGGER.info("updateCustomer() is initiated");
@@ -49,7 +49,7 @@ public class CustomerController
 		return iCustomerService.updateCustomer(custId, customer);
 	}
 
-	@GetMapping("/getCustomerDetails/{custId}")
+	@GetMapping("/customers/getCustomerDetails/{custId}")
 	public Customer getCustomer(@PathVariable long custId) throws CustomerNotFoundException {
 		LOGGER.info("getCustomerDetails URL is opened");
 		LOGGER.info("getCustomer() is initiated");
@@ -57,7 +57,7 @@ public class CustomerController
 		return iCustomerService.getCustomer(custId);
 	}
 
-	@GetMapping("/Customers/{name}")
+	@GetMapping("/customers/Customers/{name}")
 	public List<Customer> getAllCustomers(@PathVariable String name) {
 		LOGGER.info("Customers URL is opened");
 		LOGGER.info("getAllCustomers() is initiated");
