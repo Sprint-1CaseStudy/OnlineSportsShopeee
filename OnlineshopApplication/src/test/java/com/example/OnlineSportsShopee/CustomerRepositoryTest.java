@@ -34,7 +34,7 @@ class CustomerRepositoryTest {
 	{
 		Customer customer = new Customer();
 		Address address = new Address();
-		address.setID((long)10);
+		address.setDoorNo("10");
 		
 	}
 
