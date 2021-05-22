@@ -2,11 +2,13 @@ package com.example.onlinesportshopee.controller;
 
 import java.util.List;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.onlinesportshopee.entities.CustomerEntity;
@@ -26,35 +28,51 @@ public class CustomerController
 	private ICustomerService iCustomerService;
 	
 	@PostMapping("/customers/addCustomer")
-	public Customer addCustomer(@RequestBody CustomerEntity customer) throws CustomerNotFoundException {
+	public ResponseEntity<Object> addCustomer(@RequestBody CustomerEntity customer) throws CustomerNotFoundException {
 		LOGGER.info("addCustomer URL is opened");
 		LOGGER.info("addCustomer() is initiated");
+		Customer customerDTO = null;
+		ResponseEntity<Object> customerResponse = null;
+		customerDTO = iCustomerService.addCustomer(customer);
+		customerResponse = new ResponseEntity(customerDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("addCustomer() is executed");
-		return iCustomerService.addCustomer(customer);
+		return customerResponse;
 	}
 	
 	@DeleteMapping("/customers/removeCustomer/Customer/{custId}")
-	public Customer removeCustomer(@PathVariable long custId) throws CustomerNotFoundException {
+	public ResponseEntity<Object> removeCustomer(@PathVariable long custId) throws CustomerNotFoundException {
 		LOGGER.info("removeCustomer URL is opened");
 		LOGGER.info("removeCustomer() is initiated");
+		Customer customerDTO = null;
+		ResponseEntity<Object> customerResponse = null;
+		customerDTO = iCustomerService.removeCustomer(custId);
+		customerResponse = new ResponseEntity(customerDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("removeCustomer() is executed");
-		return iCustomerService.removeCustomer(custId);
+		return customerResponse;
 	}
 
 	@PutMapping("/customers/updateCustomer/{custId}")
-	public Customer updateCustomer(@PathVariable long custId,@RequestBody CustomerEntity customer) throws CustomerNotFoundException {
+	public ResponseEntity<Object> updateCustomer(@PathVariable long custId,@RequestBody CustomerEntity customer) throws CustomerNotFoundException {
 		LOGGER.info("updateCustomer URL is opened");
 		LOGGER.info("updateCustomer() is initiated");
+		Customer customerDTO = null;
+		ResponseEntity<Object> customerResponse = null;
+		customerDTO = iCustomerService.updateCustomer(custId, customer);
+		customerResponse = new ResponseEntity(customerDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("updateCustomer() is executed");
-		return iCustomerService.updateCustomer(custId, customer);
+		return customerResponse;
 	}
 
 	@GetMapping("/customers/getCustomerDetails/{custId}")
-	public Customer getCustomer(@PathVariable long custId) throws CustomerNotFoundException {
+	public ResponseEntity<Object> getCustomer(@PathVariable long custId) throws CustomerNotFoundException {
 		LOGGER.info("getCustomerDetails URL is opened");
 		LOGGER.info("getCustomer() is initiated");
+		Customer customerDTO = null;
+		ResponseEntity<Object> customerResponse = null;
+		customerDTO = iCustomerService.getCustomer(custId);
+		customerResponse = new ResponseEntity(customerDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("getCustomer() is executed");
-		return iCustomerService.getCustomer(custId);
+		return customerResponse;
 	}
 
 
