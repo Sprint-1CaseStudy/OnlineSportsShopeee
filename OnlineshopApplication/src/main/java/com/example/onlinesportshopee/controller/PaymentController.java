@@ -17,7 +17,7 @@ import com.example.onlinesportshopee.services.IPaymentService;
 import com.example.onlinesportshopee.services.PaymentServiceImpl;
 
 @RestController
-@RequestMapping("/payments")
+@RequestMapping("/onlinesportsshops")
 
 public class PaymentController {
 	
@@ -26,7 +26,7 @@ public class PaymentController {
 	@Autowired
 	private IPaymentService iPaymentService;
 	
-	@PostMapping("/addPayment")
+	@PostMapping("/payments/addPayment")
 	public ResponseEntity<Object> addPayment(@RequestBody PaymentEntity payment)
 	{
 		LOGGER.info("add-payment URL is opened");
@@ -37,7 +37,7 @@ public class PaymentController {
 		return new ResponseEntity<>(paymentDTO, HttpStatus.ACCEPTED); 
 	}
 	
-	@DeleteMapping("/removePayment/payment/{paymentId}")
+	@DeleteMapping("/payments/removePayment/payment/{paymentId}")
 	public ResponseEntity<Object> removePayment(@PathVariable long paymentId) throws PaymentNotFoundException
 	{
 		LOGGER.info("delete-payment URL is opened");
@@ -50,7 +50,7 @@ public class PaymentController {
 		return paymentResponse;
 		}
 	
-	@PutMapping("/updatePayment/{paymentId}")
+	@PutMapping("/payments/updatePayment/{paymentId}")
 	public ResponseEntity<Object> updatePayment(@PathVariable long paymentId, @RequestBody PaymentEntity paymentEntity)  throws PaymentNotFoundException
 	{
 		LOGGER.info("update-payment URL is opened");
@@ -63,7 +63,7 @@ public class PaymentController {
 		return paymentResponse;
 	}
 	
-	@GetMapping("/getPaymentDetails/{paymentId}")
+	@GetMapping("/payments/getPaymentDetails/{paymentId}")
 	public ResponseEntity<Object> getPaymentDetails(@PathVariable long paymentId) throws PaymentNotFoundException
 	{
 		LOGGER.info("getPaymentDetails URL is opened");
@@ -75,7 +75,7 @@ public class PaymentController {
 		LOGGER.info("getPaymentDetails() has executed");
 		return paymentResponse;
 		}
-	@GetMapping("/payment/{name}")
+	@GetMapping("/payments/payment/{name}")
 	public List<Payment> getAllPaymentByName(@PathVariable String name)
 	{
 		LOGGER.info("getPaymentbyname URL is opened");

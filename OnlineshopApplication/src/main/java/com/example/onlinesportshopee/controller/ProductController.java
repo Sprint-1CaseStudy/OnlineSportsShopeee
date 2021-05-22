@@ -18,7 +18,7 @@ import com.example.onlinesportshopee.services.IProductService;
 
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/onlinesportsshop")
 public class ProductController {
 	
 	static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
@@ -26,7 +26,7 @@ public class ProductController {
 	@Autowired
 	private IProductService iProductService;
 	
-	@PostMapping("/addproduct")
+	@PostMapping("/products/addproduct")
 	public ResponseEntity<Object> addProduct(@RequestBody ProductEntity product) throws ProductsException
 	{
 		LOGGER.info("addProduct URL is opened");
@@ -40,7 +40,7 @@ public class ProductController {
 		
 	}
 	
-	@DeleteMapping("/removeproduct/product/{productId}")
+	@DeleteMapping("/products/removeproduct/product/{productId}")
 	public ResponseEntity<Object> removeProduct(@PathVariable long productId) throws ProductsException
 	{
 		LOGGER.info("removeProduct URL is opened");
@@ -54,7 +54,7 @@ public class ProductController {
 	 
 	}
 	
-	@PutMapping("/updateproduct/{productId}")
+	@PutMapping("/products/updateproduct/{productId}")
 	public ResponseEntity<Object> updateProduct(@PathVariable long productId, @RequestBody ProductEntity product)
 	{
 		LOGGER.info("updateProduct URL is opened");
@@ -68,7 +68,7 @@ public class ProductController {
 		
 	}
 	
-	@GetMapping("/getproduct/{productId}")
+	@GetMapping("/products/getproduct/{productId}")
 	public ResponseEntity<Object> getProduct(@PathVariable long productId)
 	{
 		LOGGER.info("getProduct URL is opened");
@@ -81,7 +81,7 @@ public class ProductController {
 		return productResponse;
 	}
 	
-	@GetMapping("/getallproduct")
+	@GetMapping("/products/getallproduct")
 	public List<Product> getAllProduct()
 	{
 		LOGGER.info("getAllProducts URL is opened");
@@ -90,7 +90,7 @@ public class ProductController {
 	}
 	
 	
-	@GetMapping("/byname/{name}")
+	@GetMapping("/products/byname/{name}")
 	public ResponseEntity<Object> getProductsByName(@PathVariable String name) throws ProductsException
 	{
 		LOGGER.info("Productbyname URL is opened");
@@ -102,7 +102,7 @@ public class ProductController {
 		return response;
 	}
 	
-	@GetMapping("/bysize/{size}")
+	@GetMapping("/products/bysize/{size}")
 	public ResponseEntity<Object> getProductsBySize(@PathVariable String size) throws ProductsException
 	{
 		LOGGER.info("Productbysize URL is opened");
@@ -113,7 +113,7 @@ public class ProductController {
 		return response;
 	}
 	
-	@GetMapping("/byprice/{price}")
+	@GetMapping("/products/byprice/{price}")
 	public ResponseEntity<Object> getProductsByPrice(@PathVariable double price) throws ProductsException
 	{
 		LOGGER.info("Productbyprice URL is opened");
@@ -124,7 +124,7 @@ public class ProductController {
 		return response;
 	}
 	
-	@GetMapping("/bycolor/{color}")
+	@GetMapping("/products/bycolor/{color}")
 	public ResponseEntity<Object> getProductsByColor(@PathVariable String color) throws ProductsException
 	{
 		LOGGER.info("Productbycolor URL is opened");

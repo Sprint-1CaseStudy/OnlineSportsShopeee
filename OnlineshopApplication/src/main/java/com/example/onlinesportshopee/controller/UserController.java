@@ -19,7 +19,7 @@ import com.example.onlinesportshopee.model.User;
 import com.example.onlinesportshopee.services.IUserService;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/onlinesportsshop")
 public class UserController {
 	
 	static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
@@ -27,7 +27,7 @@ public class UserController {
 	@Autowired
 	private IUserService iUserService;
 	
-	@PostMapping("/add-user")
+	@PostMapping("/login/add-user")
 	public  ResponseEntity<Object> addUser(@RequestBody UserEntity User)throws UserException{
 		LOGGER.info("add-user URL is opened");
 		LOGGER.info("addUserEntity() is initiated");
@@ -38,7 +38,7 @@ public class UserController {
 		return orderResponse;
 	}
 	
-	@GetMapping("/signin/{userId}/{password}")
+	@GetMapping("/login/signin/{userId}/{password}")
 	public ResponseEntity<Object> signin(@PathVariable Long userId,@PathVariable String Password) throws UserException
 	{
 		LOGGER.info("sign-in URL is opened");
@@ -51,7 +51,7 @@ public class UserController {
 	}
 	
 	
-	@GetMapping("/signout")
+	@GetMapping("/login/signout")
 	public ResponseEntity<Object> signOut() throws UserException
 	{
 		LOGGER.info("sign-out URL is opened");
@@ -62,7 +62,7 @@ public class UserController {
 		return response;
 	}
 	
-	@PutMapping("/changepassword/{userId}")
+	@PutMapping("/login/changepassword/{userId}")
 	public ResponseEntity<Object> signin(@PathVariable long userId, @RequestBody UserEntity User) throws UserException
 	{
 		LOGGER.info("changepassword URL is opened");

@@ -21,11 +21,11 @@ public class MySwaggerConfig {
 	// The select() method called on Docket bean returns an "ApiSelectorBuilder". This provides "apis()" and "paths()" methods to filter the controllers and methods being documented using string predicates.
 	@Bean
 	public Docket postsApi() {
-		return new Docket(DocumentationType.SWAGGER_2).apiInfo(metadata()).select().paths(regex("/booking.*")).build();
+		return new Docket(DocumentationType.SWAGGER_2).apiInfo(metadata()).select().paths(regex("/onlinesportsshop.*")).build();
 	}
 
 	@SuppressWarnings("deprecation")
 	private ApiInfo metadata() {
-		return new ApiInfoBuilder().title("TicketBooking App").description("API reference guide for developers").termsOfServiceUrl("https://www.abccg.com/").contact("Batra, Yatin").version("1.0").build();	
+		return new ApiInfoBuilder().title("OnlineSportsShopping App").description("API reference guide for developers").termsOfServiceUrl("https://www.abccg.com/").contact("Batra, Yatin").version("1.0").build();	
 	}
 }
