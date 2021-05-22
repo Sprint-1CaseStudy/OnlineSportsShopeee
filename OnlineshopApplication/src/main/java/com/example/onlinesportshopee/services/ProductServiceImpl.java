@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.onlinesportshopee.dao.IProductRepository;
 import com.example.onlinesportshopee.entities.ProductEntity;
-import com.example.onlinesportshopee.exception.ProductsException;
+import com.example.onlinesportshopee.exception.ProductNotFoundException;
 import com.example.onlinesportshopee.model.Product;
 import com.example.onlinesportshopee.util.ProductUtils;
 
@@ -73,14 +73,14 @@ public class ProductServiceImpl implements IProductService {
 	}
 	
 	@Override
-	public List<Product> getProductsByName(String name) throws ProductsException
+	public List<Product> getProductsByName(String name) throws ProductNotFoundException
 	{
 		LOGGER.info("getProductByName() serivice is initiated");
 		List<ProductEntity> getProductName = iProductRepository.findByName(name);
 		if (getProductName == null)
 		{
 			String namenotfound = "No products found by the name "+name;
-			throw new ProductsException(namenotfound);
+			throw new ProductNotFoundException(namenotfound);
 		}
 		LOGGER.info("getProductByName() service has executed");
 		return ProductUtils.convertToProductDtoList(getProductName);
@@ -88,28 +88,28 @@ public class ProductServiceImpl implements IProductService {
 	
 	
 	@Override
-	public List<Product> getProductsBySize(String size) throws ProductsException
+	public List<Product> getProductsBySize(String size) throws ProductNotFoundException
 	{
 		LOGGER.info("getProductBySize() serivice is initiated");
 		List<ProductEntity> productSize = iProductRepository.findBySize(size);
 		if (productSize == null)
 		{
 			String sizenotfound = "No products found by the size "+size;
-			throw new ProductsException(sizenotfound);
+			throw new ProductNotFoundException(sizenotfound);
 		}
 		LOGGER.info("getProductBySize() service has executed");
 		return ProductUtils.convertToProductDtoList(productSize);
 	}
 	
 	@Override
-	public List<Product> getProductsByPrice(double price) throws ProductsException
+	public List<Product> getProductsByPrice(double price) throws ProductNotFoundException
 	{
 		LOGGER.info("getProductByPrice() serivice is initiated");
 		List<ProductEntity> productPrice = iProductRepository.findByPrice(price);
 		if (productPrice == null)
 		{
 			String pricenotfound = "No products found by the price "+price;
-			throw new ProductsException(pricenotfound);
+			throw new ProductNotFoundException(pricenotfound);
 		}
 		LOGGER.info("getProductByPrice() service has executed");
 		return ProductUtils.convertToProductDtoList(productPrice);
@@ -117,14 +117,14 @@ public class ProductServiceImpl implements IProductService {
 	}
 	
 	@Override
-	public List<Product> getProductsByColor(String color) throws ProductsException
+	public List<Product> getProductsByColor(String color) throws ProductNotFoundException
 	{
 		LOGGER.info("getProductByColor() serivice is initiated");
 		List<ProductEntity> productColor = iProductRepository.findByColor(color);
 		if (productColor == null)
 		{
 			String colornotfound = "No products found by the color "+color;
-			throw new ProductsException(colornotfound);
+			throw new ProductNotFoundException(colornotfound);
 		}
 		LOGGER.info("getProductByColor() service has executed");
 		return ProductUtils.convertToProductDtoList(productColor);
