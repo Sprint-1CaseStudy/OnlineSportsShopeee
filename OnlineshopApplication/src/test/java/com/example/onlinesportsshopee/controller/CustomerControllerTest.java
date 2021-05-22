@@ -2,6 +2,7 @@ package com.example.onlinesportsshopee.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
@@ -9,11 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.onlinesportshopee.controller.CustomerController;
+import com.example.onlinesportshopee.dao.ICustomerRepository;
 import com.example.onlinesportshopee.entities.AddressEntity;
 import com.example.onlinesportshopee.entities.CustomerEntity;
 import com.example.onlinesportshopee.entities.OrderEntity;
 import com.example.onlinesportshopee.model.Customer;
 import com.example.onlinesportshopee.services.ICustomerService;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -34,18 +37,22 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
+import org.springframework.boot.test.context.SpringBootTest;
 import org.junit.jupiter.api.Test;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = CustomerController.class)
+@SpringBootTest
 class CustomerControllerTest {
 		
 	@Autowired
 	private MockMvc mockMvc;
 	
 	@MockBean
-	private ICustomerService iCustomerService;
+	ICustomerRepository iCustomerRepository;
+	
+	@MockBean 
+	ICustomerService iCustomerService;
 	
 	@Test
 	public void testaddCustomer() throws Exception
@@ -76,7 +83,7 @@ class CustomerControllerTest {
 		
 		String jsonInput = this.convertToJson(customer);
 		
-		Mockito.when(iCustomerService.addCustomer(Mockito.any(CustomerEntity.class))).thenReturn(customer);
+		Mockito.when(iCustomerRepository.save(Mockito.any(CustomerEntity.class))).thenReturn(customer);
 		MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.post(URI).accept(MediaType.APPLICATION_JSON).content(jsonInput).contentType(MediaType.APPLICATION_JSON)).andReturn();
 		MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
 		String jsonOutput = mockHttpServletResponse.getContentAsString();
@@ -111,7 +118,7 @@ class CustomerControllerTest {
 		customer.setOrderEntity((List<OrderEntity>) order);
 		
 		String jsonInput = this.convertToJson(customer);
-		Mockito.when(iCustomerService.getCustomer(Mockito.any())).thenReturn(customer);
+		Mockito.when(iCustomerRepository.save(Mockito.any())).thenReturn(customer);
 		MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get(URI, 1).accept(MediaType.APPLICATION_JSON)).andReturn();
 		MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
 		String jsonOutput = mockHttpServletResponse.getContentAsString();
@@ -172,7 +179,7 @@ class CustomerControllerTest {
 		
 		String jsonInput = this.convertToJson(customerlist);
 		
-		Mockito.when(iCustomerService.getAllCustomers()).thenReturn(customerlist);
+		Mockito.when(iCustomerRepository.findAll()).thenReturn(customerlist);
 		MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get(URI).accept(MediaType.APPLICATION_JSON)).andReturn();
 		MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
 		String jsonOutput = mockHttpServletResponse.getContentAsString();
@@ -204,9 +211,10 @@ class CustomerControllerTest {
 		customer1.setDoB(LocalDate.parse("21/10/1997"));
 		customer1.setAddressEntity((List<AddressEntity>) address1);
 		customer1.setOrderEntity((List<OrderEntity>) order1);
-		
-		Mockito.when(iCustomerService.getCustomer(Mockito.any())).thenReturn(customer1);
-		Mockito.when(iCustomerService.removeCustomer(Mockito.any())).thenReturn(true);
+		CustomerEntity Temp = iCustomerRepository.findById((long)1).get();
+		Mockito.when(iCustomerRepository.save(Mockito.any())).thenReturn(customer1);
+		iCustomerRepository.deleteById(customer1.getId());
+		Mockito.when(iCustomerRepository.findById(Mockito.any()).get()).thenReturn(customer1);
 		MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.delete(URI, 1).accept(MediaType.APPLICATION_JSON)).andReturn();
 		MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
 	    Assert.assertEquals(HttpStatus.OK.value(), mockHttpServletResponse.getStatus());
@@ -240,7 +248,7 @@ class CustomerControllerTest {
 		
 		String jsonInput = this.convertToJson(customer2);
 		
-		Mockito.when(iCustomerService.updateCustomer(customer2.getId(),Mockito.any())).thenReturn(customer2);
+		Mockito.when(iCustomerRepository.save(Mockito.any())).thenReturn(customer2);
 		MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.put(URI).accept(MediaType.APPLICATION_JSON).content(jsonInput).contentType(MediaType.APPLICATION_JSON)).andReturn();
 	    MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
 	    String jsonOutput = mockHttpServletResponse.getContentAsString();
