@@ -31,7 +31,7 @@ public class OrderEntity {
 		super();
 	}
 
-	public OrderEntity(Long id, Double amount, LocalDate billingDate, CustomerEntity customerEntity, List<ProductEntity> productEntity,String paymentMethod,PaymentEntity paymentEntity) {
+	public OrderEntity(Long id, Double amount, LocalDate billingDate, String paymentMethod,CustomerEntity customerEntity, List<ProductEntity> productEntity,PaymentEntity paymentEntity) {
 		super();
 		this.id=id;
 		this.amount = amount;

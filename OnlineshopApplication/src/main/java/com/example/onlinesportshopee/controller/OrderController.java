@@ -33,7 +33,7 @@ public class OrderController {
 	private IOrderService iOrderService;
 	
 
-	@PostMapping("/api/order/add-order")
+	@PostMapping("/add-order")
 	public  ResponseEntity<Object> addProduct(@RequestBody OrderEntity orderEntity)throws OrderNotFoundException,InvalidOrderIdException{
 		LOGGER.info("add-order URL is opened");
 		LOGGER.info("addOrderEntity() is initiated");
