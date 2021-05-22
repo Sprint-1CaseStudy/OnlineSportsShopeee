@@ -11,7 +11,7 @@ public class AddressUtils {
 	}
 	public static AddressEntity convertToAddressEntity(Address address) {
 		AddressEntity addressentity = new AddressEntity();
-		addressentity.setId(Long.parseLong(address.getDoorNo()));
+		addressentity.setId(address.getID());
 		addressentity.setStreet(address.getStreet());
 		addressentity.setArea(address.getArea());
 		addressentity.setCity(address.getCity());
@@ -23,7 +23,7 @@ public class AddressUtils {
 	
 	public static Address convertToAddress(AddressEntity addressentity) {
 		Address address = new Address();
-		address.setDoorNo(addressentity.getId().toString());
+		address.setID(addressentity.getId());
 		address.setStreet(addressentity.getStreet());
 		address.setArea(addressentity.getArea());
 		address.setCity(addressentity.getCity());
