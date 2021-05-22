@@ -4,7 +4,7 @@ import com.example.onlinesportshopee.entities.CustomerEntity;
 
 public class Address 
 {
-	private String doorNo;
+	private Long id;
 	private String street;
 	private String area;
 	private String city;
@@ -17,10 +17,10 @@ public class Address
 		super();
 	}
 		
-	public Address(String doorNo, String street, String area, String city, String state, Integer pincode,
+	public Address(Long id, String street, String area, String city, String state, Integer pincode,
 			CustomerEntity customerEntity) {
 		super();
-		this.doorNo = doorNo;
+		this.id = id;
 		this.street = street;
 		this.area = area;
 		this.city = city;
@@ -29,11 +29,11 @@ public class Address
 		this.customerEntity = customerEntity;
 	}
 
-	public String getDoorNo() {
-		return doorNo;
+	public Long getID() {
+		return id;
 	}
-	public void setDoorNo(String doorNo) {
-		this.doorNo = doorNo;
+	public void setID(Long id) {
+		this.id = id;
 	}
 	public String getStreet() {
 		return street;
@@ -75,7 +75,7 @@ public class Address
 	
 	@Override
 	public String toString() {
-		return "Address [doorNo=" + doorNo + ", street=" + street + ", area=" + area + ", city=" + city + ", state="
+		return "Address [id=" + id + ", street=" + street + ", area=" + area + ", city=" + city + ", state="
 				+ state + ", pincode=" + pincode + ", customerEntity=" + customerEntity + "]";
 	}
 	
