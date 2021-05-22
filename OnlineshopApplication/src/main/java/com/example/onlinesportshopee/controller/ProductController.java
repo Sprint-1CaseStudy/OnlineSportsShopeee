@@ -11,7 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.onlinesportshopee.entities.ProductEntity;
-import com.example.onlinesportshopee.exception.ProductsException;
+import com.example.onlinesportshopee.exception.InvalidProductInputException;
+import com.example.onlinesportshopee.exception.ProductNotFoundException;
 import com.example.onlinesportshopee.model.Product;
 import com.example.onlinesportshopee.services.IProductService;
 
@@ -27,7 +28,7 @@ public class ProductController {
 	private IProductService iProductService;
 	
 	@PostMapping("/products/addproduct")
-	public ResponseEntity<Object> addProduct(@RequestBody ProductEntity product) throws ProductsException
+	public ResponseEntity<Object> addProduct(@RequestBody ProductEntity product) throws ProductNotFoundException
 	{
 		LOGGER.info("addProduct URL is opened");
 		LOGGER.info("addProduct() is initiated");
@@ -41,7 +42,7 @@ public class ProductController {
 	}
 	
 	@DeleteMapping("/products/removeproduct/product/{productId}")
-	public ResponseEntity<Object> removeProduct(@PathVariable long productId) throws ProductsException
+	public ResponseEntity<Object> removeProduct(@PathVariable long productId) throws ProductNotFoundException, InvalidProductInputException
 	{
 		LOGGER.info("removeProduct URL is opened");
 		LOGGER.info("removeProduct() is initiated");
@@ -55,7 +56,8 @@ public class ProductController {
 	}
 	
 	@PutMapping("/products/updateproduct/{productId}")
-	public ResponseEntity<Object> updateProduct(@PathVariable long productId, @RequestBody ProductEntity product)
+
+	public ResponseEntity<Object> updateProduct(@PathVariable long productId, @RequestBody ProductEntity product) throws ProductNotFoundException, InvalidProductInputException
 	{
 		LOGGER.info("updateProduct URL is opened");
 		LOGGER.info("updateProduct() is initiated");
@@ -69,7 +71,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/products/getproduct/{productId}")
-	public ResponseEntity<Object> getProduct(@PathVariable long productId)
+	public ResponseEntity<Object> getProduct(@PathVariable long productId) throws ProductNotFoundException, InvalidProductInputException
 	{
 		LOGGER.info("getProduct URL is opened");
 		LOGGER.info("getProduct() is initiated");
@@ -91,7 +93,7 @@ public class ProductController {
 	
 	
 	@GetMapping("/products/byname/{name}")
-	public ResponseEntity<Object> getProductsByName(@PathVariable String name) throws ProductsException
+	public ResponseEntity<Object> getProductsByName(@PathVariable String name) throws ProductNotFoundException, InvalidProductInputException
 	{
 		LOGGER.info("Productbyname URL is opened");
 		LOGGER.info("Productbyname() is initiated");
@@ -103,7 +105,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/products/bysize/{size}")
-	public ResponseEntity<Object> getProductsBySize(@PathVariable String size) throws ProductsException
+	public ResponseEntity<Object> getProductsBySize(@PathVariable String size) throws ProductNotFoundException
 	{
 		LOGGER.info("Productbysize URL is opened");
 		LOGGER.info("Productbysize() is initiated");
@@ -114,7 +116,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/products/byprice/{price}")
-	public ResponseEntity<Object> getProductsByPrice(@PathVariable double price) throws ProductsException
+	public ResponseEntity<Object> getProductsByPrice(@PathVariable double price) throws ProductNotFoundException
 	{
 		LOGGER.info("Productbyprice URL is opened");
 		LOGGER.info("Productbyprice() is initiated");
@@ -125,7 +127,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/products/bycolor/{color}")
-	public ResponseEntity<Object> getProductsByColor(@PathVariable String color) throws ProductsException
+	public ResponseEntity<Object> getProductsByColor(@PathVariable String color) throws ProductNotFoundException
 	{
 		LOGGER.info("Productbycolor URL is opened");
 		LOGGER.info("Productbycolor() is initiated");

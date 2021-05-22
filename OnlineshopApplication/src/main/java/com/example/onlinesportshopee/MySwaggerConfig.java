@@ -27,5 +27,6 @@ public class MySwaggerConfig {
 	@SuppressWarnings("deprecation")
 	private ApiInfo metadata() {
 		return new ApiInfoBuilder().title("onlinesportshopee App").description("API reference guide for developers").termsOfServiceUrl("https://www.abccg.com/").contact("Batra, Yatin").version("1.0").build();	
+
 	}
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 import com.example.onlinesportshopee.entities.ProductEntity;
-import com.example.onlinesportshopee.exception.ProductsException;
+import com.example.onlinesportshopee.exception.ProductNotFoundException;
 import com.example.onlinesportshopee.model.Product;
 
 
@@ -17,9 +17,9 @@ public interface IProductService {
 	public Product getProduct(long productId);
 	public List<Product> getAllProduct();
 	
-	List<Product> getProductsByName(String name) throws ProductsException;
-	List<Product> getProductsBySize(String size) throws ProductsException;
-	List<Product> getProductsByPrice(double price) throws ProductsException;
-	List<Product> getProductsByColor(String color) throws ProductsException;	
+	List<Product> getProductsByName(String name) throws ProductNotFoundException;
+	List<Product> getProductsBySize(String size) throws ProductNotFoundException;
+	List<Product> getProductsByPrice(double price) throws ProductNotFoundException;
+	List<Product> getProductsByColor(String color) throws ProductNotFoundException;	
 	
 }

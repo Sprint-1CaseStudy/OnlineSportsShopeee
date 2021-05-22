@@ -57,6 +57,7 @@ public class CustomerController
 		return iCustomerService.getCustomer(custId);
 	}
 
+
 	@GetMapping("/customers/Customers/{name}")
 	public List<Customer> getAllCustomers(@PathVariable String name) {
 		LOGGER.info("Customers URL is opened");

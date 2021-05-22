@@ -26,10 +26,10 @@ public class AddressEntity
     @JoinColumn
     private CustomerEntity customerEntity;
 	
+
 	public AddressEntity() {
 		// TODO Auto-generated constructor stub
 	}
-
 	@Override
 	public String toString() {
 		return "AddressEntity [id=" + id + ", street=" + street + ", area=" + area + ", city=" + city + ", state="
@@ -77,5 +77,17 @@ public class AddressEntity
 	public void setCustomerEntity(CustomerEntity customerEntity) {
 		this.customerEntity = customerEntity;
 	}
+	public AddressEntity(Long id, String street, String area, String city, String state, Integer pincode,
+			CustomerEntity customerEntity) {
+		super();
+		this.id = id;
+		this.street = street;
+		this.area = area;
+		this.city = city;
+		this.state = state;
+		this.pincode = pincode;
+		this.customerEntity = customerEntity;
+	}
+	
 	
 }
