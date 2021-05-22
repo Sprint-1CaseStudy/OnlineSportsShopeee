@@ -1,11 +1,10 @@
-package com.example.OnlineSportsShopee;
+package com.example.onlinesportsshopee.dao;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-
-class CustomerControllerTest {
+class OrderDaoTest {
 
 	@Test
 	void test() {

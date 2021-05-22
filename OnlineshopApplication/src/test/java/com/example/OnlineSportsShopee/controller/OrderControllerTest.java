@@ -1,10 +1,10 @@
-package com.example.OnlineSportsShopee;
+package com.example.onlinesportsshopee.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class CartServiceImplTest {
+class OrderControllerTest {
 
 	@Test
 	void test() {
