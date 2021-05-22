@@ -1,17 +1,17 @@
 package com.example.onlinesportshopee.controller;
 
 import org.slf4j.Logger;
+
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
-
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.onlinesportshopee.entities.AddressEntity;
 import com.example.onlinesportshopee.exception.AddressNotFoundException;
 import com.example.onlinesportshopee.model.Address;
-import com.example.onlinesportshopee.services.AddressServiceImpl;
+import com.example.onlinesportshopee.model.Customer;
 import com.example.onlinesportshopee.services.IAddressService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,38 +25,54 @@ public class AddressController {
 	static final Logger LOGGER = LoggerFactory.getLogger(AddressController.class);
 	
 	@Autowired
-	private AddressServiceImpl addressServiceImpl;
+	private IAddressService iAddressService;
 
 	@PostMapping("/address/addAddress")
-	public Address addAddress(@RequestBody AddressEntity address) throws AddressNotFoundException {
+	public ResponseEntity<Object> addAddress(@RequestBody AddressEntity address) throws AddressNotFoundException {
 		LOGGER.info("addAddress URL is opened");
 		LOGGER.info("addAddress() is initiated");
+		Address addressDTO = null;
+		ResponseEntity<Object> addressResponse = null;
+		addressDTO = iAddressService.addAddress(address);
+		addressResponse = new ResponseEntity(addressDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("addAddress() has executed");
-		return addressServiceImpl.addAddress(address);
+		return addressResponse;
 	}
 
 	@DeleteMapping("/address/removeAddress/Address/{custId}")
-	public Address removeAddress(@PathVariable long custId) throws AddressNotFoundException {
+	public ResponseEntity<Object> removeAddress(@PathVariable long custId) throws AddressNotFoundException {
 		LOGGER.info("removeAddress URL is opened");
 		LOGGER.info("removeAddress() is initiated");
+		Address addressDTO = null;
+		ResponseEntity<Object> addressResponse = null;
+		addressDTO = iAddressService.removeAddress(custId);
+		addressResponse = new ResponseEntity(addressDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("removeAddress() has executed");
-		return addressServiceImpl.removeAddress(custId);
+		return addressResponse;
 	}
 
 	@PutMapping("/address/updateAddress/{custId}")
-	public Address updateAddress(@PathVariable long custId,@RequestBody AddressEntity address) throws AddressNotFoundException {
+	public ResponseEntity<Object> updateAddress(@PathVariable long custId,@RequestBody AddressEntity address) throws AddressNotFoundException {
 		LOGGER.info("updateAddress URL is opened");
 		LOGGER.info("updateAddress() is initiated");
+		Address addressDTO = null;
+		ResponseEntity<Object> addressResponse = null;
+		addressDTO = iAddressService.updateAddress(custId,address);
+		addressResponse = new ResponseEntity(addressDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("updateAddress() has executed");
-		return addressServiceImpl.updateAddress(custId, address);
+		return addressResponse;
 	}
 
 	@GetMapping("/address/getAddressDetails/{custId}")
-	public Address getAddress(@PathVariable long custId) throws AddressNotFoundException {
+	public ResponseEntity<Object> getAddress(@PathVariable long custId) throws AddressNotFoundException {
 		LOGGER.info("getAddressDetails URL is opened");
 		LOGGER.info("getAddress() is initiated");
+		Address addressDTO = null;
+		ResponseEntity<Object> addressResponse = null;
+		addressDTO = iAddressService.getAddress(custId);
+		addressResponse = new ResponseEntity(addressDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("getAddress() has executed");
-		return addressServiceImpl.getAddress(custId);
+		return addressResponse;
 	}
 	
 	//
