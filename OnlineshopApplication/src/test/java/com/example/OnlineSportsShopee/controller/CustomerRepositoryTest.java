@@ -1,4 +1,4 @@
-package com.example.OnlineSportsShopee;
+package com.example.OnlineSportsShopee.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
