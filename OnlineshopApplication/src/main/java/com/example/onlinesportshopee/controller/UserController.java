@@ -38,13 +38,12 @@ public class UserController {
 		return orderResponse;
 	}
 	
-	@GetMapping("/login/signin/{userId}/{password}")
-	public ResponseEntity<Object> signin(@PathVariable Long userId,@PathVariable String Password) throws UserException
+	@GetMapping("/login/signin/{userId}")
+	public ResponseEntity<Object> signin(@RequestBody UserEntity User) throws UserException
 	{
 		LOGGER.info("sign-in URL is opened");
 		LOGGER.info("signin() is initiated");
-		UserEntity userdata = new UserEntity(userId,null,Password);
-		UserEntity user = iUserService.signIn(userdata);
+		UserEntity user = iUserService.signIn(User);
 		ResponseEntity<Object> response = new ResponseEntity<>(user,HttpStatus.ACCEPTED);
 		LOGGER.info("signin() has Executed");
 		return response;
