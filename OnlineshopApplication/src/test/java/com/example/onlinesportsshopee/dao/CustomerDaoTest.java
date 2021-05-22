@@ -1,4 +1,4 @@
-package com.example.OnlineSportsShopee.dao;
+package com.example.onlinesportsshopee.dao;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -21,7 +21,7 @@ import com.example.onlinesportshopee.entities.OrderEntity;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-class CustomerRepositoryTest {
+class CustomerDaoTest {
 
 	@Autowired
 	ICustomerRepository iCustomerRepository;
