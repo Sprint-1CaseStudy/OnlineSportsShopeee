@@ -72,6 +72,7 @@ class CustomerControllerTest {
 		order.setId((long)100);
 		order.setAmount((double)25.36);
 		order.setBillingDate(LocalDate.parse("01/04/2020"));
+		order.setPaymentMethod("card");
 		
 		customer.setId((long)1);
 		customer.setName("Arjuna");
@@ -108,6 +109,7 @@ class CustomerControllerTest {
 		order.setId((long)100);
 		order.setAmount((double)25.36);
 		order.setBillingDate(LocalDate.parse("01/04/2020"));
+		order.setPaymentMethod("card");
 		
 		customer.setId((long)1);
 		customer.setName("Arjuna");
@@ -142,6 +144,7 @@ class CustomerControllerTest {
 		order1.setId((long)100);
 		order1.setAmount((double)25.36);
 		order1.setBillingDate(LocalDate.parse("01/04/2020"));
+		order1.setPaymentMethod("card");
 		
 		customer1.setId((long)1);
 		customer1.setName("Arjuna");
@@ -164,6 +167,7 @@ class CustomerControllerTest {
 		order2.setId((long)200);
 		order2.setAmount((double)52.63);
 		order2.setBillingDate(LocalDate.parse("01/05/2020"));
+		order2.setPaymentMethod("NetBanking");
 		
 		customer2.setId((long)2);
 		customer2.setName("Bheema");
@@ -203,6 +207,7 @@ class CustomerControllerTest {
 		order1.setId((long)100);
 		order1.setAmount((double)25.36);
 		order1.setBillingDate(LocalDate.parse("01/04/2020"));
+		order1.setPaymentMethod("card");
 		
 		customer1.setId((long)1);
 		customer1.setName("Arjuna");
@@ -237,6 +242,7 @@ class CustomerControllerTest {
 		order2.setId((long)200);
 		order2.setAmount((double)52.63);
 		order2.setBillingDate(LocalDate.parse("01/05/2020"));
+		order2.setPaymentMethod("netbanking");
 		
 		customer2.setId((long)2);
 		customer2.setName("Bheema");
