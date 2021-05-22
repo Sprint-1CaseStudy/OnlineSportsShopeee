@@ -1,4 +1,4 @@
-package com.example.OnlineSportsShopee.dao;
+package com.example.onlinesportsshopee.dao;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
