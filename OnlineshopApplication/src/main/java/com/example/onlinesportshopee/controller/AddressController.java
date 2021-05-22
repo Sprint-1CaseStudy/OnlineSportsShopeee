@@ -2,6 +2,7 @@ package com.example.onlinesportshopee.controller;
 
 import org.slf4j.Logger;
 
+
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,11 +14,10 @@ import com.example.onlinesportshopee.exception.AddressNotFoundException;
 import com.example.onlinesportshopee.model.Address;
 import com.example.onlinesportshopee.model.Customer;
 import com.example.onlinesportshopee.services.IAddressService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.example.onlinesportshopee.services.AddressServiceImpl;
 
 @RestController
-
+//
 @RequestMapping("/onlinesportshopee")
 
 public class AddressController {
@@ -25,7 +25,7 @@ public class AddressController {
 	static final Logger LOGGER = LoggerFactory.getLogger(AddressController.class);
 	
 	@Autowired
-	private IAddressService iAddressService;
+	private AddressServiceImpl AddressServiceImpl;
 
 	@PostMapping("/address/addAddress")
 	public ResponseEntity<Object> addAddress(@RequestBody AddressEntity address) throws AddressNotFoundException {
@@ -33,7 +33,7 @@ public class AddressController {
 		LOGGER.info("addAddress() is initiated");
 		Address addressDTO = null;
 		ResponseEntity<Object> addressResponse = null;
-		addressDTO = iAddressService.addAddress(address);
+		addressDTO = AddressServiceImpl.addAddress(address);
 		addressResponse = new ResponseEntity(addressDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("addAddress() has executed");
 		return addressResponse;
@@ -45,7 +45,7 @@ public class AddressController {
 		LOGGER.info("removeAddress() is initiated");
 		Address addressDTO = null;
 		ResponseEntity<Object> addressResponse = null;
-		addressDTO = iAddressService.removeAddress(custId);
+		addressDTO = AddressServiceImpl.removeAddress(custId);
 		addressResponse = new ResponseEntity(addressDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("removeAddress() has executed");
 		return addressResponse;
@@ -57,7 +57,7 @@ public class AddressController {
 		LOGGER.info("updateAddress() is initiated");
 		Address addressDTO = null;
 		ResponseEntity<Object> addressResponse = null;
-		addressDTO = iAddressService.updateAddress(custId,address);
+		addressDTO = AddressServiceImpl.updateAddress(custId,address);
 		addressResponse = new ResponseEntity(addressDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("updateAddress() has executed");
 		return addressResponse;
@@ -69,7 +69,7 @@ public class AddressController {
 		LOGGER.info("getAddress() is initiated");
 		Address addressDTO = null;
 		ResponseEntity<Object> addressResponse = null;
-		addressDTO = iAddressService.getAddress(custId);
+		addressDTO = AddressServiceImpl.getAddress(custId);
 		addressResponse = new ResponseEntity(addressDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("getAddress() has executed");
 		return addressResponse;
