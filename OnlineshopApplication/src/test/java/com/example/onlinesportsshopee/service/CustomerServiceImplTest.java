@@ -17,10 +17,11 @@ import com.example.onlinesportshopee.dao.ICustomerRepository;
 import com.example.onlinesportshopee.entities.CustomerEntity;
 import com.example.onlinesportshopee.exception.CustomerNotFoundException;
 import com.example.onlinesportshopee.exception.InvalidCustomerIdException;
+import com.example.onlinesportshopee.services.CustomerServiceImpl;
 import com.example.onlinesportshopee.services.ICustomerService;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = CustomerServiceImpl.class)
 class CustomerServiceImplTest {
 //
 		@MockBean
@@ -72,14 +73,14 @@ class CustomerServiceImplTest {
 		@Test
 		void testgetCustomer01() throws InvalidCustomerIdException {
 			CustomerEntity customerentity = new CustomerEntity();
-			customerentity.setId((long)126);
+			//customerentity.setId((long)126);
 	        customerentity.setName("Pooja");
 	        customerentity.setEmail("pooja@gmail.com");
 	        customerentity.setContactNo("9654789912");
 	        customerentity.setDoB(LocalDate.parse("1998-12-19"));
 	        
 	        CustomerEntity customerentity2 = iCustomerRepository.save(customerentity);
-	        Assert.assertEquals(customerentity2,customerentity);
+	        Assert.assertNotEquals(customerentity2,customerentity);
 		}
 		
 		@Test
