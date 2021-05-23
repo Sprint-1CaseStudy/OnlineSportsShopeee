@@ -27,7 +27,7 @@ public class PaymentController {
 	private IPaymentService iPaymentService;
 	
 	@PostMapping("/payments/addPayment")
-	public ResponseEntity<Object> addPayment(@RequestBody PaymentEntity payment)
+	public ResponseEntity<Object> addPayment(@RequestBody Payment payment)
 	{
 		LOGGER.info("add-payment URL is opened");
 		LOGGER.info("addpayment() is initiated");
@@ -51,13 +51,13 @@ public class PaymentController {
 		}
 	
 	@PutMapping("/payments/updatePayment/{paymentId}")
-	public ResponseEntity<Object> updatePayment(@PathVariable long paymentId, @RequestBody PaymentEntity paymentEntity)  throws PaymentNotFoundException
+	public ResponseEntity<Object> updatePayment(@PathVariable Long paymentId, @RequestBody Payment payment)  throws PaymentNotFoundException
 	{
 		LOGGER.info("update-payment URL is opened");
 		LOGGER.info("updatePayment() is initiated");
 		Payment paymentDTO = null;
 		ResponseEntity<Object> paymentResponse = null;
-		paymentDTO = iPaymentService.updatePayment(paymentId,paymentEntity);
+		paymentDTO = iPaymentService.updatePayment(paymentId,payment);
 		paymentResponse = new ResponseEntity<>(paymentDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("updatePayment() has executed");
 		return paymentResponse;

@@ -35,7 +35,7 @@ public class CardController {
 	private CardServiceImpl cardServiceImpl;
 	
 	@PostMapping("/cards/add-card")
-	public ResponseEntity<Object> addCard(@RequestBody CardEntity card) throws CardNotFoundException
+	public ResponseEntity<Object> addCard(@RequestBody Card card) throws CardNotFoundException
 	{
 		LOGGER.info("add-card URL is opened");
 		LOGGER.info("addCard() is initiated");
@@ -48,7 +48,7 @@ public class CardController {
 	}
 
 	@DeleteMapping("/cards/remove-card/card/{id}")
-	public ResponseEntity<Object> removeCard(@PathVariable long id) throws CardNotFoundException
+	public ResponseEntity<Object> removeCard(@PathVariable Long id) throws CardNotFoundException
 	{
 		LOGGER.info("remove-card URL is opened");
 		LOGGER.info("removeCard() is initiated");
@@ -62,7 +62,7 @@ public class CardController {
 	}
 	
 	@PutMapping("/cards/update-card/{id}")
-	public ResponseEntity<Object> updateCard(@PathVariable long id, @RequestBody CardEntity card)
+	public ResponseEntity<Object> updateCard(@PathVariable Long id, @RequestBody Card card)
 	{
 		LOGGER.info("update-card URL is opened");
 		LOGGER.info("updateCard() is initiated");
@@ -75,7 +75,7 @@ public class CardController {
 		
 	}
 	@GetMapping("/cards/get-card-details/{id}")
-	public ResponseEntity<Object> getCardDetails(@PathVariable long id)
+	public ResponseEntity<Object> getCardDetails(@PathVariable Long id)
 	{
 		LOGGER.info("get-card-details URL is opened");
 		LOGGER.info("getCardDetails() is initiated");

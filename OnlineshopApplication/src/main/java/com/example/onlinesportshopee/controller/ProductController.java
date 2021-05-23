@@ -28,7 +28,7 @@ public class ProductController {
 	private IProductService iProductService;
 	
 	@PostMapping("/products/addproduct")
-	public ResponseEntity<Object> addProduct(@RequestBody ProductEntity product) throws ProductNotFoundException
+	public ResponseEntity<Object> addProduct(@RequestBody Product product) throws ProductNotFoundException
 	{
 		LOGGER.info("addProduct URL is opened");
 		LOGGER.info("addProduct() is initiated");
@@ -57,7 +57,7 @@ public class ProductController {
 	
 	@PutMapping("/products/updateproduct/{productId}")
 
-	public ResponseEntity<Object> updateProduct(@PathVariable long productId, @RequestBody ProductEntity product) throws ProductNotFoundException, InvalidProductInputException
+	public ResponseEntity<Object> updateProduct(@PathVariable Long productId, @RequestBody Product product) throws ProductNotFoundException, InvalidProductInputException
 	{
 		LOGGER.info("updateProduct URL is opened");
 		LOGGER.info("updateProduct() is initiated");
@@ -71,7 +71,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/products/getproduct/{productId}")
-	public ResponseEntity<Object> getProduct(@PathVariable long productId) throws ProductNotFoundException, InvalidProductInputException
+	public ResponseEntity<Object> getProduct(@PathVariable Long productId) throws ProductNotFoundException, InvalidProductInputException
 	{
 		LOGGER.info("getProduct URL is opened");
 		LOGGER.info("getProduct() is initiated");
