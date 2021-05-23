@@ -46,10 +46,9 @@ public class OrderController {
  
 
     @PostMapping("/add-order/{cartID}")
-    public  ResponseEntity<Object> addProduct(@PathVariable Long cartID,@RequestBody Order order)throws OrderNotFoundException,InvalidOrderIdException{
+    public  ResponseEntity<Object> addOrder(@PathVariable Long cartID,@RequestBody Order order)throws OrderNotFoundException,InvalidOrderIdException{
         LOGGER.info("add-order URL is opened");
         LOGGER.info("addOrderEntity() is initiated");
-        //System.out.println(order);
         Order orderDTO = null;
         ResponseEntity<Object> orderResponse = null;
         orderDTO = iOrderService.addOrder(cartID,order);
@@ -102,7 +101,7 @@ public class OrderController {
 
  
 
-    @GetMapping("/api/order/get-all-order/")
+    @GetMapping("/get-all-order/")
     public List<Order> getAllOrder(){
     
         LOGGER.info("getallorders URL is opened");
