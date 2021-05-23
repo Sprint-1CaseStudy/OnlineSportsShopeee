@@ -1,33 +1,18 @@
 package com.example.onlinesportsshopee.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
-//
-
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.onlinesportshopee.controller.CustomerController;
-import com.example.onlinesportshopee.dao.ICustomerRepository;
-import com.example.onlinesportshopee.entities.AddressEntity;
-import com.example.onlinesportshopee.entities.CustomerEntity;
-import com.example.onlinesportshopee.entities.OrderEntity;
-import com.example.onlinesportshopee.model.Customer;
-import com.example.onlinesportshopee.services.ICustomerService;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -35,10 +20,16 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.junit.jupiter.api.Test;
+
+import com.example.onlinesportshopee.controller.CustomerController;
+import com.example.onlinesportshopee.dao.ICustomerRepository;
+import com.example.onlinesportshopee.entities.AddressEntity;
+import com.example.onlinesportshopee.entities.CustomerEntity;
+import com.example.onlinesportshopee.entities.OrderEntity;
+import com.example.onlinesportshopee.services.ICustomerService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = CustomerController.class)
