@@ -71,7 +71,6 @@ class CustomerControllerTest {
 		customer.setContactNo("9512357468");
 		customer.setDoB(LocalDate.parse("21/10/1997"));
 		customer.setAddressEntity((List<AddressEntity>)address);
-		customer.setOrderEntity((List<OrderEntity>) order);
 		
 		String jsonInput = this.convertToJson(customer);
 		
@@ -108,7 +107,6 @@ class CustomerControllerTest {
 		customer.setContactNo("9512357468");
 		customer.setDoB(LocalDate.parse("21/10/1997"));
 		customer.setAddressEntity((List<AddressEntity>)address);
-		customer.setOrderEntity((List<OrderEntity>) order);
 		
 		String jsonInput = this.convertToJson(customer);
 		Mockito.when(iCustomerRepository.save(Mockito.any())).thenReturn(customer);
@@ -143,7 +141,6 @@ class CustomerControllerTest {
 		customer1.setContactNo("9512357468");
 		customer1.setDoB(LocalDate.parse("21/10/1997"));
 		customer1.setAddressEntity((List<AddressEntity>)address1);
-		customer1.setOrderEntity((List<OrderEntity>)order1);
 		
 		CustomerEntity customer2 = new CustomerEntity();
 		AddressEntity address2 = new AddressEntity();
@@ -166,7 +163,6 @@ class CustomerControllerTest {
 		customer2.setContactNo("9632588741");
 		customer2.setDoB(LocalDate.parse("19/12/1998"));
 		customer2.setAddressEntity((List<AddressEntity>) address2);
-		customer2.setOrderEntity((List<OrderEntity>) order2);
 		
 		List<CustomerEntity> customerlist = new ArrayList<>();
 		customerlist.add(customer1);
@@ -206,7 +202,6 @@ class CustomerControllerTest {
 		customer1.setContactNo("9851235467");
 		customer1.setDoB(LocalDate.parse("21/10/1997"));
 		customer1.setAddressEntity((List<AddressEntity>) address1);
-		customer1.setOrderEntity((List<OrderEntity>) order1);
 		CustomerEntity Temp = iCustomerRepository.findById((long)1).get();
 		Mockito.when(iCustomerRepository.save(Mockito.any())).thenReturn(customer1);
 		iCustomerRepository.deleteById(customer1.getId());
@@ -241,7 +236,6 @@ class CustomerControllerTest {
 		customer2.setContactNo("9632588741");
 		customer2.setDoB(LocalDate.parse("19/12/1998"));
 		customer2.setAddressEntity((List<AddressEntity>) address2);
-		customer2.setOrderEntity((List<OrderEntity>) order2);
 		
 		String jsonInput = this.convertToJson(customer2);
 		
