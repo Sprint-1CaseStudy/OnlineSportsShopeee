@@ -17,7 +17,6 @@ public class AddressUtils {
 		addressentity.setCity(address.getCity());
 		addressentity.setState(address.getState());
 		addressentity.setPincode(address.getPincode());
-		addressentity.setCustomerEntity(address.getCustomerEntity());
 		return addressentity;
 	}		
 	
@@ -29,7 +28,6 @@ public class AddressUtils {
 		address.setCity(addressentity.getCity());
 		address.setState(addressentity.getState());
 		address.setPincode(addressentity.getPincode());
-		address.setCustomerEntity(addressentity.getCustomerEntity());
 		return address;
 	}
 
