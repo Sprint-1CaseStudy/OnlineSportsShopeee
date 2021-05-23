@@ -28,7 +28,7 @@ public class CustomerController
 	private ICustomerService iCustomerService;
 	
 	@PostMapping("/customers/addCustomer")
-	public ResponseEntity<Object> addCustomer(@RequestBody CustomerEntity customer) throws CustomerNotFoundException {
+	public ResponseEntity<Object> addCustomer(@RequestBody Customer customer) throws CustomerNotFoundException {
 		LOGGER.info("addCustomer URL is opened");
 		LOGGER.info("addCustomer() is initiated");
 		Customer customerDTO = null;
@@ -52,7 +52,7 @@ public class CustomerController
 	}
 
 	@PutMapping("/customers/updateCustomer/{custId}")
-	public ResponseEntity<Object> updateCustomer(@PathVariable long custId,@RequestBody CustomerEntity customer) throws CustomerNotFoundException {
+	public ResponseEntity<Object> updateCustomer(@PathVariable long custId,@RequestBody Customer customer) throws CustomerNotFoundException {
 		LOGGER.info("updateCustomer URL is opened");
 		LOGGER.info("updateCustomer() is initiated");
 		Customer customerDTO = null;
