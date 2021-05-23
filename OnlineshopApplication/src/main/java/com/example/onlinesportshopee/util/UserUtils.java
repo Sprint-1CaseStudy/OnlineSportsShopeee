@@ -6,14 +6,14 @@ import com.example.onlinesportshopee.model.User;
 public class UserUtils {
 	private UserUtils() {
     }
-     public static List<User> convertToOrderDtoList(List<UserEntity> list){
+     public static List<User> convertToUserDtoList(List<UserEntity> list){
         List<User> dtolist = new ArrayList<>();
         for(UserEntity userEntity : list) 
-            dtolist.add(convertToOrder(userEntity));
+            dtolist.add(convertToUser(userEntity));
         return dtolist;
     }
     
-    public static UserEntity convertToOrder(User dto) {
+    public static UserEntity convertToUser(User dto) {
         UserEntity user = new UserEntity();
         
         user.setId(dto.getId());
@@ -22,7 +22,7 @@ public class UserUtils {
         return user;
     }        
     
-    public static User convertToOrder(UserEntity userEntity) {
+    public static User convertToUser(UserEntity userEntity) {
         User dto = new User();
         dto.setId(userEntity.getId());
         dto.setUsername(userEntity.getUsername());

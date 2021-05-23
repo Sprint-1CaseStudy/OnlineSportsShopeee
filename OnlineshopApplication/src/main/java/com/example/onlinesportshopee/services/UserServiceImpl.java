@@ -37,14 +37,13 @@ public class UserServiceImpl implements IUserService {
 				else userEntity=Userrepo.save(user);	
 		}
 		LOGGER.info("addUser() service has executed");
-		return UserUtils.convertToOrder(userEntity);
+		return UserUtils.convertToUser(userEntity);
 	}
     
     @Override
-    public UserEntity signIn(UserEntity user) throws UserException {
+    public User signIn(UserEntity user) throws UserException {
     	LOGGER.info("signin() service is initiated");
-        if( user.getId() == null || user.getPassword() == null) throw new UserException("Userid or password cannot be empty");
-        UserEntity useridrepo = Userrepo.findById(user.getId()).orElse(null);
+        UserEntity useridrepo = Userrepo.findById(user.getId()).get();
         if (useridrepo == null)
         {
             String usernotfound = "No user found by the userid "+user.getId();
@@ -55,7 +54,7 @@ public class UserServiceImpl implements IUserService {
             if(user.getId().equals(useridrepo.getId()) && user.getPassword().equals(useridrepo.getPassword())) 
             {
             	LOGGER.info("signin() service has Executed");
-                return useridrepo;
+                return UserUtils.convertToUser(useridrepo);
             }
             else {
             	throw new UserException("User name and password are invalid");
@@ -72,7 +71,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public User changePassword(long id, UserEntity user) throws UserException {
     	LOGGER.info("changepassword() service is initiated");
-    	if( id == 0) throw new UserException("Userid or password cannot be empty");
+    	if( id == 0 || user.getPassword() == null) throw new UserException("Userid or password cannot be empty");
         UserEntity userEnti;
         UserEntity changePassword = Userrepo.findById(id).orElse(null);
         if(changePassword == null)
@@ -82,6 +81,6 @@ public class UserServiceImpl implements IUserService {
         }
         else userEnti = Userrepo.save(user);
         LOGGER.info("changepassword() service has Executed");
-        return UserUtils.convertToOrder(userEnti);
+        return UserUtils.convertToUser(userEnti);
     }
 }

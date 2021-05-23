@@ -38,14 +38,15 @@ public class UserController {
 		return orderResponse;
 	}
 	
-	@GetMapping("/login/signin/{userId}")
-	public ResponseEntity<Object> signin(@RequestBody UserEntity User) throws UserException
+	@GetMapping("/login/signin/{userId}/{password}")
+	public ResponseEntity<Object> signIn(@PathVariable("userId") long userId,@PathVariable("password") String Password) throws UserException
 	{
-		LOGGER.info("sign-in URL is opened");
-		LOGGER.info("signin() is initiated");
-		UserEntity user = iUserService.signIn(User);
+		LOGGER.info("signIn URL is opened");
+		LOGGER.info("signIn() is initiated");
+		UserEntity userEntity = new UserEntity(userId,Password);
+		User user = iUserService.signIn(userEntity);
 		ResponseEntity<Object> response = new ResponseEntity<>(user,HttpStatus.ACCEPTED);
-		LOGGER.info("signin() has Executed");
+		LOGGER.info("signIn() has Executed");
 		return response;
 	}
 	
@@ -62,7 +63,7 @@ public class UserController {
 	}
 	
 	@PutMapping("/login/changepassword/{userId}")
-	public ResponseEntity<Object> signin(@PathVariable long userId, @RequestBody UserEntity User) throws UserException
+	public ResponseEntity<Object> changePassword(@PathVariable long userId, @RequestBody UserEntity User) throws UserException
 	{
 		LOGGER.info("changepassword URL is opened");
 		LOGGER.info("changepassword() is initiated");
