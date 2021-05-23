@@ -77,14 +77,12 @@ public class CustomerController
 
 
 	@GetMapping("/customers/Customers")
-	public ResponseEntity<Object> getAllCustomers() {
-		LOGGER.info("Customers URL is opened");
-		LOGGER.info("getAllCustomers() is initiated");
-		LOGGER.info("getAllCustomers() has executed");
-		ResponseEntity<Object> customerResponse = null;
-		List<Customer> customerDTO = iCustomerService.getAllCustomer();
-		customerResponse=new ResponseEntity(customerDTO)
-		return ResponseEntity(List<>);
+    public List<Customer> getAllCustomers() {
+        LOGGER.info("Customers URL is opened");
+        LOGGER.info("getAllCustomers() is initiated");
+        LOGGER.info("getAllCustomers() has executed");
+        //ResponseEntity<Object> customerResponse = null;
+        return (List<Customer>)iCustomerService.getAllCustomers();
 	}
 	
 }
