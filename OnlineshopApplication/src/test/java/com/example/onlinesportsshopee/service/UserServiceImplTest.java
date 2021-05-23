@@ -45,7 +45,7 @@ class UserServiceImplTest {
 		user1 = UserUtils.convertToUser(user);
 		Assert.assertNotNull(user);
 	}
-	
+	//
 	@Test
 	void testSignInUser01() throws Exception
 	{
