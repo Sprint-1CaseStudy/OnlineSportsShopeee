@@ -25,15 +25,16 @@ public class CardServiceImpl implements ICardService{
 	private ICardRepository cardRepository;
 	
 	@Override
-	public Card addCard(CardEntity card) {
+	public Card addCard(Card card) {
 		LOGGER.info("addCard() service is initiated");
-		CardEntity addCard = cardRepository.save(card);
+		CardEntity cardentity = CardUtils.convertToCard(card);
+		CardEntity addCard = cardRepository.save(cardentity);
 		LOGGER.info("addCard() service has executed");
 		return CardUtils.convertToCard(addCard);
 	}
 
 	@Override
-	public Card removeCard(long id) {
+	public Card removeCard(Long id) {
 		LOGGER.info("removeCard() service is initiated");
 	    CardEntity deleteCard = cardRepository.findById(id).get();
 	    cardRepository.delete(deleteCard);
@@ -42,16 +43,17 @@ public class CardServiceImpl implements ICardService{
 	}
 
 	@Override
-	public Card updateCard(long id, CardEntity card) {
+	public Card updateCard(Long id, Card card) {
 		LOGGER.info("updateCard() service is initiated");
+		CardEntity cardentity = CardUtils.convertToCard(card);
 		CardEntity updateCard = cardRepository.findById(id).get();
-		updateCard = cardRepository.save(card);
+		updateCard = cardRepository.save(cardentity);
 		LOGGER.info("updateCard() service has executed");
 		return CardUtils.convertToCard(updateCard);
 	}
 
 	@Override
-	public Card getCardDetails(long id) {
+	public Card getCardDetails(Long id) {
 		LOGGER.info("getCardDetails() service is initiated");
 		CardEntity getCardDetails = cardRepository.findById(id).get();
 		LOGGER.info("getCardDetails() service has executed");

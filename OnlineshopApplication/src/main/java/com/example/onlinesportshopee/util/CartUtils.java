@@ -27,11 +27,9 @@ public class CartUtils {
     	
     	cart.setId(dto.getCartId());
         cart.setProductName(dto.getProductName());
-        cart.setImageName(dto.getImageName());
         cart.setPrice(dto.getPrice());
         cart.setQuantity(dto.getQuantity());
         cart.setTotal(dto.getTotal());
-        cart.setProductEntity(dto.getProductEntity());
         return cart;
     }        
     
@@ -39,11 +37,9 @@ public class CartUtils {
     	Cart dto = new Cart();
     	dto.setCartId(cartEntity.getId());
         dto.setProductName(cartEntity.getProductName());
-        dto.setImageName(cartEntity.getImageName());
         dto.setPrice(cartEntity.getPrice());
         dto.setQuantity(cartEntity.getQuantity());
         dto.setTotal(cartEntity.getTotal());
-        dto.setProductEntity(cartEntity.getProductEntity());
         return dto;
     }
 

@@ -24,25 +24,24 @@ public class CartServiceImpl implements ICartService {
 	private ICartRepository iCartRepository; 
 	
 	@Override
-	public Cart addCart(CartEntity cartEntity) throws CartException {
+	public Cart addCart(Cart cart) throws CartException {
 		LOGGER.info("addtocart() service is initiated");
-		CartEntity carEntity = null;
-		if(cartEntity==null)
-			carEntity=null;
-		else {
-			carEntity = iCartRepository.save(cartEntity);
-		}
+		CartEntity cartEntity = CartUtils.convertToOrder(cart);
+		/*if(cart==null)
+			cart=null;
+		else {*/
+			cartEntity = iCartRepository.save(cartEntity);
 		LOGGER.info("addtocart() service has Executed");
-		return CartUtils.convertToOrder(carEntity);
+		return CartUtils.convertToOrder(cartEntity);
 	}
 
 	@Override
-	public Cart deleteCart(long id) throws CartException {
+	public Cart deleteCart(Long id) throws CartException {
 		LOGGER.info("deletecart() service is initiated");
 		CartEntity carEntity = iCartRepository.findById(id).orElse(null);
-		if (carEntity == null)
+		/*if (carEntity == null)
 			throw new CartException("CartNotFound");
-		else
+		else*/
 			iCartRepository.delete(carEntity);
 		LOGGER.info("deletecart() service has Executed");
 		return CartUtils.convertToOrder(carEntity);

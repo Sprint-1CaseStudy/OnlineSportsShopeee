@@ -26,15 +26,16 @@ public class PaymentServiceImpl implements IPaymentService{
 	private IPaymentRepository iPaymentRepository;
 	//ghhh
 	@Override
-	public Payment addPayment(PaymentEntity paymentPayment) {
+	public Payment addPayment(Payment payment) {
 		LOGGER.info("addPayment() service is initiated");
-		PaymentEntity paymentEntity=iPaymentRepository.save(paymentPayment);
+		PaymentEntity paymentEntity = PaymentUtils.convertToPayment(payment);
+		paymentEntity=iPaymentRepository.save(paymentEntity);
 		LOGGER.info("addPayment() service has executed");
 		return PaymentUtils.convertToPayment(paymentEntity);
 	}
 
 	@Override
-	public Payment removePayment(long paymentID) {
+	public Payment removePayment(Long paymentID) {
 		LOGGER.info("removePayment() service is initiated");
 		PaymentEntity paymentEntity=iPaymentRepository.findById(paymentID).get();
 		iPaymentRepository.delete(paymentEntity);
@@ -44,17 +45,18 @@ public class PaymentServiceImpl implements IPaymentService{
 	}
 
 	@Override
-	public Payment updatePayment(long paymentID, PaymentEntity payment) {
+	public Payment updatePayment(Long paymentID, Payment payment) {
 		LOGGER.info("updatePayment() service is initiated");
+		PaymentEntity pay = PaymentUtils.convertToPayment(payment);
 		PaymentEntity paymentEntity=iPaymentRepository.findById(paymentID).get();
-		iPaymentRepository.save(paymentEntity);
+		pay = iPaymentRepository.save(paymentEntity);
 		LOGGER.info("updatePayment() service has executed");
-		return PaymentUtils.convertToPayment(paymentEntity);
+		return PaymentUtils.convertToPayment(pay);
 		
 	}
 
 	@Override
-	public Payment getPaymentDetails(long paymentID) throws PaymentNotFoundException {
+	public Payment getPaymentDetails(Long paymentID) throws PaymentNotFoundException {
 		LOGGER.info("getPaymentDetails() service is initiated");
 		PaymentEntity getPaymentDetails= iPaymentRepository.findById(paymentID).get();
 		if (paymentID == 0)

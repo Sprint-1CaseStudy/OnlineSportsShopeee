@@ -23,14 +23,13 @@ public class ProductServiceImpl implements IProductService {
 	private IProductRepository iProductRepository;
 	
 	@Override
-	public Product addProduct(ProductEntity product) {
+	public Product addProduct(Product product) {
 		LOGGER.info("addProduct() serivice is initiated");
-     ProductEntity productEntity;
-     if(product == null)
+     ProductEntity productEntity = ProductUtils.convertToProduct(product);
+     /*if(product == null)
     	 productEntity = null;
-     else {
-    	 productEntity = iProductRepository.save(product);
-    	  }
+     else {*/
+    	 productEntity = iProductRepository.save(productEntity);
 
      LOGGER.info("addProduct() service has executed");
      return ProductUtils.convertToProduct(productEntity);
@@ -38,7 +37,7 @@ public class ProductServiceImpl implements IProductService {
 	}
 
 	@Override
-	public Product removeProduct(long productId) {
+	public Product removeProduct(Long productId) {
 		LOGGER.info("removeProduct() serivice is initiated");
 		ProductEntity delproduct = iProductRepository.findById(productId).get();
 		iProductRepository.delete(delproduct);
@@ -48,16 +47,17 @@ public class ProductServiceImpl implements IProductService {
 
 	
 	@Override
-	public Product updateProduct(long productId, ProductEntity product) {
+	public Product updateProduct(Long productId, Product product) {
 		LOGGER.info("updateProduct() serivice is initiated");
+		ProductEntity productEntity = ProductUtils.convertToProduct(product);
 		ProductEntity updateProduct = iProductRepository.findById(productId).get();
-		updateProduct = iProductRepository.save(product);
+		productEntity = iProductRepository.save(productEntity);
 		LOGGER.info("updateProduct() service has executed");
-		return ProductUtils.convertToProduct(updateProduct);
+		return ProductUtils.convertToProduct(productEntity);
 	}
 
 	@Override
-	public Product getProduct(long productId) {
+	public Product getProduct(Long productId) {
 		LOGGER.info("getProduct() serivice is initiated");
 		ProductEntity getProduct = iProductRepository.findById(productId).get();
 		LOGGER.info("getProduct() service has executed");
@@ -102,7 +102,7 @@ public class ProductServiceImpl implements IProductService {
 	}
 	
 	@Override
-	public List<Product> getProductsByPrice(double price) throws ProductNotFoundException
+	public List<Product> getProductsByPrice(Double price) throws ProductNotFoundException
 	{
 		LOGGER.info("getProductByPrice() serivice is initiated");
 		List<ProductEntity> productPrice = iProductRepository.findByPrice(price);

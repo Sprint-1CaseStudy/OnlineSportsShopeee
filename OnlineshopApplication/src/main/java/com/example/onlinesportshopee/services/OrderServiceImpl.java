@@ -22,45 +22,42 @@ public class OrderServiceImpl implements IOrderService {
 	private IOrderRepository iOrderRepository; 
 	
 	@Override
-	public Order addOrder(OrderEntity orderEntity) throws OrderNotFoundException,InvalidOrderIdException{
+	public Order addOrder(Order order) throws OrderNotFoundException,InvalidOrderIdException{
 		LOGGER.info("addOrder() service is initiated");
-		OrderEntity ordEntity;
-		if(orderEntity==null)
-			ordEntity=null;
-		else {
-			ordEntity=iOrderRepository.save(orderEntity);
-			
-		}
+		OrderEntity orderEntity = OrderUtils.convertToOrder(order);
+		/*if(order==null)
+			order=null;
+		else {*/
+			orderEntity=iOrderRepository.save(orderEntity);
 		LOGGER.info("addOrder() service has executed");
-		return OrderUtils.convertToOrder(ordEntity);
+		return OrderUtils.convertToOrder(orderEntity);
 	}
 	@Override
-	public Order updateOrder(long id,OrderEntity orderEntity)throws OrderNotFoundException,InvalidOrderIdException{
+	public Order updateOrder(Long id,Order order)throws OrderNotFoundException,InvalidOrderIdException{
 		LOGGER.info("updateOrder() service is initiated");
-		OrderEntity ordEntity;
+		OrderEntity ordEntity  = OrderUtils.convertToOrder(order);
 		OrderEntity existOrd= iOrderRepository.findById(id).orElse(null);
-		if (existOrd == null)
+		/*if (existOrd == null)
 			throw new OrderNotFoundException("orderNotAvailable");
-		else {
+		else {*/
 			
-			ordEntity = iOrderRepository.save(orderEntity);
-		}
+			ordEntity = iOrderRepository.save(ordEntity);
 		LOGGER.info("updateOrder() service has executed");
 		return OrderUtils.convertToOrder(ordEntity);
 	}
 	@Override
-	public Order deleteOrder(long id) throws InvalidOrderIdException{
+	public Order deleteOrder(Long id) throws InvalidOrderIdException{
 		LOGGER.info("deleteOrder() service is initiated");
 		OrderEntity ordEntity = iOrderRepository.findById(id).orElse(null);
-		if (ordEntity == null)
+		/*if (ordEntity == null)
 			throw new InvalidOrderIdException("orderIdIncorrect");
-		else
+		else*/
 			iOrderRepository.delete(ordEntity);
 		LOGGER.info("deleteOrder() service has executed");
 		return OrderUtils.convertToOrder(ordEntity);
 	}
 	@Override
-	public Order getOrderDetails(long id)throws InvalidOrderIdException {
+	public Order getOrderDetails(Long id)throws InvalidOrderIdException {
 		LOGGER.info("viewOrder() service is initiated");
 		OrderEntity ordEntity = iOrderRepository.findById(id).orElse(null);
 		if (ordEntity == null)
