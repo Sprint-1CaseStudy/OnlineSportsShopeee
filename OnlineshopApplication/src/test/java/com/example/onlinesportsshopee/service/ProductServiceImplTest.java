@@ -2,36 +2,38 @@ package com.example.onlinesportsshopee.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import static org.junit.Assert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.ContextHierarchy;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.onlinesportshopee.dao.IProductRepository;
-import com.example.onlinesportshopee.entities.CartEntity;
-import com.example.onlinesportshopee.entities.CustomerEntity;
-import com.example.onlinesportshopee.entities.OrderEntity;
-import com.example.onlinesportshopee.entities.PaymentEntity;
+
 import com.example.onlinesportshopee.entities.ProductEntity;
 import com.example.onlinesportshopee.exception.InvalidProductInputException;
 import com.example.onlinesportshopee.exception.ProductNotFoundException;
+import com.example.onlinesportshopee.model.Product;
 import com.example.onlinesportshopee.services.IProductService;
+import com.example.onlinesportshopee.services.ProductServiceImpl;
+import com.example.onlinesportshopee.util.ProductUtils;
 
+
+@ContextHierarchy(value = { @ContextConfiguration })
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = ProductServiceImpl.class)
 class ProductServiceImplTest {
 	
 	@MockBean
@@ -42,10 +44,6 @@ class ProductServiceImplTest {
 	
     
 	
-	@BeforeAll
-	public static void beforeAll() {
-		
-	}
 	
 	@Test
 	public void testAddProduct() {
@@ -61,12 +59,11 @@ class ProductServiceImplTest {
 		productEnt.setPriceAfterDiscount(5000.00);
 		productEnt.setInStock(true);
 		productEnt.setExpectedDelivery(LocalDate.parse("29-05-2021"));
-		productEnt.setOrderEntity(null);
-		productEnt.setCartEntity(null);
+		
 		
 		Mockito.when(productRepository.save(productEnt)).thenReturn(productEnt);
-		
-		assertThat(productService.addProduct(productEnt)).isEqualTo(productEnt);
+		Product product = ProductUtils.convertToProduct(productEnt);
+		assertThat(productService.addProduct(product)).isEqualTo(productEnt);
 		
 	}
 	
@@ -85,15 +82,14 @@ class ProductServiceImplTest {
 		productEnt.setPriceAfterDiscount(5000.00);
 		productEnt.setInStock(true);
 		productEnt.setExpectedDelivery(LocalDate.parse("29-05-2021"));
-		productEnt.setOrderEntity(null);
-		productEnt.setCartEntity(null);
+
 	
 		Mockito.when(productRepository.save(productEnt)).thenReturn(productEnt);
 		Mockito.when(productRepository.findById((long)101).get()).thenReturn(productEnt);
 		productRepository.deleteById(productEnt.getId());
 		Mockito.when(productRepository.findById((long)101).get()).thenReturn(productEnt);
 		Assert.assertNotEquals(productEnt, new ProductEntity());
-		Assert.assertEquals(productService.removeProduct(101), false);
+		Assert.assertEquals(productService.removeProduct((long)101), false);
 		
 	}
 	
@@ -112,8 +108,7 @@ class ProductServiceImplTest {
 		productEnt.setPriceAfterDiscount(5000.00);
 		productEnt.setInStock(true);
 		productEnt.setExpectedDelivery(LocalDate.parse("29-05-2021"));
-		productEnt.setOrderEntity(null);
-		productEnt.setCartEntity(null);
+		
 		
 		productRepository.save(productEnt);
 		Mockito.when(productRepository.findById((long)101).get()).thenReturn(productEnt);
@@ -121,7 +116,8 @@ class ProductServiceImplTest {
 		productEnt.setColour("Black");
 		Mockito.when(productRepository.save(productEnt)).thenReturn(productEnt);
 		System.out.println(productEnt.getSize());
-		assertThat(productService.updateProduct(101, productEnt)).isEqualTo(productEnt);
+		Product product = ProductUtils.convertToProduct(productEnt);
+		assertThat(productService.updateProduct((long)101, product)).isEqualTo(productEnt);
 		
 	}
 	
@@ -140,12 +136,11 @@ class ProductServiceImplTest {
 		productEnt.setPriceAfterDiscount(5000.00);
 		productEnt.setInStock(true);
 		productEnt.setExpectedDelivery(LocalDate.parse("29-05-2021"));
-		productEnt.setOrderEntity(null);
-		productEnt.setCartEntity(null);
+		
 		
 		ProductEntity pe = productRepository.findById((long)101).get();
 		Mockito.when(pe).thenReturn(productEnt);
-		assertThat(productService.getProduct(101)).isEqualTo(productEnt);
+		assertThat(productService.getProduct((long)101)).isEqualTo(productEnt);
 		
 	}
 	
@@ -164,8 +159,7 @@ class ProductServiceImplTest {
 		productEnt1.setPriceAfterDiscount(5000.00);
 		productEnt1.setInStock(true);
 		productEnt1.setExpectedDelivery(LocalDate.parse("29-05-2021"));
-		productEnt1.setOrderEntity(null);
-		productEnt1.setCartEntity(null);
+		
 	
 		ProductEntity productEnt2 = new ProductEntity();
 		productEnt2.setId((long)102);
@@ -179,8 +173,7 @@ class ProductServiceImplTest {
 		productEnt2.setPriceAfterDiscount(2500.00);
 		productEnt2.setInStock(true);
 		productEnt2.setExpectedDelivery(LocalDate.parse("29-05-2021"));
-		productEnt2.setOrderEntity(null);
-		productEnt2.setCartEntity(null);
+		
 		
 		List<ProductEntity> productList = new ArrayList<>();
 		productList.add(productEnt1);
@@ -206,8 +199,6 @@ class ProductServiceImplTest {
 		productEnt.setPriceAfterDiscount(5000.00);
 		productEnt.setInStock(true);
 		productEnt.setExpectedDelivery(LocalDate.parse("29-05-2021"));
-		productEnt.setOrderEntity(null);
-		productEnt.setCartEntity(null);
 		
 		Mockito.when(productRepository.findByName("Shoes")).thenReturn((List<ProductEntity>) productEnt);
 		assertThat(productService.getProductsByName("Shoes")).isEqualTo(productEnt);
@@ -229,8 +220,7 @@ class ProductServiceImplTest {
 		productEnt.setPriceAfterDiscount(5000.00);
 		productEnt.setInStock(true);
 		productEnt.setExpectedDelivery(LocalDate.parse("29-05-2021"));
-		productEnt.setOrderEntity(null);
-		productEnt.setCartEntity(null);
+		
 		
 		Mockito.when(productRepository.findBySize("10UK")).thenReturn((List<ProductEntity>) productEnt);
 		assertThat(productService.getProductsBySize("10UK")).isEqualTo(productEnt);
@@ -251,8 +241,7 @@ class ProductServiceImplTest {
 		productEnt.setPriceAfterDiscount(5000.00);
 		productEnt.setInStock(true);
 		productEnt.setExpectedDelivery(LocalDate.parse("29-05-2021"));
-		productEnt.setOrderEntity(null);
-		productEnt.setCartEntity(null);
+		
 		
 		Mockito.when(productRepository.findByPrice(7000.00)).thenReturn((List<ProductEntity>) productEnt);
 		assertThat(productService.getProductsByPrice(7000.00)).isEqualTo(productEnt);
@@ -273,16 +262,12 @@ class ProductServiceImplTest {
 		productEnt.setPriceAfterDiscount(5000.00);
 		productEnt.setInStock(true);
 		productEnt.setExpectedDelivery(LocalDate.parse("29-05-2021"));
-		productEnt.setOrderEntity(null);
-		productEnt.setCartEntity(null);
+		
 		
 		Mockito.when(productRepository.findByColor("White")).thenReturn((List<ProductEntity>) productEnt);
 		assertThat(productService.getProductsByColor("White")).isEqualTo(productEnt);
 	}
 	
-	@AfterAll
-	public static void end() {
-		
-	}
+	
 
 }
