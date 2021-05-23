@@ -23,10 +23,6 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Autowired
 	private ICustomerRepository icustomerRepository;
 	
-<<<<<<< HEAD
-	@Override
-=======
->>>>>>> branch 'master' of https://github.com/Sprint-1CaseStudy/OnlineSportsShopeee.git
 	public Customer addCustomer(Customer customer) throws CustomerNotFoundException {
 		LOGGER.info("addCustomer() service is initiated");
 		CustomerEntity customerentity = CustomerUtils.convertToCustomerEntity(customer);

@@ -7,10 +7,10 @@ import com.example.onlinesportshopee.model.Card;
 
 public interface ICardService {
 	
-	public Card addCard(CardEntity card);
-	public Card removeCard(long id);
-	public Card updateCard(long id, CardEntity card);
-	public Card getCardDetails(long id);
+	public Card addCard(Card card);
+	public Card removeCard(Long id);
+	public Card updateCard(Long id, Card card);
+	public Card getCardDetails(Long id);
 	public List<Card> getAllCards();
 
 }

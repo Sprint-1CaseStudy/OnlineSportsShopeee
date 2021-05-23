@@ -10,11 +10,7 @@ public class Address
 	private String city;
 	private String state;
 	private Integer pincode;
-<<<<<<< HEAD
 	//private Customer customer;
-=======
-	
->>>>>>> branch 'master' of https://github.com/Sprint-1CaseStudy/OnlineSportsShopeee.git
 	
 	public Address()
 	{
@@ -29,11 +25,9 @@ public class Address
 		this.city = city;
 		this.state = state;
 		this.pincode = pincode;
-<<<<<<< HEAD
+
 		//this.customer = customer;
-=======
 		
->>>>>>> branch 'master' of https://github.com/Sprint-1CaseStudy/OnlineSportsShopeee.git
 	}
 
 	public String getDoorNo() {
@@ -73,23 +67,17 @@ public class Address
 		this.pincode = pincode;
 	}
 	
-<<<<<<< HEAD
+
 	/*
 	 * public CustomerEntity getCustomerEntity() { return customerEntity; } public
 	 * void setCustomerEntity(CustomerEntity customerEntity) { this.customerEntity =
 	 * customerEntity; }
 	 */
-=======
-	
->>>>>>> branch 'master' of https://github.com/Sprint-1CaseStudy/OnlineSportsShopeee.git
 	@Override
 	public String toString() {
 		return "Address [doorNo=" + doorNo + ", street=" + street + ", area=" + area + ", city=" + city + ", state="
-<<<<<<< HEAD
 				+ state + ", pincode=" + pincode +  "]";
-=======
-				+ state + ", pincode=" + pincode + "]";
->>>>>>> branch 'master' of https://github.com/Sprint-1CaseStudy/OnlineSportsShopeee.git
+				
 	}
 	
 	

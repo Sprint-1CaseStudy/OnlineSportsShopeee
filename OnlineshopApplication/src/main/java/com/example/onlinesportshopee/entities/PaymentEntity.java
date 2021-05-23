@@ -17,7 +17,7 @@ public class PaymentEntity {
 	private String type;
 	@Column(name = "status")
 	private String status;
-	@OneToMany(mappedBy = "paymentEntity",cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<CardEntity> cardEntity;
 
 	public PaymentEntity() {

@@ -18,10 +18,7 @@ public class OrderEntity {
 	private LocalDate billingDate;
     @Column(name = "paymentMethod")
 	private String paymentMethod;
-    @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn  //(name="cust_id")
-	private CustomerEntity customerEntity;
-	@OneToMany(mappedBy="orderEntity",cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<ProductEntity> productEntity;
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn //(name="paymentid")
@@ -31,12 +28,11 @@ public class OrderEntity {
 		super();
 	}
 
-	public OrderEntity(Long id, Double amount, LocalDate billingDate, String paymentMethod,CustomerEntity customerEntity, List<ProductEntity> productEntity,PaymentEntity paymentEntity) {
+	public OrderEntity(Long id, Double amount, LocalDate billingDate, String paymentMethod, List<ProductEntity> productEntity,PaymentEntity paymentEntity) {
 		super();
 		this.id=id;
 		this.amount = amount;
 		this.billingDate = billingDate;
-		this.customerEntity = customerEntity;
 		this.paymentMethod = paymentMethod;
 		this.productEntity=productEntity;
 		this.paymentEntity=paymentEntity;
@@ -58,14 +54,6 @@ public class OrderEntity {
 
 	public void setBillingDate(LocalDate billingDate) {
 		this.billingDate = billingDate;
-	}
-
-	public CustomerEntity getCustomerEntity() {
-		return customerEntity;
-	}
-
-	public void setCustomerEntity(CustomerEntity customerEntity) {
-		this.customerEntity = customerEntity;
 	}
 
 	public String getPaymentMethod() {
@@ -96,7 +84,7 @@ public class OrderEntity {
 	@Override
 	public String toString() {
 		return "OrderEntity [orderID=" + id+ ", amount=" + amount + ", billingDate=" + billingDate
-				+ ", customerEntity=" + customerEntity + ", paymentMethod=" + paymentMethod + ", productEntity="
+				+ ", paymentMethod=" + paymentMethod + ", productEntity="
 				+ productEntity + ", paymentEntity=" + paymentEntity + "]";
 	}
 

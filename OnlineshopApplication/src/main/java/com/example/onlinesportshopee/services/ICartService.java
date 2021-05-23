@@ -11,8 +11,8 @@ import com.example.onlinesportshopee.model.Cart;
 
 public interface ICartService {
 	
-		public Cart addCart(CartEntity cartEntity) throws CartException;
-		public Cart deleteCart(long id) throws CartException;
+		public Cart addCart(Cart cart) throws CartException;
+		public Cart deleteCart(Long id) throws CartException;
 		public List<Cart> getallCartDetails();
 
 }
