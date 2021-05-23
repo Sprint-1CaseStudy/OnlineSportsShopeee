@@ -2,24 +2,20 @@ package com.example.onlinesportsshopee.dao;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
-import org.junit.*;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.onlinesportshopee.dao.ICustomerRepository;
-import com.example.onlinesportshopee.entities.AddressEntity;
 import com.example.onlinesportshopee.entities.CustomerEntity;
-import com.example.onlinesportshopee.entities.OrderEntity;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -31,11 +27,11 @@ class CustomerDaoTest {
 	@Autowired 
 	private TestEntityManager testEntityManager;
 	
-	@Test
+	
 	public CustomerEntity testgetCustomer()
 	{
 		CustomerEntity customer = new CustomerEntity();
-		customer.setId((long)1);
+		//customer.setId(1);
 		customer.setName("Arjuna");
 		customer.setEmail("Panadava3@gmail.com");
 		customer.setContactNo("9512357468");
