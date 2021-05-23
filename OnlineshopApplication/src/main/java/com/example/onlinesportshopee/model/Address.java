@@ -70,8 +70,6 @@ public class Address
 	public String toString() {
 		return "Address [doorNo=" + doorNo + ", street=" + street + ", area=" + area + ", city=" + city + ", state="
 				+ state + ", pincode=" + pincode + "]";
-	}
-	
-	
+	}	
 	
 }

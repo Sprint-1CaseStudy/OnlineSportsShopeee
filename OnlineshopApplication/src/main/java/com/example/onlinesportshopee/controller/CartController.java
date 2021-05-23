@@ -23,13 +23,13 @@ public class CartController {
 	@Autowired
 	private ICartService cartService;
 	
-	@PostMapping("/cart/addtocart")
-	public  ResponseEntity<Object> addtocart(@RequestBody CartEntity cartEntity) throws CartException{
+	@PostMapping("/cart/addtocart/{ProdID}")
+	public  ResponseEntity<Object> addtocart(@PathVariable long ProdID) throws CartException{
 		LOGGER.info("add-cart URL is opened");
 		LOGGER.info("addtocart() is initiated");
 		Cart cartDTO = null;
 		ResponseEntity<Object> cartResponse = null;
-		cartDTO = cartService.addCart(cartEntity);
+		cartDTO = cartService.addCart(ProdID);
 		cartResponse = new ResponseEntity<>(cartDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("addtocart() has Executed");
 		return cartResponse;

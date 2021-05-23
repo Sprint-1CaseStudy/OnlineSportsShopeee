@@ -22,9 +22,7 @@ public class AddressEntity
 	private String state;
 	@Column(name = "pincode")
 	private Integer pincode;
-
 	
-
 	public AddressEntity() {
 		// TODO Auto-generated constructor stub
 	}

@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.onlinesportshopee.controller.CartController;
 import com.example.onlinesportshopee.dao.ICartRepository;
+import com.example.onlinesportshopee.dao.IProductRepository;
 import com.example.onlinesportshopee.entities.CartEntity;
+import com.example.onlinesportshopee.entities.ProductEntity;
 import com.example.onlinesportshopee.exception.CartException;
 import com.example.onlinesportshopee.model.Cart;
 import com.example.onlinesportshopee.util.CartUtils;
@@ -21,15 +23,20 @@ public class CartServiceImpl implements ICartService {
 	static final Logger LOGGER = LoggerFactory.getLogger(CartController.class);
 	
 	@Autowired 
-	private ICartRepository iCartRepository; 
+	private ICartRepository iCartRepository;
+	
+	@Autowired 
+	private IProductRepository iProductRepository;
 	
 	@Override
-	public Cart addCart(CartEntity cartEntity) throws CartException {
+	public Cart addCart(long ProdID) throws CartException {
 		LOGGER.info("addtocart() service is initiated");
+		ProductEntity proEntity = iProductRepository.findById(ProdID).get();
 		CartEntity carEntity = null;
-		if(cartEntity==null)
+		if(proEntity==null)
 			carEntity=null;
 		else {
+			CartEntity cartEntity = new CartEntity(proEntity.getProductName(),1,proEntity.getMrp(),proEntity.getPriceAfterDiscount());;
 			carEntity = iCartRepository.save(cartEntity);
 		}
 		LOGGER.info("addtocart() service has Executed");

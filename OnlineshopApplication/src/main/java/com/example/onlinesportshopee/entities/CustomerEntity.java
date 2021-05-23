@@ -24,10 +24,10 @@ public class CustomerEntity
 	private String contactNo;
 	@Column(name = "DateOfBirth")
 	private LocalDate doB;
-	@OneToMany(mappedBy = "customerEntity",cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<AddressEntity> addressEntity;
-	@OneToMany(mappedBy="customerEntity",cascade=CascadeType.ALL)
-	private List<OrderEntity> orderEntity;
+	//@OneToMany(cascade=CascadeType.ALL)
+	//private List<OrderEntity> orderEntity;
 	public Long getId() {
 		return id;
 	}
@@ -64,12 +64,14 @@ public class CustomerEntity
 	public void setAddressEntity(List<AddressEntity> addressEntity) {
 		this.addressEntity = addressEntity;
 	}
+	/*
 	public List<OrderEntity> getOrderEntity() {
 		return orderEntity;
 	}
 	public void setOrderEntity(List<OrderEntity> orderEntity) {
 		this.orderEntity = orderEntity;
 	}
+	*/
 	@Override
 	public String toString() {
 		return "CustomerEntity [id=" + id + ", name=" + name + ", email=" + email + ", contactNo=" + contactNo
