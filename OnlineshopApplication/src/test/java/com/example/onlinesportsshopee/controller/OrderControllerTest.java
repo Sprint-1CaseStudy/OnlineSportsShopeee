@@ -117,7 +117,6 @@ class OrderControllerTest {
 	        MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.delete(URI, 10).accept(MediaType.
 	        		APPLICATION_JSON)).andReturn();
 	        MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
-
 	        Assert.assertEquals(HttpStatus.OK.value(), mockHttpServletResponse.getStatus());
 
 	    }
@@ -130,7 +129,6 @@ class OrderControllerTest {
 	        order2.setAmount(3311.33);
 	        order2.setBillingDate(LocalDate.parse("2021-07-09"));
 	        order2.setPaymentMethod("net banking");
-
 	        String jsonInput = this.convertToJson(order2);
 
 	       // Mockito.when(iOrderService.updateOrder((long)10,(Mockito.any(),Mockito.anyString())).thenReturn(ticket2);
