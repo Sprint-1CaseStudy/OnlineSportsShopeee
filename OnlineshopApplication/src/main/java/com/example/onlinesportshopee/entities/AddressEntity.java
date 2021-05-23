@@ -22,18 +22,21 @@ public class AddressEntity
 	private String state;
 	@Column(name = "pincode")
 	private Integer pincode;
-	
-   
+
 	
 
 	public AddressEntity() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "AddressEntity [id=" + id + ", street=" + street + ", area=" + area + ", city=" + city + ", state="
-				+ state + ", pincode=" + pincode +  "]";
+				+ state + ", pincode=" + pincode + "]";
 	}
+
+
 	public Long getId() {
 		return id;
 	}
@@ -78,6 +81,7 @@ public class AddressEntity
 	 */
 	public AddressEntity(Long id, String street, String area, String city, String state, Integer pincode,
 			CustomerEntity customerEntity) {
+
 		super();
 		this.id = id;
 		this.street = street;
@@ -85,7 +89,7 @@ public class AddressEntity
 		this.city = city;
 		this.state = state;
 		this.pincode = pincode;
-		//this.customerEntity = customerEntity;
+
 	}
 	
 	

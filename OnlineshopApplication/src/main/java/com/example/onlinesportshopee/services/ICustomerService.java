@@ -8,9 +8,9 @@ import com.example.onlinesportshopee.model.Customer;
 
 public interface ICustomerService {
 
-		public Customer addCustomer(CustomerEntity customer) throws CustomerNotFoundException;
+		public Customer addCustomer(Customer customer) throws CustomerNotFoundException;
 		public Customer removeCustomer(long custId) throws CustomerNotFoundException;
-		public Customer updateCustomer(long custId,CustomerEntity customer) throws CustomerNotFoundException;
+		public Customer updateCustomer(long custId,Customer customer) throws CustomerNotFoundException;
 		public Customer getCustomer(long custId) throws CustomerNotFoundException;
 		public List<Customer> getAllCustomers(); 
 }

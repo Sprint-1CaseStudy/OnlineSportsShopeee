@@ -52,7 +52,7 @@ public class CustomerController
 	}
 
 	@PutMapping("/customers/updateCustomer/{custId}")
-	public ResponseEntity<Object> updateCustomer(@PathVariable long custId,@RequestBody CustomerEntity customer) throws CustomerNotFoundException {
+	public ResponseEntity<Object> updateCustomer(@PathVariable long custId,@RequestBody Customer customer) throws CustomerNotFoundException {
 		LOGGER.info("updateCustomer URL is opened");
 		LOGGER.info("updateCustomer() is initiated");
 		Customer customerDTO = null;

@@ -3,6 +3,7 @@ package com.example.onlinesportshopee.services;
 import java.util.List;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,15 +23,17 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Autowired
 	private ICustomerRepository icustomerRepository;
 	
+<<<<<<< HEAD
 	@Override
+=======
+>>>>>>> branch 'master' of https://github.com/Sprint-1CaseStudy/OnlineSportsShopeee.git
 	public Customer addCustomer(Customer customer) throws CustomerNotFoundException {
 		LOGGER.info("addCustomer() service is initiated");
-		CustomerEntity customerentity;
-		if(customer == null)
+		CustomerEntity customerentity = CustomerUtils.convertToCustomerEntity(customer);
+		/*if(customer == null)
 			customerentity = null;
-		else {
-			customerentity = icustomerRepository.save(customer);
-		}
+		else {*/
+			customerentity = icustomerRepository.save(customerentity);
 		LOGGER.info("addCustomer() service has executed");
 		return CustomerUtils.convertToCustomer(customerentity);
 	}
@@ -39,30 +42,29 @@ public class CustomerServiceImpl implements ICustomerService {
 	public Customer removeCustomer(long custId) throws CustomerNotFoundException{
 		LOGGER.info("removeCustomer() service is initiated");
 		CustomerEntity existcustomer = icustomerRepository.findById(custId).orElse(null);
-		if(existcustomer == null)
+		/*if(existcustomer == null)
 		{
 			throw new CustomerNotFoundException("CustomerNotFound");
 		}
-		else {
+		else {*/
 			icustomerRepository.delete(existcustomer);
-		}
 		LOGGER.info("removeCustomer() service has executed");
 		return CustomerUtils.convertToCustomer(existcustomer);
 	}
 
 	@Override
-	public Customer updateCustomer(long custId, CustomerEntity customer) throws CustomerNotFoundException{
+	public Customer updateCustomer(long custId, Customer customer) throws CustomerNotFoundException{
 		// TODO Auto-generated method stub
 		LOGGER.info("updateCustomer() service is initiated");
-		CustomerEntity customerentity = null;
+		CustomerEntity customerentity = CustomerUtils.convertToCustomerEntity(customer);
 		CustomerEntity updatecustomer = icustomerRepository.findById(custId).orElse(null);
-		if(updatecustomer == null)
+		/*if(updatecustomer == null)
 		{
 			throw new CustomerNotFoundException("CustomerNotFound");
 		}
-		else {
-			customerentity = icustomerRepository.save(customer);
-		}
+		else {*/
+			customerentity = icustomerRepository.save(customerentity);
+		
 		LOGGER.info("updateCustomer() service has executed");
 		return CustomerUtils.convertToCustomer(customerentity);
 	}
@@ -86,4 +88,6 @@ public class CustomerServiceImpl implements ICustomerService {
 		LOGGER.info("getAllCustomer() service has executed");
 		return CustomerUtils.convertToCustomerList(custlist);
 	}
+
+	
 }
