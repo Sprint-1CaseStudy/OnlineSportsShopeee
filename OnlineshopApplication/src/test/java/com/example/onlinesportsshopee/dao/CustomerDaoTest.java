@@ -23,6 +23,7 @@ import com.example.onlinesportshopee.entities.OrderEntity;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
+@SpringBootTest(classes = ICustomerRepository.class)
 class CustomerDaoTest {
 
 	@Autowired
