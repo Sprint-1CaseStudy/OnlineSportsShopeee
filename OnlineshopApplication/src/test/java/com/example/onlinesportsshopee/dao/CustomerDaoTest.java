@@ -24,7 +24,11 @@ import com.example.onlinesportshopee.entities.CustomerEntity;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
+<<<<<<< HEAD
 @SpringBootConfiguration
+=======
+@SpringBootTest(classes = ICustomerRepository.class)
+>>>>>>> branch 'master' of https://github.com/Sprint-1CaseStudy/OnlineSportsShopeee.git
 class CustomerDaoTest {
 
 	@Autowired

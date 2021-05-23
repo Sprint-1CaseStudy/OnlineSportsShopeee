@@ -3,6 +3,7 @@ package com.example.onlinesportsshopee.controller;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -28,13 +30,15 @@ import com.example.onlinesportshopee.dao.ICustomerRepository;
 import com.example.onlinesportshopee.entities.AddressEntity;
 import com.example.onlinesportshopee.entities.CustomerEntity;
 import com.example.onlinesportshopee.entities.OrderEntity;
+import com.example.onlinesportshopee.exception.CustomerNotFoundException;
+import com.example.onlinesportshopee.exception.InvalidCustomerIdException;
 import com.example.onlinesportshopee.services.ICustomerService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = CustomerController.class)
-@SpringBootTest
+@SpringBootTest(classes = CustomerController.class)
+@AutoConfigureMockMvc
 class CustomerControllerTest {
 		
 	@Autowired
@@ -44,7 +48,7 @@ class CustomerControllerTest {
 	ICustomerService iCustomerService;
 	
 	@Test
-	public void testaddCustomer() throws Exception
+	void testaddCustomer() throws Exception
 	{	
 		String URI = "/onlinesportshopee/customers/addCustomer";
 		
@@ -53,7 +57,7 @@ class CustomerControllerTest {
 		customer.setName("Arjuna");
 		customer.setEmail("Panadava3@gmail.com");
 		customer.setContactNo("9512357468");
-		customer.setDoB(LocalDate.parse("21/10/1997"));
+		customer.setDoB(LocalDate.parse("1997-10-21"));
 		
 		String jsonInput = this.convertToJson(customer);
 		
@@ -68,7 +72,7 @@ class CustomerControllerTest {
 	}
 	
 	@Test
-	public void testgetCustomer() throws Exception
+	void testgetCustomer() throws Exception
 	{
 		String URI= "/onlinesportshopee/customers/getCustomerDetails/{custId}";
 		CustomerEntity customer = new CustomerEntity();
@@ -76,7 +80,7 @@ class CustomerControllerTest {
 		customer.setName("Arjuna");
 		customer.setEmail("Panadava3@gmail.com");
 		customer.setContactNo("9512357468");
-		customer.setDoB(LocalDate.parse("21/10/1997"));
+		customer.setDoB(LocalDate.parse("1997-10-21"));
 		
 		String jsonInput = this.convertToJson(customer);
 		//Mockito.when(iCustomerRepository.save(Mockito.any())).thenReturn(customer);
@@ -88,22 +92,22 @@ class CustomerControllerTest {
 	}
 	
 	@Test
-	public void testgetAllCustomer() throws Exception
+	void testgetAllCustomer() throws Exception
 	{
-		String URI = "/onlinesportshopee/customers/Customers/{name}";
+		String URI = "/onlinesportshopee/customers/Customers";
 		CustomerEntity customer1 = new CustomerEntity();
 		customer1.setId((long)1);
 		customer1.setName("Arjuna");
 		customer1.setEmail("Panadava3@gmail.com");
 		customer1.setContactNo("9512357468");
-		customer1.setDoB(LocalDate.parse("21/10/1997"));
+		customer1.setDoB(LocalDate.parse("1997-10-21"));
 		
 		CustomerEntity customer2 = new CustomerEntity();
 		customer2.setId((long)2);
 		customer2.setName("Bheema");
 		customer2.setEmail("Panadava2@gmail.com");
 		customer2.setContactNo("9632588741");
-		customer2.setDoB(LocalDate.parse("19/12/1998"));
+		customer2.setDoB(LocalDate.parse("1998-12-19"));
 		
 		List<CustomerEntity> customerlist = new ArrayList<>();
 		customerlist.add(customer1);
@@ -120,7 +124,7 @@ class CustomerControllerTest {
 	}
 	
 	@Test
-	public void testremoveCustomer() throws Exception
+	void testremoveCustomer() throws Exception
 	{
 		String URI = "/onlinesportshopee/customers/removeCustomer/Customer/{custId}";
 		CustomerEntity customer1 = new CustomerEntity();
@@ -128,7 +132,7 @@ class CustomerControllerTest {
 		customer1.setName("Arjuna");
 		customer1.setEmail("Panadava3@gmail.com");
 		customer1.setContactNo("9851235467");
-		customer1.setDoB(LocalDate.parse("21/10/1997"));
+		customer1.setDoB(LocalDate.parse("1997-10-21"));
 		
 		//CustomerEntity Temp = iCustomerRepository.findById((long)1).get();
 		//Mockito.when(iCustomerRepository.save(Mockito.any())).thenReturn(customer1);
@@ -140,7 +144,7 @@ class CustomerControllerTest {
 	}
 	
 	@Test
-	public void testupdateCustomer() throws Exception
+	void testupdateCustomer() throws CustomerNotFoundException,InvalidCustomerIdException,Exception
 	{
 		String URI = "/onlinesportshopee/customers/updateCustomer/{custId}";
 		CustomerEntity customer2 = new CustomerEntity();
@@ -148,12 +152,12 @@ class CustomerControllerTest {
 		customer2.setName("Bheema");
 		customer2.setEmail("Panadava2@gmail.com");
 		customer2.setContactNo("9632588741");
-		customer2.setDoB(LocalDate.parse("19/12/1998"));
+		customer2.setDoB(LocalDate.parse("1998-12-19"));
 		
 		String jsonInput = this.convertToJson(customer2);
 		
 		//Mockito.when(iCustomerRepository.save(Mockito.any())).thenReturn(customer2);
-		MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.put(URI).accept(MediaType.APPLICATION_JSON).content(jsonInput).contentType(MediaType.APPLICATION_JSON)).andReturn();
+		MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.put(URI, 1).accept(MediaType.APPLICATION_JSON).content(jsonInput).contentType(MediaType.APPLICATION_JSON)).andReturn();
 	    MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
 	    String jsonOutput = mockHttpServletResponse.getContentAsString();
 	    //assertThat(jsonInput.substring(0,5)).isEqualTo(jsonOutput.substring(0,5));
