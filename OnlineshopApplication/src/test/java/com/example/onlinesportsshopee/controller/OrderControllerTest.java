@@ -137,7 +137,6 @@ class OrderControllerTest {
 	        MvcResult mvcResult=this.mockMvc.perform(MockMvcRequestBuilders.put(URI, 10).accept(MediaType.APPLICATION_JSON).content(jsonInput).contentType(MediaType.APPLICATION_JSON)).andReturn();
 			MockHttpServletResponse mockHttpServletResponse=mvcResult.getResponse();
 			String jsonOutput=mockHttpServletResponse.getContentAsString();
-
 			Assert.assertNotNull(jsonOutput);
 	    }
 	 
