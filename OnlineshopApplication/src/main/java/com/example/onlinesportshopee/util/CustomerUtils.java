@@ -38,7 +38,7 @@ public class CustomerUtils
 		customer.setContactNo(customerEntity.getContactNo());
 		customer.setDoB(customerEntity.getDoB());
 		customer.setAddressEntity(customerEntity.getAddressEntity());
-		customerEntity.setOrderEntity(customer.getOrderEntity());
+		//customerEntity.setOrderEntity(customer.getOrderEntity());
 		return customer;
 	}
 }
