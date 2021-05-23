@@ -113,7 +113,7 @@ class OrderControllerTest {
 	        order.setPaymentMethod("card");
 
 	        Mockito.when(iOrderService.deleteOrder(Mockito.any())).thenReturn(order);
-	       Mockito.when(iOrderService.deleteOrder(Mockito.any())).thenReturn(true);
+	        Mockito.when(iOrderService.deleteOrder(Mockito.any())).thenReturn(true);
 	        MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.delete(URI, 10).accept(MediaType.
 	        		APPLICATION_JSON)).andReturn();
 	        MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
