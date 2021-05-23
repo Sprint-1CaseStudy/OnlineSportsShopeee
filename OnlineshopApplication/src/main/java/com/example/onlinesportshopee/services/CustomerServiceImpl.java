@@ -35,7 +35,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	}
 
 	@Override
-	public Customer removeCustomer(long custId) throws CustomerNotFoundException{
+	public Customer removeCustomer(Long custId) throws CustomerNotFoundException{
 		LOGGER.info("removeCustomer() service is initiated");
 		CustomerEntity existcustomer = icustomerRepository.findById(custId).orElse(null);
 		/*if(existcustomer == null)
@@ -49,7 +49,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	}
 
 	@Override
-	public Customer updateCustomer(long custId, Customer customer) throws CustomerNotFoundException{
+	public Customer updateCustomer(Long custId, Customer customer) throws CustomerNotFoundException{
 		// TODO Auto-generated method stub
 		LOGGER.info("updateCustomer() service is initiated");
 		CustomerEntity customerentity = CustomerUtils.convertToCustomerEntity(customer);
@@ -66,7 +66,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	}
 
 	@Override
-	public Customer getCustomer(long custId) throws CustomerNotFoundException{
+	public Customer getCustomer(Long custId) throws CustomerNotFoundException{
 		LOGGER.info("getCustomer() service is initiated");
 		CustomerEntity getCustomer = icustomerRepository.findById(custId).orElse(null);
 		if(getCustomer == null)

@@ -23,21 +23,19 @@ public class CardEntity {
 	private LocalDate expiryDate;
 	@Column(name = "bankName")
 	private String bankName;
-	@ManyToOne
-	@JoinColumn
-	private PaymentEntity paymentEntity;
+	
 	
 	public CardEntity() {
 		super();
 	}
-	public CardEntity(Long id, String cardName, String cardNumber, LocalDate expiryDate, String bankName,PaymentEntity paymentEntity) {
+	public CardEntity(Long id, String cardName, String cardNumber, LocalDate expiryDate, String bankName) {
 		super();
 		this.id= id;
     	this.cardName= cardName;
 		this.cardNumber= cardNumber;
 		this.expiryDate= expiryDate;
 		this.bankName= bankName;
-		this.paymentEntity=paymentEntity;
+		
 	}
 	public Long getId() {
 		return id;
@@ -72,16 +70,11 @@ public class CardEntity {
 		
 	}
 	
-	public PaymentEntity getPaymentEntity() {
-		return paymentEntity;
-	}
-	public void setPaymentEntity(PaymentEntity paymentEntity) {
-		this.paymentEntity = paymentEntity;
-	}
+	
 	@Override
 	public String toString() {
 		return "CardEntity [id=" + id + ", cardName=" + cardName + ", cardNumber=" + cardNumber + ", expiryDate="
-				+ expiryDate + ", bankName=" + bankName + ", paymentEntity=" + paymentEntity + "]";
+				+ expiryDate + ", bankName=" + bankName + "]";
 	}
 
 }

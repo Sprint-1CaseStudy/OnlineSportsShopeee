@@ -1,17 +1,17 @@
 package com.example.onlinesportshopee.entities;
 
 import java.time.LocalDate;
+
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -41,18 +41,13 @@ public class ProductEntity {
 	private Boolean inStock;
 	@Column(name = "expected_delivery")
 	private LocalDate expectedDelivery;
-	@ManyToOne
-	@JoinColumn //(name="order_product")
-	private OrderEntity orderEntity;
-	@ManyToMany(mappedBy="productEntity")
-	private List<CartEntity> cartEntity;
 	
 	public ProductEntity() {
 		
 	}
 	
 	public ProductEntity(Long id, String productName, String category, String description, String brand, String colour, String size, 
-			Double mrp, Double priceAfterDiscount, Boolean inStock,OrderEntity orderEntity, LocalDate expectedDelivery,List<CartEntity> cartEntity) {
+			Double mrp, Double priceAfterDiscount, Boolean inStock, LocalDate expectedDelivery) {
 		super();
 		this.id=id;
 		this.productName = productName;
@@ -65,8 +60,6 @@ public class ProductEntity {
 		this.priceAfterDiscount = priceAfterDiscount;
 		this.inStock = inStock;
 		this.expectedDelivery = expectedDelivery;
-		this.orderEntity= orderEntity;
-		this.cartEntity=cartEntity;
 	}
 
 
@@ -172,33 +165,14 @@ public class ProductEntity {
 	}
 
 
-	public OrderEntity getOrderEntity() {
-		return orderEntity;
-	}
-
-
-	public void setOrderEntity(OrderEntity orderEntity) {
-		this.orderEntity = orderEntity;
-	}
-
-
-	public List<CartEntity> getCartEntity() {
-		return cartEntity;
-	}
-
-
-	public void setCartEntity(List<CartEntity> cartEntity) {
-		this.cartEntity = cartEntity;
-	}
-
+	
 
 	@Override
 	public String toString() {
 		return "ProductEntity [productId=" + id + ", productName=" + productName + ", category=" + category
 				+ ", description=" + description + ", brand=" + brand + ", colour=" + colour + ", size=" + size
 				+ ", mrp=" + mrp + ", priceAfterDiscount=" + priceAfterDiscount + ", inStock=" + inStock
-				+ ", expectedDelivery=" + expectedDelivery + ", orderEntity=" + orderEntity + ", cartEntity="
-				+ cartEntity + "]";
+				+ ", expectedDelivery=" + expectedDelivery + "]";
 	}
 
 	public Long getId() {

@@ -26,8 +26,8 @@ public class CustomerEntity
 	private LocalDate doB;
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<AddressEntity> addressEntity;
-	//@OneToMany(cascade=CascadeType.ALL)
-	//private List<OrderEntity> orderEntity;
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<OrderEntity> orderEntity;
 	public Long getId() {
 		return id;
 	}

@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface IPaymentService {
 	
-	public Payment addPayment(PaymentEntity payment);
-	public Payment removePayment(long id);
-	public Payment updatePayment(long id, PaymentEntity payment);
-	public Payment getPaymentDetails(long paymentID) throws PaymentNotFoundException;	
+	public Payment addPayment(Payment payment);
+	public Payment removePayment(Long id);
+	public Payment updatePayment(Long id, Payment payment);
+	public Payment getPaymentDetails(Long paymentID) throws PaymentNotFoundException;	
 	public List<Payment> getAllPaymentDetails(String name);
 }

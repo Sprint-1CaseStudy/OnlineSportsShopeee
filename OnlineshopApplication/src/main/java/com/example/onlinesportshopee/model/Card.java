@@ -11,19 +11,18 @@ public class Card {
 	private String cardNumber;
     private LocalDate cardExpiry;
     private String bankName;
-    private PaymentEntity paymentEntity;
     
    public Card() {
 	   
    }
-   public Card(Long id, String cardName, String cardNumber, LocalDate cardExpiry, String bankName,PaymentEntity paymentEntity) {
+   public Card(Long id, String cardName, String cardNumber, LocalDate cardExpiry, String bankName) {
     	super();
 		this.id = id;
 		this.cardName = cardName;
 		this.cardNumber = cardNumber;
 		this.cardExpiry = cardExpiry;
 		this.bankName = bankName;
-		this.paymentEntity = paymentEntity;
+		
     }
     
     public Long getId() {
@@ -64,17 +63,12 @@ public class Card {
 		this.bankName = bankName;
 	}
 
-	public PaymentEntity getPaymentEntity() {
-		return paymentEntity;
-	}
-	public void setPaymentEntity(PaymentEntity paymentEntity) {
-		this.paymentEntity = paymentEntity;
-	}
+	
 	
     @Override
 	public String toString() {
 		return "Card [id=" + id + ", cardName=" + cardName + ", cardNumber=" + cardNumber + ", cardExpiry=" + cardExpiry
-				+ ", bankName=" + bankName + ", paymentEntity=" + paymentEntity + "]";
+				+ ", bankName=" + bankName + "]";
 	}
 	
 

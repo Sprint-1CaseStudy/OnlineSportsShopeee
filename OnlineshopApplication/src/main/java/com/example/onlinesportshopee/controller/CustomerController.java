@@ -40,7 +40,7 @@ public class CustomerController
 	}
 	
 	@DeleteMapping("/customers/removeCustomer/Customer/{custId}")
-	public ResponseEntity<Object> removeCustomer(@PathVariable long custId) throws CustomerNotFoundException {
+	public ResponseEntity<Object> removeCustomer(@PathVariable Long custId) throws CustomerNotFoundException {
 		LOGGER.info("removeCustomer URL is opened");
 		LOGGER.info("removeCustomer() is initiated");
 		Customer customerDTO = null;
@@ -52,7 +52,7 @@ public class CustomerController
 	}
 
 	@PutMapping("/customers/updateCustomer/{custId}")
-	public ResponseEntity<Object> updateCustomer(@PathVariable long custId,@RequestBody Customer customer) throws CustomerNotFoundException {
+	public ResponseEntity<Object> updateCustomer(@PathVariable Long custId,@RequestBody Customer customer) throws CustomerNotFoundException {
 		LOGGER.info("updateCustomer URL is opened");
 		LOGGER.info("updateCustomer() is initiated");
 		Customer customerDTO = null;
@@ -64,7 +64,7 @@ public class CustomerController
 	}
 
 	@GetMapping("/customers/getCustomerDetails/{custId}")
-	public ResponseEntity<Object> getCustomer(@PathVariable long custId) throws CustomerNotFoundException {
+	public ResponseEntity<Object> getCustomer(@PathVariable Long custId) throws CustomerNotFoundException {
 		LOGGER.info("getCustomerDetails URL is opened");
 		LOGGER.info("getCustomer() is initiated");
 		Customer customerDTO = null;
@@ -76,12 +76,13 @@ public class CustomerController
 	}
 
 
-	@GetMapping("/customers/Customers/{name}")
-	public List<Customer> getAllCustomers(@PathVariable String name) {
-		LOGGER.info("Customers URL is opened");
-		LOGGER.info("getAllCustomers() is initiated");
-		LOGGER.info("getAllCustomers() has executed");
-		return iCustomerService.getAllCustomers();
+	@GetMapping("/customers/Customers")
+    public List<Customer> getAllCustomers() {
+        LOGGER.info("Customers URL is opened");
+        LOGGER.info("getAllCustomers() is initiated");
+        LOGGER.info("getAllCustomers() has executed");
+        //ResponseEntity<Object> customerResponse = null;
+        return (List<Customer>)iCustomerService.getAllCustomers();
 	}
 	
 }

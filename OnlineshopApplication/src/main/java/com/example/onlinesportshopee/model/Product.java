@@ -35,8 +35,8 @@ public class Product {
 
 	private LocalDate expectedDelivery;
 	
-	private OrderEntity orderEntity;
-	private List<CartEntity> cartEntity;
+	
+	private CartEntity cartEntity;
 	
 	
 	public Long getProductId() {
@@ -106,21 +106,15 @@ public class Product {
 		this.expectedDelivery = expectedDelivery;
 	}
 	
-	public OrderEntity getOrderEntity() {
-		return orderEntity;
-	}
-	public void setOrderEntity(OrderEntity orderEntity) {
-		this.orderEntity = orderEntity;
-	}
-	public List<CartEntity> getCartEntity() {
+	
+	public CartEntity getCartEntity() {
 		return cartEntity;
 	}
-	public void setCartEntity(List<CartEntity> cartEntity) {
+	public void setCartEntity(CartEntity cartEntity) {
 		this.cartEntity = cartEntity;
 	}
 	public Product(Long productId, String productName, String category, String description, String brand, String colour,
-			String size, Double mrp, Double priceAfterDiscount, Boolean inStock, LocalDate expectedDelivery,
-			OrderEntity orderEntity,List<CartEntity> cartEntity) {
+			String size, Double mrp, Double priceAfterDiscount, Boolean inStock, LocalDate expectedDelivery,CartEntity cartEntity) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
@@ -133,7 +127,6 @@ public class Product {
 		this.priceAfterDiscount = priceAfterDiscount;
 		this.inStock = inStock;
 		this.expectedDelivery = expectedDelivery;
-		this.orderEntity = orderEntity;
 		this.cartEntity=cartEntity;
 	}
 	
@@ -146,7 +139,7 @@ public class Product {
 		return "Product [productId=" + productId + ", productName=" + productName + ", category=" + category
 				+ ", description=" + description + ", brand=" + brand + ", colour=" + colour + ", size=" + size
 				+ ", mrp=" + mrp + ", priceAfterDiscount=" + priceAfterDiscount + ", inStock=" + inStock
-				+ ", expectedDelivery=" + expectedDelivery + "]";
+				+ ", expectedDelivery=" + expectedDelivery + ", cartEntity=" + cartEntity + "]";
 	}	
 	
 }

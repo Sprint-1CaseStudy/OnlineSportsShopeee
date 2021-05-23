@@ -34,19 +34,19 @@ public class OrderController {
 	
 
 	@PostMapping("/add-order")
-	public  ResponseEntity<Object> addProduct(@RequestBody OrderEntity orderEntity)throws OrderNotFoundException,InvalidOrderIdException{
+	public  ResponseEntity<Object> addProduct(@RequestBody Order order)throws OrderNotFoundException,InvalidOrderIdException{
 		LOGGER.info("add-order URL is opened");
 		LOGGER.info("addOrderEntity() is initiated");
-		System.out.println(orderEntity);
+		System.out.println(order);
 		Order orderDTO = null;
 		ResponseEntity<Object> orderResponse = null;
-		orderDTO = iOrderService.addOrder(orderEntity);
+		orderDTO = iOrderService.addOrder(order);
 		orderResponse = new ResponseEntity<>(orderDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("addOrder() has executed");
 		return orderResponse;
 	}
 
-	@PutMapping("/api/order/update-order/{orderID}")
+	@PutMapping("/update-order/{orderID}")
 	public ResponseEntity<Object> updateOrder(@PathVariable long orderID, @RequestBody OrderEntity orderEntity)throws OrderNotFoundException,InvalidOrderIdException{
 		LOGGER.info("update-order URL is opened");
 		LOGGER.info("updateOrderEntity() is initiated");
@@ -58,7 +58,7 @@ public class OrderController {
 		return orderResponse;
 	}
 
-	@DeleteMapping("/api/order/remove-order/{orderID}")
+	@DeleteMapping("/remove-order/{orderID}")
 	public ResponseEntity<Object> deleteOrder(@PathVariable long orderID)throws InvalidOrderIdException{
 		LOGGER.info("delete-order URL is opened");
 		LOGGER.info("deleteOrderEntity() is initiated");
@@ -70,7 +70,7 @@ public class OrderController {
 		return orderResponse;
 	}
 
-	@GetMapping("/api/order/get-order/{orderID}")
+	@GetMapping("/get-order/{orderID}")
 	public ResponseEntity<Object> getOrder(@PathVariable long orderID)throws InvalidOrderIdException{
 	
 		LOGGER.info("getById URL is opened");

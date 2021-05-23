@@ -7,10 +7,10 @@ import com.example.onlinesportshopee.model.User;
 
 public interface IUserService {
 
-	public User addUser(UserEntity user) throws UserException;
-	public User signIn(UserEntity user) throws UserException;
-	public String signOut(UserEntity user);
-	public User changePassword(long id,UserEntity user) throws UserException;
+	public User addUser(User user) throws UserException;
+	public User signIn(User user) throws UserException;
+	public String signOut(User user);
+	public User changePassword(Long id,User user) throws UserException;
 	
 
 }

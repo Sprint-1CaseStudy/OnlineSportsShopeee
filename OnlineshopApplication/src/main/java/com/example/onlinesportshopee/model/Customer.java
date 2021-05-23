@@ -25,7 +25,7 @@ public class Customer
 		super();
 	}
 	
-	public Customer(String userID, String name, String email, String contactNo, LocalDate doB, List<AddressEntity> addressEntity,List<OrderEntity> orderEntity) 
+	public Customer(String userID, String name, String email, String contactNo, LocalDate doB, List<AddressEntity> addressentity, List<OrderEntity> orderEntity) 
 	{
 		super();
 		this.userID = userID;
@@ -34,7 +34,7 @@ public class Customer
 		this.contactNo = contactNo;
 		this.doB = doB;
 		this.addressEntity = addressEntity;
-		this.orderEntity=orderEntity;
+		this.orderEntity = orderEntity;
 	}
 
 	public String getUserID() {
@@ -90,7 +90,6 @@ public class Customer
 		return "Customer [userID=" + userID + ", name=" + name + ", email=" + email + ", contactNo=" + contactNo
 				+ ", doB=" + doB + ", addressEntity=" + addressEntity + ", orderEntity=" + orderEntity + "]";
 	}
-
 	
 	
 	

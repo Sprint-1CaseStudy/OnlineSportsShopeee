@@ -10,7 +10,7 @@ public class Address
 	private String city;
 	private String state;
 	private Integer pincode;
-	
+	//private Customer customer;
 	
 	public Address()
 	{
@@ -25,6 +25,8 @@ public class Address
 		this.city = city;
 		this.state = state;
 		this.pincode = pincode;
+
+		//this.customer = customer;
 		
 	}
 
@@ -65,11 +67,19 @@ public class Address
 		this.pincode = pincode;
 	}
 	
-	
+
+	/*
+	 * public CustomerEntity getCustomerEntity() { return customerEntity; } public
+	 * void setCustomerEntity(CustomerEntity customerEntity) { this.customerEntity =
+	 * customerEntity; }
+	 */
 	@Override
 	public String toString() {
 		return "Address [doorNo=" + doorNo + ", street=" + street + ", area=" + area + ", city=" + city + ", state="
-				+ state + ", pincode=" + pincode + "]";
-	}	
+				+ state + ", pincode=" + pincode +  "]";
+				
+	}
+	
+	
 	
 }
