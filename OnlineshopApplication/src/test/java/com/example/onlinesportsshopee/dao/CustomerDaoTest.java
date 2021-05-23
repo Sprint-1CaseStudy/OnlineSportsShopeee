@@ -16,7 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.onlinesportshopee.dao.ICustomerRepository;
@@ -24,11 +27,8 @@ import com.example.onlinesportshopee.entities.CustomerEntity;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-<<<<<<< HEAD
 @SpringBootConfiguration
-=======
-@SpringBootTest(classes = ICustomerRepository.class)
->>>>>>> branch 'master' of https://github.com/Sprint-1CaseStudy/OnlineSportsShopeee.git
+@EnableJpaRepositories(basePackages = {"com.example.onlinesportsshopee.*"})
 class CustomerDaoTest {
 
 	@Autowired
@@ -37,7 +37,6 @@ class CustomerDaoTest {
 	@Autowired 
 	private TestEntityManager testEntityManager;
 	
-	@Test
 	public CustomerEntity testgetCustomer() throws Exception
 	{
 		CustomerEntity customer = new CustomerEntity();
@@ -45,26 +44,26 @@ class CustomerDaoTest {
 		customer.setName("Arjuna");
 		customer.setEmail("Panadava3@gmail.com");
 		customer.setContactNo("9512357468");
-		customer.setDoB(LocalDate.parse("21/10/1997"));
+		customer.setDoB(LocalDate.parse("1997-10-21"));
 		return customer;
 	}
 	
 	@Test
-	void testgetAllCustomer() 
+	void testgetAllCustomer() throws Exception
 	{
 		CustomerEntity customer1 = new CustomerEntity();		
 		customer1.setId((long)1);
 		customer1.setName("Arjuna");
 		customer1.setEmail("Panadava3@gmail.com");
 		customer1.setContactNo("9512357468");
-		customer1.setDoB(LocalDate.parse("21/10/1997"));
+		customer1.setDoB(LocalDate.parse("1997-10-21"));
 		
 		CustomerEntity customer2 = new CustomerEntity();
 		customer2.setId((long)2);
 		customer2.setName("Bheema");
 		customer2.setEmail("Panadava2@gmail.com");
 		customer2.setContactNo("9632588741");
-		customer2.setDoB(LocalDate.parse("19/12/1998"));
+		customer2.setDoB(LocalDate.parse("1998-12-19"));
 		
 		testEntityManager.persist(customer1);
 		testEntityManager.persist(customer2);
@@ -75,14 +74,14 @@ class CustomerDaoTest {
 	}
 	
 	@Test
-	void testremoveCustomer()
+	void testremoveCustomer() throws Exception
 	{
 		CustomerEntity customer1 = new CustomerEntity();
 		customer1.setId((long)1);
 		customer1.setName("Arjuna");
 		customer1.setEmail("Panadava3@gmail.com");
 		customer1.setContactNo("9851235467");
-		customer1.setDoB(LocalDate.parse("21/10/1997"));
+		customer1.setDoB(LocalDate.parse("1997-10-21"));
 		
 		CustomerEntity customer = testEntityManager.persist(customer1);
 		testEntityManager.remove(customer);
@@ -100,7 +99,7 @@ class CustomerDaoTest {
 		customer2.setName("Bheema");
 		customer2.setEmail("Panadava2@gmail.com");
 		customer2.setContactNo("9632588741");
-		customer2.setDoB(LocalDate.parse("19/12/1998"));
+		customer2.setDoB(LocalDate.parse("1998-12-19"));
 		
 		testEntityManager.persist(customer2);
 		
