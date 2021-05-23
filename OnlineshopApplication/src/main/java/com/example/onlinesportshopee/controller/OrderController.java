@@ -46,7 +46,7 @@ public class OrderController {
 		return orderResponse;
 	}
 
-	@PutMapping("/api/order/update-order/{orderID}")
+	@PutMapping("/update-order/{orderID}")
 	public ResponseEntity<Object> updateOrder(@PathVariable long orderID, @RequestBody OrderEntity orderEntity)throws OrderNotFoundException,InvalidOrderIdException{
 		LOGGER.info("update-order URL is opened");
 		LOGGER.info("updateOrderEntity() is initiated");
@@ -58,7 +58,7 @@ public class OrderController {
 		return orderResponse;
 	}
 
-	@DeleteMapping("/api/order/remove-order/{orderID}")
+	@DeleteMapping("/remove-order/{orderID}")
 	public ResponseEntity<Object> deleteOrder(@PathVariable long orderID)throws InvalidOrderIdException{
 		LOGGER.info("delete-order URL is opened");
 		LOGGER.info("deleteOrderEntity() is initiated");
@@ -70,7 +70,7 @@ public class OrderController {
 		return orderResponse;
 	}
 
-	@GetMapping("/api/order/get-order/{orderID}")
+	@GetMapping("/get-order/{orderID}")
 	public ResponseEntity<Object> getOrder(@PathVariable long orderID)throws InvalidOrderIdException{
 	
 		LOGGER.info("getById URL is opened");

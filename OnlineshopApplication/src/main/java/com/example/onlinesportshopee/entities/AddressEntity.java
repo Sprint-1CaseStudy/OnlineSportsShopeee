@@ -28,11 +28,15 @@ public class AddressEntity
 	public AddressEntity() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "AddressEntity [id=" + id + ", street=" + street + ", area=" + area + ", city=" + city + ", state="
 				+ state + ", pincode=" + pincode + "]";
 	}
+
+
 	public Long getId() {
 		return id;
 	}
@@ -69,9 +73,15 @@ public class AddressEntity
 	public void setPincode(Integer pincode) {
 		this.pincode = pincode;
 	}
-	
-	public AddressEntity(Long id, String street, String area, String city, String state, Integer pincode
-			) {
+
+	/*
+	 * public CustomerEntity getCustomerEntity() { return customerEntity; } public
+	 * void setCustomerEntity(CustomerEntity customerEntity) { this.customerEntity =
+	 * customerEntity; }
+	 */
+	public AddressEntity(Long id, String street, String area, String city, String state, Integer pincode,
+			CustomerEntity customerEntity) {
+
 		super();
 		this.id = id;
 		this.street = street;
@@ -79,7 +89,7 @@ public class AddressEntity
 		this.city = city;
 		this.state = state;
 		this.pincode = pincode;
-		
+
 	}
 	
 	
