@@ -26,7 +26,6 @@ public class CustomerUtils
 		customerEntity.setContactNo(customer.getContactNo());
 		customerEntity.setDoB(customer.getDoB());
 		customerEntity.setAddressEntity(customer.getAddressEntity());
-		customerEntity.setOrderEntity(customer.getOrderEntity());
 		return customerEntity;
 	}		
 	
@@ -38,7 +37,6 @@ public class CustomerUtils
 		customer.setContactNo(customerEntity.getContactNo());
 		customer.setDoB(customerEntity.getDoB());
 		customer.setAddressEntity(customerEntity.getAddressEntity());
-		customer.setOrderEntity(customerEntity.getOrderEntity());
 		return customer;
 	}
 }

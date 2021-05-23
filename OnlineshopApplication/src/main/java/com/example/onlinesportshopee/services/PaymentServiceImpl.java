@@ -67,7 +67,7 @@ public class PaymentServiceImpl implements IPaymentService{
 	}
 
 	@Override
-	public List<Payment> getAllPaymentDetails(String name) {
+	public List<Payment> getAllPaymentDetails() {
 		LOGGER.info("getAllPaymentDetails() service is initiated");
 		List<PaymentEntity> getAllPaymentDetails = iPaymentRepository.findAll();
 		LOGGER.info("getAllPaymentDetails() service has executed");

@@ -3,6 +3,7 @@ package com.example.onlinesportshopee.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.example.onlinesportshopee.entities.CartEntity;
 import com.example.onlinesportshopee.entities.CustomerEntity;
 import com.example.onlinesportshopee.entities.PaymentEntity;
 import com.example.onlinesportshopee.entities.ProductEntity;
@@ -13,8 +14,7 @@ public class Order {
 	private Double amount;
 	private LocalDate billingDate;
 	private String paymentMethod;
-	private List<ProductEntity> productEntity;
-	private PaymentEntity paymentEntity;
+	private CartEntity cartEntity;
 	
 	
 	public Order() {
@@ -22,14 +22,13 @@ public class Order {
 	}
 
 	public Order(Long orderID, Double amount, LocalDate billingDate,
-			String paymentMethod, List<ProductEntity> productEntity, PaymentEntity paymentEntity) {
+			String paymentMethod, CartEntity cartEntity) {
 		super();
 		this.orderID = orderID;
 		this.amount = amount;
 		this.billingDate = billingDate;
 		this.paymentMethod = paymentMethod;
-		this.productEntity = productEntity;
-		this.paymentEntity = paymentEntity;
+		this.cartEntity = cartEntity;
 	}
 	
 	public Long getOrderID() {
@@ -64,26 +63,18 @@ public class Order {
 		this.paymentMethod = paymentMethod;
 	}
 
-	public PaymentEntity getPaymentEntity() {
-		return paymentEntity;
+	public CartEntity getCartEntity() {
+		return cartEntity;
 	}
 
-	public void setPaymentEntity(PaymentEntity paymentEntity) {
-		this.paymentEntity = paymentEntity;
+	public void setCartEntity(CartEntity cartEntity) {
+		this.cartEntity = cartEntity;
 	}
 
-	public List<ProductEntity> getProductEntity() {
-		return productEntity;
-	}
-
-	public void setProductEntity(List<ProductEntity> productEntity) {
-		this.productEntity = productEntity;
-	}
-	
 	@Override
 	public String toString() {
-		return "Order [orderID=" + orderID + ", amount=" + amount + ", billingDate=" + billingDate + ", paymentMethod=" + paymentMethod + ", productEntity=" + productEntity
-				+ ", paymentEntity=" + paymentEntity + "]";
+		return "Order [orderID=" + orderID + ", amount=" + amount + ", billingDate=" + billingDate + ", paymentMethod="
+				+ paymentMethod + ", cartEntity=" + cartEntity + "]";
 	}
 
 }

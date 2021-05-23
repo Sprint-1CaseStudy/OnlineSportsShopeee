@@ -1,7 +1,12 @@
 package com.example.onlinesportshopee.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.onlinesportshopee.entities.AddressEntity;
+import com.example.onlinesportshopee.entities.CustomerEntity;
 import com.example.onlinesportshopee.model.Address;
+import com.example.onlinesportshopee.model.Customer;
 
 public class AddressUtils {
 	//
@@ -9,6 +14,14 @@ public class AddressUtils {
 	{
 		
 	}
+	
+	public static List<Address> convertToAddressList(List<AddressEntity> list){
+		List<Address> addList = new ArrayList<>();
+		for(AddressEntity address : list) 
+			addList.add(convertToAddress(address));
+		return addList;
+	}
+	
 	public static AddressEntity convertToAddressEntity(Address address) {
 		AddressEntity addressentity = new AddressEntity();
 		addressentity.setId(Long.parseLong(address.getDoorNo()));

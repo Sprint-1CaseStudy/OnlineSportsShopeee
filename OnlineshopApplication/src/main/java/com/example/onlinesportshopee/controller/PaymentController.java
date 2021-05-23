@@ -75,12 +75,12 @@ public class PaymentController {
 		LOGGER.info("getPaymentDetails() has executed");
 		return paymentResponse;
 		}
-	@GetMapping("/payments/payment/{name}")
-	public List<Payment> getAllPaymentByName(@PathVariable String name)
+	@GetMapping("/payments/getallpayment")
+	public List<Payment> getAllPaymentDetails()
 	{
 		LOGGER.info("getPaymentbyname URL is opened");
 		LOGGER.info("getPaymentbyname() is initiated");
-		return iPaymentService.getAllPaymentDetails(name); 		
+		return iPaymentService.getAllPaymentDetails(); 		
 	}
 	
 }

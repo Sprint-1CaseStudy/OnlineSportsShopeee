@@ -45,14 +45,14 @@ public class OrderController {
 
  
 
-    @PostMapping("/add-order")
-    public  ResponseEntity<Object> addProduct(@RequestBody Order order)throws OrderNotFoundException,InvalidOrderIdException{
+    @PostMapping("/add-order/{cartID}")
+    public  ResponseEntity<Object> addProduct(@PathVariable Long cartID,@RequestBody Order order)throws OrderNotFoundException,InvalidOrderIdException{
         LOGGER.info("add-order URL is opened");
         LOGGER.info("addOrderEntity() is initiated");
-        System.out.println(order);
+        //System.out.println(order);
         Order orderDTO = null;
         ResponseEntity<Object> orderResponse = null;
-        orderDTO = iOrderService.addOrder(order);
+        orderDTO = iOrderService.addOrder(cartID,order);
         orderResponse = new ResponseEntity<>(orderDTO, HttpStatus.ACCEPTED);
         LOGGER.info("addOrder() has executed");
         return orderResponse;
