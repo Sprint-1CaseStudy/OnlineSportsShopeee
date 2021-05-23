@@ -23,7 +23,7 @@ import com.example.onlinesportshopee.services.ICustomerService;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = CustomerServiceImpl.class)
 class CustomerServiceImplTest {
-
+//
 		@MockBean
 		ICustomerRepository iCustomerRepository;
 		
@@ -73,7 +73,11 @@ class CustomerServiceImplTest {
 		@Test
 		void testgetCustomer01() throws InvalidCustomerIdException {
 			CustomerEntity customerentity = new CustomerEntity();
+<<<<<<< HEAD
 	//		customerentity.setId((long)126);
+=======
+			//customerentity.setId((long)126);
+>>>>>>> branch 'master' of https://github.com/Sprint-1CaseStudy/OnlineSportsShopeee.git
 	        customerentity.setName("Pooja");
 	        customerentity.setEmail("pooja@gmail.com");
 	        customerentity.setContactNo("9654789912");

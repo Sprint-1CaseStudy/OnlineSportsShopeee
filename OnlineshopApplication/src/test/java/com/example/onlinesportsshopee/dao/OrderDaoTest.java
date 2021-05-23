@@ -104,10 +104,7 @@ class OrderDaoTest {
 		assertThat(getFromDb.getId()).isEqualTo(saveInDb);
 	}
 	
-	
-	
-	
-	 private OrderEntity getOrder() {
+	private OrderEntity getOrder() {
 		 OrderEntity order = new OrderEntity();
 		 order.setId((long)10);
 	     order.setAmount(2331.33);
