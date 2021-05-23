@@ -1,33 +1,18 @@
 package com.example.onlinesportsshopee.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
-//
-
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.onlinesportshopee.controller.CustomerController;
-import com.example.onlinesportshopee.dao.ICustomerRepository;
-import com.example.onlinesportshopee.entities.AddressEntity;
-import com.example.onlinesportshopee.entities.CustomerEntity;
-import com.example.onlinesportshopee.entities.OrderEntity;
-import com.example.onlinesportshopee.model.Customer;
-import com.example.onlinesportshopee.services.ICustomerService;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -35,10 +20,16 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.junit.jupiter.api.Test;
+
+import com.example.onlinesportshopee.controller.CustomerController;
+import com.example.onlinesportshopee.dao.ICustomerRepository;
+import com.example.onlinesportshopee.entities.AddressEntity;
+import com.example.onlinesportshopee.entities.CustomerEntity;
+import com.example.onlinesportshopee.entities.OrderEntity;
+import com.example.onlinesportshopee.services.ICustomerService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = CustomerController.class)
@@ -80,7 +71,6 @@ class CustomerControllerTest {
 		customer.setContactNo("9512357468");
 		customer.setDoB(LocalDate.parse("21/10/1997"));
 		customer.setAddressEntity((List<AddressEntity>)address);
-		customer.setOrderEntity((List<OrderEntity>) order);
 		
 		String jsonInput = this.convertToJson(customer);
 		
@@ -117,7 +107,6 @@ class CustomerControllerTest {
 		customer.setContactNo("9512357468");
 		customer.setDoB(LocalDate.parse("21/10/1997"));
 		customer.setAddressEntity((List<AddressEntity>)address);
-		customer.setOrderEntity((List<OrderEntity>) order);
 		
 		String jsonInput = this.convertToJson(customer);
 		Mockito.when(iCustomerRepository.save(Mockito.any())).thenReturn(customer);
@@ -152,7 +141,6 @@ class CustomerControllerTest {
 		customer1.setContactNo("9512357468");
 		customer1.setDoB(LocalDate.parse("21/10/1997"));
 		customer1.setAddressEntity((List<AddressEntity>)address1);
-		customer1.setOrderEntity((List<OrderEntity>)order1);
 		
 		CustomerEntity customer2 = new CustomerEntity();
 		AddressEntity address2 = new AddressEntity();
@@ -175,7 +163,6 @@ class CustomerControllerTest {
 		customer2.setContactNo("9632588741");
 		customer2.setDoB(LocalDate.parse("19/12/1998"));
 		customer2.setAddressEntity((List<AddressEntity>) address2);
-		customer2.setOrderEntity((List<OrderEntity>) order2);
 		
 		List<CustomerEntity> customerlist = new ArrayList<>();
 		customerlist.add(customer1);
@@ -215,7 +202,6 @@ class CustomerControllerTest {
 		customer1.setContactNo("9851235467");
 		customer1.setDoB(LocalDate.parse("21/10/1997"));
 		customer1.setAddressEntity((List<AddressEntity>) address1);
-		customer1.setOrderEntity((List<OrderEntity>) order1);
 		CustomerEntity Temp = iCustomerRepository.findById((long)1).get();
 		Mockito.when(iCustomerRepository.save(Mockito.any())).thenReturn(customer1);
 		iCustomerRepository.deleteById(customer1.getId());
@@ -250,7 +236,6 @@ class CustomerControllerTest {
 		customer2.setContactNo("9632588741");
 		customer2.setDoB(LocalDate.parse("19/12/1998"));
 		customer2.setAddressEntity((List<AddressEntity>) address2);
-		customer2.setOrderEntity((List<OrderEntity>) order2);
 		
 		String jsonInput = this.convertToJson(customer2);
 		
