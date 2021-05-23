@@ -74,8 +74,8 @@ class CustomerServiceImplTest {
 		@Test
 		void testgetCustomer01() throws InvalidCustomerIdException {
 			CustomerEntity customerentity = new CustomerEntity();
-
-	        customerentity.setName("Pooja");
+			//customerentity.setId((long)126);
+			customerentity.setName("Pooja");
 	        customerentity.setEmail("pooja@gmail.com");
 	        customerentity.setContactNo("9654789912");
 	        customerentity.setDoB(LocalDate.parse("1998-12-19"));

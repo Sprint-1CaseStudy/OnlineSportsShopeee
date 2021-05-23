@@ -53,7 +53,7 @@ class ProductControllerTest {
 	 @Test
 	 public void testAddOrder() throws Exception {
 		 
-		 String URI = "/onlinesportshopee/products/addproduct";
+		 String URI = "/onlinesportshopee/products/addproduct"; 
 		 ProductEntity productEnt = new ProductEntity();
 			productEnt.setId((long)101);
 			productEnt.setProductName("Shoes");
