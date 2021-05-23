@@ -9,8 +9,11 @@ import java.util.Optional;
 //
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +24,7 @@ import com.example.onlinesportshopee.entities.CustomerEntity;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
+@SpringBootConfiguration
 class CustomerDaoTest {
 
 	@Autowired
@@ -29,8 +33,8 @@ class CustomerDaoTest {
 	@Autowired 
 	private TestEntityManager testEntityManager;
 	
-	
-	public CustomerEntity testgetCustomer()
+	@Test
+	public CustomerEntity testgetCustomer() throws Exception
 	{
 		CustomerEntity customer = new CustomerEntity();
 		//customer.setId(1);
@@ -42,7 +46,7 @@ class CustomerDaoTest {
 	}
 	
 	@Test
-	public void testgetAllCustomer() throws Exception
+	void testgetAllCustomer() 
 	{
 		CustomerEntity customer1 = new CustomerEntity();		
 		customer1.setId((long)1);
@@ -67,7 +71,7 @@ class CustomerDaoTest {
 	}
 	
 	@Test
-	public void testremoveCustomer() throws Exception
+	void testremoveCustomer()
 	{
 		CustomerEntity customer1 = new CustomerEntity();
 		customer1.setId((long)1);
@@ -85,7 +89,7 @@ class CustomerDaoTest {
 	}
 	
 	@Test
-	public void testupdateCustomer() throws Exception
+	void testupdateCustomer() throws Exception
 	{
 		CustomerEntity customer2 = new CustomerEntity();
 		customer2.setId((long)2);
@@ -104,7 +108,7 @@ class CustomerDaoTest {
 	}
 	
 	@Test
-	public void testAddCustomer() throws Exception
+	void testAddCustomer() throws Exception
 	{
 		CustomerEntity customer = new CustomerEntity();
 		
