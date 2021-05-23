@@ -17,6 +17,12 @@ public class User {
 		this.password = password;
 	}
 
+	public User(long userId, String password) {
+		super();
+		this.id = userId;
+		this.password = password;
+	}
+
 	public Long getId() {
 		return id;
 	}

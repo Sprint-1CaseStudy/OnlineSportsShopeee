@@ -28,7 +28,7 @@ public class UserController {
 	private IUserService iUserService;
 	
 	@PostMapping("/login/add-user")
-	public  ResponseEntity<Object> addUser(@RequestBody UserEntity User)throws UserException{
+	public  ResponseEntity<Object> addUser(@RequestBody User User)throws UserException{
 		LOGGER.info("add-user URL is opened");
 		LOGGER.info("addUserEntity() is initiated");
 		ResponseEntity<Object> orderResponse = null;
@@ -43,8 +43,8 @@ public class UserController {
 	{
 		LOGGER.info("signIn URL is opened");
 		LOGGER.info("signIn() is initiated");
-		UserEntity userEntity = new UserEntity(userId,Password);
-		User user = iUserService.signIn(userEntity);
+		User user1 = new User(userId,Password);
+		User user = iUserService.signIn(user1);
 		ResponseEntity<Object> response = new ResponseEntity<>(user,HttpStatus.ACCEPTED);
 		LOGGER.info("signIn() has Executed");
 		return response;
@@ -63,7 +63,7 @@ public class UserController {
 	}
 	
 	@PutMapping("/login/changepassword/{userId}")
-	public ResponseEntity<Object> changePassword(@PathVariable long userId, @RequestBody UserEntity User) throws UserException
+	public ResponseEntity<Object> changePassword(@PathVariable Long userId, @RequestBody User User) throws UserException
 	{
 		LOGGER.info("changepassword URL is opened");
 		LOGGER.info("changepassword() is initiated");

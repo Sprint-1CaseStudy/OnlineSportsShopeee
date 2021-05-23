@@ -13,7 +13,7 @@ public class UserUtils {
         return dtolist;
     }
     
-    public static UserEntity convertToUser(User dto) {
+    public static UserEntity convertToUserEntity(User dto) {
         UserEntity user = new UserEntity();
         
         user.setId(dto.getId());
