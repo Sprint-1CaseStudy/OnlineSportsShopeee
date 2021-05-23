@@ -15,14 +15,14 @@ public class CartUtils {
         
     }
     
-    public static List<Cart> convertToOrderDtoList(List<CartEntity> list){
+    public static List<Cart> convertToCartDtoList(List<CartEntity> list){
         List<Cart> dtolist = new ArrayList<>();
         for(CartEntity cartEntity : list) 
-            dtolist.add(convertToOrder(cartEntity));
+            dtolist.add(convertToCart(cartEntity));
         return dtolist;
     }
     
-    public static CartEntity convertToOrder(Cart dto) {
+    public static CartEntity convertToCartEntity(Cart dto) {
     	CartEntity cart = new CartEntity();
     	
     	cart.setId(dto.getCartId());
@@ -33,7 +33,7 @@ public class CartUtils {
         return cart;
     }        
     
-    public static Cart convertToOrder(CartEntity cartEntity) {
+    public static Cart convertToCart(CartEntity cartEntity) {
     	Cart dto = new Cart();
     	dto.setCartId(cartEntity.getId());
         dto.setProductName(cartEntity.getProductName());

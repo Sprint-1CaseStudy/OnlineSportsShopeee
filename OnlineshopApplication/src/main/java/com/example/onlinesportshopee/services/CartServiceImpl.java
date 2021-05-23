@@ -41,7 +41,7 @@ public class CartServiceImpl implements ICartService {
 			carEntity = iCartRepository.save(cartEntity);
 		}
 		LOGGER.info("addtocart() service has Executed");
-		return CartUtils.convertToOrder(carEntity);
+		return CartUtils.convertToCart(carEntity);
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class CartServiceImpl implements ICartService {
 		else
 			iCartRepository.delete(carEntity);
 		LOGGER.info("deletecart() service has Executed");
-		return CartUtils.convertToOrder(carEntity);
+		return CartUtils.convertToCart(carEntity);
 	}
 
 
@@ -62,7 +62,7 @@ public class CartServiceImpl implements ICartService {
 		LOGGER.info("getallcartdetails() service is initiated");
 		List<CartEntity> carList = iCartRepository.findAll();
 		LOGGER.info("getallcartdetails() has Executed");
-		return CartUtils.convertToOrderDtoList(carList);
+		return CartUtils.convertToCartDtoList(carList);
 	}
 
 }

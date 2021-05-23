@@ -18,28 +18,31 @@ public class OrderEntity {
 	private LocalDate billingDate;
     @Column(name = "paymentMethod")
 	private String paymentMethod;
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<ProductEntity> productEntity;
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn //(name="paymentid")
-	private PaymentEntity paymentEntity;
+	@OneToOne(cascade = CascadeType.ALL)
+	private CartEntity cartEntity;
 	
-	public OrderEntity() {
+	public OrderEntity(Long id, Double amount, LocalDate billingDate, String paymentMethod,
+			CartEntity cartEntity) {
 		super();
-	}
-
-	public OrderEntity(Long id, Double amount, LocalDate billingDate, String paymentMethod, List<ProductEntity> productEntity,PaymentEntity paymentEntity) {
-		super();
-		this.id=id;
+		this.id = id;
 		this.amount = amount;
 		this.billingDate = billingDate;
 		this.paymentMethod = paymentMethod;
-		this.productEntity=productEntity;
-		this.paymentEntity=paymentEntity;
+		this.cartEntity = cartEntity;
+	}
+	
+	public OrderEntity(Double amount, LocalDate billingDate, String paymentMethod, CartEntity cartEntity) {
+		super();
+		this.amount = amount;
+		this.billingDate = billingDate;
+		this.paymentMethod = paymentMethod;
+		this.cartEntity = cartEntity;
 	}
 
+	public OrderEntity() {
+		super();
+	}
 	
-
 	public Double getAmount() {
 		return amount;
 	}
@@ -64,28 +67,18 @@ public class OrderEntity {
 		this.paymentMethod = paymentMethod;
 	}
 
-	public List<ProductEntity> getProductEntity(){ 
-		return productEntity;
-	  }
-	  
-	  public void setProductEntity(List<ProductEntity> productEntity) {
-	  this.productEntity = productEntity; }
-	 
-	 
-
-	public PaymentEntity getPaymentEntity() {
-		return paymentEntity;
+	public CartEntity getCartEntity() {
+		return cartEntity;
 	}
 
-	public void setPaymentEntity(PaymentEntity paymentEntity) {
-		this.paymentEntity = paymentEntity;
+	public void setCartEntity(CartEntity cartEntity) {
+		this.cartEntity = cartEntity;
 	}
 
 	@Override
 	public String toString() {
-		return "OrderEntity [orderID=" + id+ ", amount=" + amount + ", billingDate=" + billingDate
-				+ ", paymentMethod=" + paymentMethod + ", productEntity="
-				+ productEntity + ", paymentEntity=" + paymentEntity + "]";
+		return "OrderEntity [id=" + id + ", amount=" + amount + ", billingDate=" + billingDate + ", paymentMethod="
+				+ paymentMethod + ", cartEntity=" + cartEntity + "]";
 	}
 
 	public Long getId() {

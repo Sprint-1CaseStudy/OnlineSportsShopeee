@@ -12,5 +12,5 @@ public interface IPaymentService {
 	public Payment removePayment(Long id);
 	public Payment updatePayment(Long id, Payment payment);
 	public Payment getPaymentDetails(Long paymentID) throws PaymentNotFoundException;	
-	public List<Payment> getAllPaymentDetails(String name);
+	public List<Payment> getAllPaymentDetails();
 }

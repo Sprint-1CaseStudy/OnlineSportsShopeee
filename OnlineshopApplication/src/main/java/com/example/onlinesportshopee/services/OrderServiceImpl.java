@@ -7,11 +7,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.onlinesportshopee.dao.ICartRepository;
 import com.example.onlinesportshopee.dao.IOrderRepository;
+import com.example.onlinesportshopee.entities.CartEntity;
 import com.example.onlinesportshopee.entities.OrderEntity;
+import com.example.onlinesportshopee.entities.ProductEntity;
 import com.example.onlinesportshopee.exception.InvalidOrderIdException;
 import com.example.onlinesportshopee.exception.OrderNotFoundException;
 import com.example.onlinesportshopee.model.Order;
+import com.example.onlinesportshopee.util.CartUtils;
 import com.example.onlinesportshopee.util.OrderUtils;
 
 @Service
@@ -21,10 +25,14 @@ public class OrderServiceImpl implements IOrderService {
 	@Autowired 
 	private IOrderRepository iOrderRepository; 
 	
+	@Autowired 
+	private ICartRepository iCartRepository;
+	
 	@Override
-	public Order addOrder(Order order) throws OrderNotFoundException,InvalidOrderIdException{
+	public Order addOrder(Long cartID,Order order) throws OrderNotFoundException,InvalidOrderIdException{
 		LOGGER.info("addOrder() service is initiated");
-		OrderEntity orderEntity = OrderUtils.convertToOrder(order);
+		CartEntity cartEntity = iCartRepository.findById(cartID).get();
+		OrderEntity orderEntity = new OrderEntity(order.getAmount(),order.getBillingDate(),order.getPaymentMethod(),cartEntity);
 		/*if(order==null)
 			order=null;
 		else {*/

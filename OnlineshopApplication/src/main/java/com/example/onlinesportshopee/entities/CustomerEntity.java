@@ -26,8 +26,6 @@ public class CustomerEntity
 	private LocalDate doB;
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<AddressEntity> addressEntity;
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<OrderEntity> orderEntity;
 	public Long getId() {
 		return id;
 	}
@@ -64,19 +62,13 @@ public class CustomerEntity
 	public void setAddressEntity(List<AddressEntity> addressEntity) {
 		this.addressEntity = addressEntity;
 	}
-	public List<OrderEntity> getOrderEntity() {
-		return orderEntity;
-	}
-	public void setOrderEntity(List<OrderEntity> orderEntity) {
-		this.orderEntity = orderEntity;
-	}
 	@Override
 	public String toString() {
 		return "CustomerEntity [id=" + id + ", name=" + name + ", email=" + email + ", contactNo=" + contactNo
-				+ ", doB=" + doB + ", addressEntity=" + addressEntity + ", orderEntity=" + orderEntity + "]";
+				+ ", doB=" + doB + ", addressEntity=" + addressEntity + "]";
 	}
 	public CustomerEntity(Long id, String name, String email, String contactNo, LocalDate doB,
-			List<AddressEntity> addressEntity, List<OrderEntity> orderEntity) {
+			List<AddressEntity> addressEntity) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -84,7 +76,6 @@ public class CustomerEntity
 		this.contactNo = contactNo;
 		this.doB = doB;
 		this.addressEntity = addressEntity;
-		this.orderEntity = orderEntity;
 	}
 	public CustomerEntity() {}
 

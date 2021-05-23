@@ -5,9 +5,13 @@ import org.springframework.stereotype.Service;
 
 import com.example.onlinesportshopee.dao.IAddressRepository;
 import com.example.onlinesportshopee.entities.AddressEntity;
+import com.example.onlinesportshopee.entities.CustomerEntity;
 import com.example.onlinesportshopee.exception.AddressNotFoundException;
 import com.example.onlinesportshopee.model.Address;
 import com.example.onlinesportshopee.util.AddressUtils;
+
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,15 +65,15 @@ public class AddressServiceImpl {
 		return AddressUtils.convertToAddress(addressentity);
 	}
 	
-	public Address getAddress(long custId) throws AddressNotFoundException{
+	public List<Address> getAllAddress() throws AddressNotFoundException{
 		LOGGER.info("getAddress() service is initiated");
-		AddressEntity getAddress = iaddressRepository.findById(custId).orElse(null);
+		List<AddressEntity> getAddress = iaddressRepository.findAll();;
 		if(getAddress == null)
 		{
 			throw new AddressNotFoundException("AddressNotFound");
 		}
 		LOGGER.info("getAddress() service has executed");
-		return AddressUtils.convertToAddress(getAddress);
+		return AddressUtils.convertToAddressList(getAddress);
 	}
 	
 }

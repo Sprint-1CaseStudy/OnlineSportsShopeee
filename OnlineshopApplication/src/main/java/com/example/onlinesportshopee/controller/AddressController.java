@@ -1,5 +1,7 @@
 package com.example.onlinesportshopee.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 
 
@@ -63,13 +65,13 @@ public class AddressController {
 		return addressResponse;
 	}
 
-	@GetMapping("/address/getAddressDetails/{custId}")
-	public ResponseEntity<Object> getAddress(@PathVariable long custId) throws AddressNotFoundException {
+	@GetMapping("/address/getAddressDetails")
+	public ResponseEntity<Object> getAddress() throws AddressNotFoundException {
 		LOGGER.info("getAddressDetails URL is opened");
 		LOGGER.info("getAddress() is initiated");
-		Address addressDTO = null;
+		List<Address> addressDTO = null;
 		ResponseEntity<Object> addressResponse = null;
-		addressDTO = AddressServiceImpl.getAddress(custId);
+		addressDTO = AddressServiceImpl.getAllAddress();
 		addressResponse = new ResponseEntity(addressDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("getAddress() has executed");
 		return addressResponse;

@@ -23,8 +23,6 @@ public class AddressEntity
 	@Column(name = "pincode")
 	private Integer pincode;
 
-	
-
 	public AddressEntity() {
 		// TODO Auto-generated constructor stub
 	}
@@ -74,13 +72,7 @@ public class AddressEntity
 		this.pincode = pincode;
 	}
 
-	/*
-	 * public CustomerEntity getCustomerEntity() { return customerEntity; } public
-	 * void setCustomerEntity(CustomerEntity customerEntity) { this.customerEntity =
-	 * customerEntity; }
-	 */
-	public AddressEntity(Long id, String street, String area, String city, String state, Integer pincode,
-			CustomerEntity customerEntity) {
+	public AddressEntity(Long id, String street, String area, String city, String state, Integer pincode) {
 
 		super();
 		this.id = id;
