@@ -69,6 +69,16 @@ public class CartEntity
 	
 	public CartEntity() {}
 	
+	public CartEntity(String productName, Integer quantity, Double price, Double total) {
+		super();
+		this.productName = productName;
+		this.quantity = quantity;
+		this.price = price;
+		this.total = total;
+	}
+	
+	
+	
 }
 
 	
