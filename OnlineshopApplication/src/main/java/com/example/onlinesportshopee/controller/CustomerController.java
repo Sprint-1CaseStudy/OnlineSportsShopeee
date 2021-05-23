@@ -28,7 +28,7 @@ public class CustomerController
 	private ICustomerService iCustomerService;
 	
 	@PostMapping("/customers/addCustomer")
-	public ResponseEntity<Object> addCustomer(@RequestBody CustomerEntity customer) throws CustomerNotFoundException {
+	public ResponseEntity<Object> addCustomer(@RequestBody Customer customer) throws CustomerNotFoundException {
 		LOGGER.info("addCustomer URL is opened");
 		LOGGER.info("addCustomer() is initiated");
 		Customer customerDTO = null;
@@ -76,12 +76,15 @@ public class CustomerController
 	}
 
 
-	@GetMapping("/customers/Customers/{name}")
-	public List<Customer> getAllCustomers(@PathVariable String name) {
+	@GetMapping("/customers/Customers")
+	public ResponseEntity<Object> getAllCustomers() {
 		LOGGER.info("Customers URL is opened");
 		LOGGER.info("getAllCustomers() is initiated");
 		LOGGER.info("getAllCustomers() has executed");
-		return iCustomerService.getAllCustomers();
+		ResponseEntity<Object> customerResponse = null;
+		List<Customer> customerDTO = iCustomerService.getAllCustomer();
+		customerResponse=new ResponseEntity(customerDTO)
+		return ResponseEntity(List<>);
 	}
 	
 }

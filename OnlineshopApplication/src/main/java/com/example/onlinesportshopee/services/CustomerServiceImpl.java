@@ -23,7 +23,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	private ICustomerRepository icustomerRepository;
 	
 	@Override
-	public Customer addCustomer(CustomerEntity customer) throws CustomerNotFoundException {
+	public Customer addCustomer(Customer customer) throws CustomerNotFoundException {
 		LOGGER.info("addCustomer() service is initiated");
 		CustomerEntity customerentity;
 		if(customer == null)

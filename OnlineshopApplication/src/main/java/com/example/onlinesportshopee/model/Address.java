@@ -10,15 +10,14 @@ public class Address
 	private String city;
 	private String state;
 	private Integer pincode;
-	private CustomerEntity customerEntity;
+	//private Customer customer;
 	
 	public Address()
 	{
 		super();
 	}
 		
-	public Address(String doorNo, String street, String area, String city, String state, Integer pincode,
-			CustomerEntity customerEntity) {
+	public Address(String doorNo, String street, String area, String city, String state, Integer pincode) {
 		super();
 		this.doorNo = doorNo;
 		this.street = street;
@@ -26,7 +25,7 @@ public class Address
 		this.city = city;
 		this.state = state;
 		this.pincode = pincode;
-		this.customerEntity = customerEntity;
+		//this.customer = customer;
 	}
 
 	public String getDoorNo() {
@@ -66,17 +65,15 @@ public class Address
 		this.pincode = pincode;
 	}
 	
-	public CustomerEntity getCustomerEntity() {
-		return customerEntity;
-	}
-	public void setCustomerEntity(CustomerEntity customerEntity) {
-		this.customerEntity = customerEntity;
-	}
-	
+	/*
+	 * public CustomerEntity getCustomerEntity() { return customerEntity; } public
+	 * void setCustomerEntity(CustomerEntity customerEntity) { this.customerEntity =
+	 * customerEntity; }
+	 */
 	@Override
 	public String toString() {
 		return "Address [doorNo=" + doorNo + ", street=" + street + ", area=" + area + ", city=" + city + ", state="
-				+ state + ", pincode=" + pincode + ", customerEntity=" + customerEntity + "]";
+				+ state + ", pincode=" + pincode +  "]";
 	}
 	
 	
