@@ -20,10 +20,11 @@ import com.example.onlinesportshopee.dao.IOrderRepository;
 import com.example.onlinesportshopee.entities.OrderEntity;
 import com.example.onlinesportshopee.model.Order;
 import com.example.onlinesportshopee.services.IOrderService;
+import com.example.onlinesportshopee.services.OrderServiceImpl;
 import com.example.onlinesportshopee.util.OrderUtils;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = OrderServiceImpl.class)
 class OrderServiceTestImpl {
 
 	@MockBean
