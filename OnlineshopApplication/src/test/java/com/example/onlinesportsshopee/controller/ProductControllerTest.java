@@ -68,8 +68,8 @@ class ProductControllerTest {
 			productEnt.setExpectedDelivery(LocalDate.parse("2021-05-29"));
 			
 			String jsonInput = this.convertToJson(productEnt);
-			//Product product = ProductUtils.convertToProduct(productEnt);
-			//Mockito.when(productService.addProduct(Mockito.any(Product.class))).thenReturn(product);
+			Product product = ProductUtils.convertToProduct(productEnt);
+			Mockito.when(productService.addProduct(Mockito.any(Product.class))).thenReturn(product);
 			MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get(URI, 1).accept(MediaType.APPLICATION_JSON)).andReturn();
 	        MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
 	        String jsonOutput = mockHttpServletResponse.getContentAsString();
@@ -98,8 +98,8 @@ class ProductControllerTest {
 			
 			String jsonInput = this.convertToJson(productEnt);
 			
-			//Product product = ProductUtils.convertToProduct(productEnt);
-			//Mockito.when(productService.getProduct(Mockito.any())).thenReturn(product);
+			Product product = ProductUtils.convertToProduct(productEnt);
+			Mockito.when(productService.getProduct(Mockito.any())).thenReturn(product);
 			 MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get(URI, 101).accept(MediaType.APPLICATION_JSON)).andReturn();
 		        MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
 		        String jsonOutput = mockHttpServletResponse.getContentAsString();
@@ -146,7 +146,7 @@ class ProductControllerTest {
 			
 			String jsonInput = this.convertToJson(productList);
 		
-			//Product product = (Product) ProductUtils.convertToProductDtoList(productList);
+		//	Product product = (Product) ProductUtils.convertToProductDtoList(productList);
 		//	Mockito.when(productService.getAllProduct()).thenReturn((List<Product>) product);
 			MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get(URI).accept(MediaType.APPLICATION_JSON)).andReturn();
 		    MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
@@ -173,9 +173,9 @@ class ProductControllerTest {
 			productEnt.setInStock(true);
 			productEnt.setExpectedDelivery(LocalDate.parse("2021-05-29"));
 			
-		//	Product product = ProductUtils.convertToProduct(productEnt);
-		//	Mockito.when(productService.getProduct(Mockito.any())).thenReturn(product);
-		//	Mockito.when(productService.removeProduct(Mockito.any())).thenReturn(null);
+			Product product = ProductUtils.convertToProduct(productEnt);
+			Mockito.when(productService.getProduct(Mockito.any())).thenReturn(product);
+			Mockito.when(productService.removeProduct(Mockito.any())).thenReturn(null);
 			MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.delete(URI, 101).accept(MediaType.APPLICATION_JSON)).andReturn();
 			MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
 		    Assert.assertNotEquals(HttpStatus.OK.value(), mockHttpServletResponse.getStatus());
@@ -205,8 +205,8 @@ class ProductControllerTest {
 			//productEnt.setBrand("Nike");
 			//productEnt.setColour("Black");
 			//Mockito.when(productRepository.save(productEnt)).thenReturn(productEnt);			
-		//	Product product = ProductUtils.convertToProduct(productEnt);
-		//	Mockito.when(productService.updateProduct((long)101, product)).thenReturn(product);
+			Product product = ProductUtils.convertToProduct(productEnt);
+			Mockito.when(productService.updateProduct((long)101, product)).thenReturn(product);
 			MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.put(URI, 101).accept(MediaType.APPLICATION_JSON).content(jsonInput1).contentType(MediaType.APPLICATION_JSON)).andReturn();
 		    MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
 		    String jsonOutput = mockHttpServletResponse.getContentAsString();
@@ -234,8 +234,8 @@ class ProductControllerTest {
 			productEnt.setExpectedDelivery(LocalDate.parse("2021-05-29"));
 			
 			String jsonInput = this.convertToJson(productEnt);
-			//Product product = ProductUtils.convertToProduct(productEnt);
-			//Mockito.when(productService.getProductsByName(Mockito.anyString())).thenReturn((List<Product>) productEnt);
+		//	Product product = ProductUtils.convertToProduct(productEnt);
+		//	Mockito.when(productService.getProductsByName(Mockito.anyString())).thenReturn((List<Product>) product);
 			MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get(URI, "Shoes").accept(MediaType.APPLICATION_JSON))
 	                .andReturn();
 	        MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
