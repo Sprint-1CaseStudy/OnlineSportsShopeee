@@ -66,6 +66,13 @@ public class OrderEntity {
 	public void setPaymentMethod(String paymentMethod) {
 		this.paymentMethod = paymentMethod;
 	}
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public CartEntity getCartEntity() {
 		return cartEntity;
@@ -81,13 +88,7 @@ public class OrderEntity {
 				+ paymentMethod + ", cartEntity=" + cartEntity + "]";
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
 	
 }
 

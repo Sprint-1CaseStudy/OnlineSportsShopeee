@@ -33,10 +33,7 @@ public class OrderServiceImpl implements IOrderService {
 		LOGGER.info("addOrder() service is initiated");
 		CartEntity cartEntity = iCartRepository.findById(cartID).get();
 		OrderEntity orderEntity = new OrderEntity(order.getAmount(),order.getBillingDate(),order.getPaymentMethod(),cartEntity);
-		/*if(order==null)
-			order=null;
-		else {*/
-			orderEntity=iOrderRepository.save(orderEntity);
+		orderEntity=iOrderRepository.save(orderEntity);
 		LOGGER.info("addOrder() service has executed");
 		return OrderUtils.convertToOrder(orderEntity);
 	}
@@ -45,11 +42,7 @@ public class OrderServiceImpl implements IOrderService {
 		LOGGER.info("updateOrder() service is initiated");
 		OrderEntity ordEntity  = OrderUtils.convertToOrder(order);
 		OrderEntity existOrd= iOrderRepository.findById(id).orElse(null);
-		/*if (existOrd == null)
-			throw new OrderNotFoundException("orderNotAvailable");
-		else {*/
-			
-			ordEntity = iOrderRepository.save(ordEntity);
+		ordEntity = iOrderRepository.save(ordEntity);
 		LOGGER.info("updateOrder() service has executed");
 		return OrderUtils.convertToOrder(ordEntity);
 	}
@@ -57,10 +50,7 @@ public class OrderServiceImpl implements IOrderService {
 	public Order deleteOrder(Long id) throws InvalidOrderIdException{
 		LOGGER.info("deleteOrder() service is initiated");
 		OrderEntity ordEntity = iOrderRepository.findById(id).orElse(null);
-		/*if (ordEntity == null)
-			throw new InvalidOrderIdException("orderIdIncorrect");
-		else*/
-			iOrderRepository.delete(ordEntity);
+	    iOrderRepository.delete(ordEntity);
 		LOGGER.info("deleteOrder() service has executed");
 		return OrderUtils.convertToOrder(ordEntity);
 	}

@@ -29,22 +29,15 @@ import com.example.onlinesportshopee.model.Order;
 import com.example.onlinesportshopee.services.IOrderService;
 import com.example.onlinesportshopee.services.OrderServiceImpl;
 
- 
-
 @RestController
 @RequestMapping("/onlinesportshopee")
 public class OrderController {
-
- 
-
-    static final Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
-    //
+	
+	static final Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
+    
     @Autowired
     private IOrderService iOrderService;
     
-
- 
-
     @PostMapping("/add-order/{cartID}")
     public  ResponseEntity<Object> addOrder(@PathVariable Long cartID,@RequestBody Order order)throws OrderNotFoundException,InvalidOrderIdException{
         LOGGER.info("add-order URL is opened");
@@ -58,7 +51,6 @@ public class OrderController {
     }
 
  
-
     @PutMapping("/update-order/{orderID}")
     public ResponseEntity<Object> updateOrder(@PathVariable Long orderID, @RequestBody Order order)throws OrderNotFoundException,InvalidOrderIdException{
         LOGGER.info("update-order URL is opened");
@@ -67,11 +59,10 @@ public class OrderController {
         ResponseEntity<Object> orderResponse = null;
         orderDTO = iOrderService.updateOrder(orderID,order);
         orderResponse = new ResponseEntity<>(orderDTO, HttpStatus.ACCEPTED);
-        LOGGER.info("updateOrder() has executed");//jh
+        LOGGER.info("updateOrder() has executed");
         return orderResponse;
     }
 
- 
 
     @DeleteMapping("/remove-order/{orderID}")
     public ResponseEntity<Object> deleteOrder(@PathVariable long orderID)throws InvalidOrderIdException{
@@ -86,7 +77,6 @@ public class OrderController {
     }
 
  
-
     @GetMapping("/get-order/{orderID}")
     public ResponseEntity<Object> getOrder(@PathVariable long orderID)throws InvalidOrderIdException{
     
@@ -99,8 +89,6 @@ public class OrderController {
         
     }
 
- 
-
     @GetMapping("/get-all-order/")
     public List<Order> getAllOrder(){
     
@@ -109,8 +97,6 @@ public class OrderController {
         LOGGER.info("getAllOrder() has executed");
         return iOrderService.getAllOrders();
 
- 
-
-    }
+  }
     
 }
