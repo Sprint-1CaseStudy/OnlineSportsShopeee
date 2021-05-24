@@ -1,6 +1,7 @@
 package com.example.onlinesportsshopee.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -25,7 +26,10 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.example.onlinesportshopee.entities.OrderEntity;
 import com.example.onlinesportshopee.model.Order;
+import com.example.onlinesportshopee.model.Product;
 import com.example.onlinesportshopee.services.IOrderService;
+import com.example.onlinesportshopee.util.OrderUtils;
+import com.example.onlinesportshopee.util.ProductUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -42,15 +46,17 @@ class OrderControllerTest {
 	@Test
 	void testAddOrder()throws Exception {
 		 String URI = "/onlinesportshopee/add-order";
-	        OrderEntity order = new OrderEntity();
-	        order.setId((long)10);
-	        order.setAmount(2331.33);
-	        order.setBillingDate(LocalDate.parse("2021-08-09"));
-	        order.setPaymentMethod("card");
-	       // orderEntity.setCartEntity(null);	       
-	        String jsonInput = this.convertToJson(order);
-
-	       // Mockito.when(iOrderService.addOrder((long)10,(Mockito.any(Order.class))).thenReturn(order);
+	        OrderEntity orderEntity = new OrderEntity();
+	        orderEntity.setId((long)10);
+	        orderEntity.setAmount(2331.33);
+	        orderEntity.setBillingDate(LocalDate.parse("2021-08-09"));
+	        orderEntity.setPaymentMethod("card");
+	         
+	        
+	        String jsonInput = this.convertToJson(orderEntity);
+	        Order order = OrderUtils.convertToOrder(orderEntity);
+			Mockito.when(iOrderService.addOrder((long)10,(Mockito.any(Order.class))).thenReturn(order);
+	        Mockito.when(iOrderService.addOrder((long)10,(Mockito.any(Order.class))).
 	        MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.post(URI).accept(MediaType.APPLICATION_JSON).content(jsonInput).contentType(MediaType.APPLICATION_JSON))
 	                .andReturn();
 	        MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
@@ -131,7 +137,7 @@ class OrderControllerTest {
 	        order2.setPaymentMethod("net banking");
 	        String jsonInput = this.convertToJson(order2);
 
-	       // Mockito.when(iOrderService.updateOrder((long)10,(Mockito.any(),Mockito.anyString())).thenReturn(ticket2);
+	        Mockito.when(iOrderService.updateOrder((long)10,(Mockito.any(),Mockito.anyString())).thenReturn(order2);
 	        MvcResult mvcResult=this.mockMvc.perform(MockMvcRequestBuilders.put(URI, 10).accept(MediaType.APPLICATION_JSON).content(jsonInput).contentType(MediaType.APPLICATION_JSON)).andReturn();
 			MockHttpServletResponse mockHttpServletResponse=mvcResult.getResponse();
 			String jsonOutput=mockHttpServletResponse.getContentAsString();
