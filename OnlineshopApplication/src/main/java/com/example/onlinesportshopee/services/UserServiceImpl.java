@@ -41,13 +41,10 @@ public class UserServiceImpl implements IUserService {
         LOGGER.info("addUser() service is initiated");
         UserEntity userEntity = UserUtils.convertToUserEntity(user);
         UserEntity userEnti;
-        User existUser = null;
-        if(UserValidationimpl.validateUser(userEntity) == null)
+        if(userEntity == null)
             userEnti=null;
         else {
-                existUser = Userrepo.findByUserName(userEntity.getUsername());
-                if(existUser != null)    throw new UserException("User Name already exists, Try another name");
-                else userEnti=Userrepo.save(userEntity);    
+                userEnti=Userrepo.save(userEntity);    
         }
         LOGGER.info("addUser() service has executed");
         return UserUtils.convertToUser(userEnti);
