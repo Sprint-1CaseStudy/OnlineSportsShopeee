@@ -32,7 +32,7 @@ public class OrderServiceImpl implements IOrderService {
 	public Order addOrder(Long cartID,Order order) throws OrderNotFoundException,InvalidOrderIdException{
 		LOGGER.info("addOrder() service is initiated");
 		CartEntity cartEntity = iCartRepository.findById(cartID).get();
-		OrderEntity orderEntity = new OrderEntity(order.getAmount(),order.getBillingDate(),order.getPaymentMethod(),cartEntity);
+		OrderEntity orderEntity = new OrderEntity(order.getOrderID(),order.getAmount(),order.getBillingDate(),order.getPaymentMethod(),cartEntity);		
 		orderEntity=iOrderRepository.save(orderEntity);
 		LOGGER.info("addOrder() service has executed");
 		return OrderUtils.convertToOrder(orderEntity);

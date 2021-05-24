@@ -22,13 +22,13 @@ public class Order {
 	}
 
 	public Order(Long orderID, Double amount, LocalDate billingDate,
-			String paymentMethod, CartEntity cartEntity) {
+			String paymentMethod,CartEntity cartEntity) {
 		super();
 		this.orderID = orderID;
 		this.amount = amount;
 		this.billingDate = billingDate;
 		this.paymentMethod = paymentMethod;
-		this.cartEntity = cartEntity;
+		this.cartEntity=cartEntity;
 	}
 	
 	public Long getOrderID() {
@@ -62,6 +62,9 @@ public class Order {
 	public void setPaymentMethod(String paymentMethod) {
 		this.paymentMethod = paymentMethod;
 	}
+	
+
+	
 
 	public CartEntity getCartEntity() {
 		return cartEntity;

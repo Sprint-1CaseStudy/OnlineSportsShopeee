@@ -18,26 +18,21 @@ public class OrderEntity {
 	private LocalDate billingDate;
     @Column(name = "paymentMethod")
 	private String paymentMethod;
-	@OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
 	private CartEntity cartEntity;
 	
-	public OrderEntity(Long id, Double amount, LocalDate billingDate, String paymentMethod,
-			CartEntity cartEntity) {
+	
+	public OrderEntity(Long id, Double amount, LocalDate billingDate, String paymentMethod,CartEntity cartEntity) {
 		super();
 		this.id = id;
 		this.amount = amount;
 		this.billingDate = billingDate;
 		this.paymentMethod = paymentMethod;
-		this.cartEntity = cartEntity;
+		this.cartEntity=cartEntity;
+		
+		
 	}
-	
-	public OrderEntity(Double amount, LocalDate billingDate, String paymentMethod, CartEntity cartEntity) {
-		super();
-		this.amount = amount;
-		this.billingDate = billingDate;
-		this.paymentMethod = paymentMethod;
-		this.cartEntity = cartEntity;
-	}
+
 
 	public OrderEntity() {
 		super();
@@ -74,13 +69,17 @@ public class OrderEntity {
 		this.id = id;
 	}
 
+	
+
 	public CartEntity getCartEntity() {
 		return cartEntity;
 	}
 
+
 	public void setCartEntity(CartEntity cartEntity) {
 		this.cartEntity = cartEntity;
 	}
+
 
 	@Override
 	public String toString() {

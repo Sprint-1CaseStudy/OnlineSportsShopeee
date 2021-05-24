@@ -1,7 +1,6 @@
 package com.example.onlinesportsshopee.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.assertj.core.api.Assertions.assertThat;
 
 
 import java.time.LocalDate;
@@ -26,15 +25,17 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import com.example.onlinesportshopee.entities.OrderEntity;
+import com.example.onlinesportshopee.controller.CartController;
+import com.example.onlinesportshopee.controller.OrderController;
+import com.example.onlinesportshopee.entities.CartEntity;
+import com.example.onlinesportshopee.model.Cart;
 import com.example.onlinesportshopee.model.Order;
 import com.example.onlinesportshopee.services.IOrderService;
-import com.example.onlinesportshopee.util.OrderUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = OrderControllerTest.class)
+@SpringBootTest(classes = OrderController.class)
 @AutoConfigureMockMvc
 class OrderControllerTest {
 
@@ -44,108 +45,160 @@ class OrderControllerTest {
 	@MockBean 
 	private IOrderService iOrderService;
 	
-	@Test
-	void testAddOrder()throws Exception {
-		 String URI = "/onlinesportshopee/add-order";
-
-	        OrderEntity orderEntity = new OrderEntity();
-	        orderEntity.setId((long)10);
-	        orderEntity.setAmount(2331.33);
-	        orderEntity.setBillingDate(LocalDate.parse("2021-08-09"));
-	        orderEntity.setPaymentMethod("card");
-	         
+    @Test
+	   public void testAddOrder() throws Exception{
 	        
-	        String jsonInput = this.convertToJson(orderEntity);
-	        Order order = OrderUtils.convertToOrder(orderEntity);
-			Mockito.when(iOrderService.addOrder((long)10,(Mockito.any(Order.class))).thenReturn(order);
-	        Mockito.when(iOrderService.addOrder((long)10,(Mockito.any(Order.class))).
-	        MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get(URI, 10).accept(MediaType.APPLICATION_JSON)).andReturn();
-	        MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
-	        String jsonOutput = mockHttpServletResponse.getContentAsString();
-	     
-	        Assert.assertNotNull(jsonOutput);
-	}
-	@Test
-	void testGetOrderById() throws Exception
-	{
-		String URI="/get-order/{orderID}";
-		OrderEntity order = new OrderEntity();
-		order.setId((long)10);
-	    order.setAmount(2331.33); 
-	    order.setBillingDate(LocalDate.parse("2021-08-09"));
-	    order.setPaymentMethod("card");
-		String jsonInput=this.convertToJson(order);
-		
-		MvcResult mvcResult=this.mockMvc.perform(MockMvcRequestBuilders.get(URI, 10).accept(MediaType.APPLICATION_JSON)).andReturn();
-		MockHttpServletResponse mockHttpServletResponse=mvcResult.getResponse();
-		String jsonOutput=mockHttpServletResponse.getContentAsString();
-		//assertThat(jsonInput).isEqualTo(jsonOutput);
-		Assert.assertNotNull(jsonOutput);
-	}
-	@Test
-	void testGetAllOrders() throws Exception
-	{
-		String URI="/get-all-order/";
-		OrderEntity order = new OrderEntity();
-		order.setId((long)10);
-	    order.setAmount(2331.33);
-	    order.setBillingDate(LocalDate.parse("2021-08-09"));
-	    order.setPaymentMethod("card");
-	    
-	    OrderEntity order1 = new OrderEntity();
-	    order1.setId((long)11);
-	    order1.setAmount(2331.33);
-	    order1.setBillingDate(LocalDate.parse("2021-08-09"));
-	    order1.setPaymentMethod("card");
-	    
-	    List<OrderEntity> orderList=new ArrayList<>();
-	    orderList.add(order);
-	    orderList.add(order1);
-		String jsonInput=this.convertToJson(orderList);
-		
-		MvcResult mvcResult=this.mockMvc.perform(MockMvcRequestBuilders.get(URI).accept(MediaType.APPLICATION_JSON)).andReturn();
-		MockHttpServletResponse mockHttpServletResponse=mvcResult.getResponse();
-		String jsonOutput=mockHttpServletResponse.getContentAsString();
-	    //assertThat(jsonInput).isEqualTo(jsonOutput);
-		Assert.assertNotNull(jsonOutput);
-	}
-	
-	 @Test
-	 void testDeleteOrder() throws Exception{
-	        String URI = "/remove-order/{orderID}";
-	        Order order = new Order();
+	        String URI="/onlinesportshopee/get-order/{orderID}";
+	        
+			CartEntity cart=new CartEntity();
+			cart.setId((long)151);
+			cart.setPrice(1200.35);
+			cart.setProductName("nike");
+			cart.setQuantity(1);
+			cart.setTotal(1000.45);
+	       
+			Order order = new Order();
 	        order.setOrderID((long)10);
 	        order.setAmount(2331.33);
 	        order.setBillingDate(LocalDate.parse("2021-08-09"));
 	        order.setPaymentMethod("card");
+	        order.setCartEntity(cart);
+			
+			String jsonInput = this.convertToJson(order);
 
-	        Mockito.when(iOrderService.deleteOrder(order.getOrderID())).thenReturn(order);
-	        MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.delete(URI, 10).accept(MediaType.
-	        		APPLICATION_JSON)).andReturn();
+			
+	        Mockito.when(iOrderService.addOrder(cart.getId(),order)).thenReturn(order);
+	        MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.post(URI,151,order).accept(MediaType.APPLICATION_JSON)).andReturn();
 	        MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
-	        Assert.assertEquals(HttpStatus.OK.value(), mockHttpServletResponse.getStatus());
-
+	        String jsonOutput = mockHttpServletResponse.getContentAsString();
+	        //assertThat(jsonInput).isEqualTo(jsonOutput);
+	        Assert.assertNotNull(jsonOutput);
 	    }
-	 @Test
-	  void testUpdateOrder() throws Exception{
+    
+    @Test
+	   public void GetOrderById() throws Exception{
+	        
+	        String URI="/get-order/{orderID}";
+	        
+			CartEntity cart=new CartEntity();
+			cart.setId((long)151);
+			cart.setPrice(1200.35);
+			cart.setProductName("nike");
+			cart.setQuantity(1);
+			cart.setTotal(1000.45);
+	       
+			Order order = new Order();
+	        order.setOrderID((long)10);
+	        order.setAmount(2331.33);
+	        order.setBillingDate(LocalDate.parse("2021-08-09"));
+	        order.setPaymentMethod("card");
+	        order.setCartEntity(cart);
+			
+			String jsonInput = this.convertToJson(order);
 
-	        String URI = "/update-order/{orderID}";
-	        OrderEntity order2 = new OrderEntity();
-	        order2.setId((long)10);
-	        order2.setAmount(3311.33);
-	        order2.setBillingDate(LocalDate.parse("2021-07-09"));
-	        order2.setPaymentMethod("net banking");
-	        String jsonInput = this.convertToJson(order2);
-            Order order =OrderUtils.convertToOrder(order2);
-            
-	        Mockito.when(iOrderService.updateOrder((long)10,order).thenReturn(order);
-	        MvcResult mvcResult=this.mockMvc.perform(MockMvcRequestBuilders.put(URI, 10).accept(MediaType.APPLICATION_JSON).content(jsonInput).contentType(MediaType.APPLICATION_JSON)).andReturn();
-			MockHttpServletResponse mockHttpServletResponse=mvcResult.getResponse();
-			String jsonOutput=mockHttpServletResponse.getContentAsString();
-			Assert.assertNotNull(jsonOutput);
+			
+	        Mockito.when(iOrderService.getOrderDetails(order.getOrderID())).thenReturn(order);
+	        MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get(URI,10).accept(MediaType.APPLICATION_JSON)).andReturn();
+	        MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
+	        String jsonOutput = mockHttpServletResponse.getContentAsString();
+	        //assertThat(jsonInput).isEqualTo(jsonOutput);
+	        Assert.assertNotNull(jsonOutput);
 	    }
-	 
-	 
+    
+    
+    @Test
+	   public void GetUpdateorderById() throws Exception{
+	        
+	        String URI="/update-order/{orderID}";
+	        
+			CartEntity cart=new CartEntity();
+			cart.setId((long)151);
+			cart.setPrice(1200.35);
+			cart.setProductName("nike");
+			cart.setQuantity(1);
+			cart.setTotal(1000.45);
+	       
+			Order order = new Order();
+	        order.setOrderID((long)10);
+	        order.setAmount(2331.33);
+	        order.setBillingDate(LocalDate.parse("2021-08-09"));
+	        order.setPaymentMethod("card");
+	        order.setCartEntity(cart);
+			
+			String jsonInput = this.convertToJson(order);
+
+			
+	        Mockito.when(iOrderService.updateOrder(order.getOrderID(),order)).thenReturn(order);
+	        MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.post(URI,10).accept(MediaType.APPLICATION_JSON)).andReturn();
+	        MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
+	        String jsonOutput = mockHttpServletResponse.getContentAsString();
+	        //assertThat(jsonInput).isEqualTo(jsonOutput);
+	        Assert.assertNotNull(jsonOutput);
+	    }
+    
+    
+    @Test
+	   public void GetDeleteorderById() throws Exception{
+	        
+	        String URI="/remove-order/{orderID}";
+	        
+			CartEntity cart=new CartEntity();
+			cart.setId((long)151);
+			cart.setPrice(1200.35);
+			cart.setProductName("nike");
+			cart.setQuantity(1);
+			cart.setTotal(1000.45);
+	       
+			Order order = new Order();
+	        order.setOrderID((long)10);
+	        order.setAmount(2331.33);
+	        order.setBillingDate(LocalDate.parse("2021-08-09"));
+	        order.setPaymentMethod("card");
+	        order.setCartEntity(cart);
+			
+			String jsonInput = this.convertToJson(order);
+
+			
+	        Mockito.when(iOrderService.deleteOrder(order.getOrderID())).thenReturn(order);
+	        MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.post(URI,10).accept(MediaType.APPLICATION_JSON)).andReturn();
+	        MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
+	        String jsonOutput = mockHttpServletResponse.getContentAsString();
+	        //assertThat(jsonInput).isEqualTo(jsonOutput);
+	        Assert.assertNotNull(jsonOutput);
+	    }
+    
+    
+    @Test
+	   public void Getalldetails() throws Exception{
+	        
+	        String URI="/get-all-order/";
+	        
+	        Order order = new Order();
+			order.setOrderID((long)10);
+		    order.setAmount(2331.33);
+		    order.setBillingDate(LocalDate.parse("2021-08-09"));
+		    order.setPaymentMethod("card");
+		    
+		    Order order1 = new Order();
+		    order1.setOrderID((long)11);
+		    order1.setAmount(2331.33);
+		    order1.setBillingDate(LocalDate.parse("2021-08-09"));
+		    order1.setPaymentMethod("card");
+		    
+		    List<Order> orderlist = new ArrayList<>();
+		    orderlist.add(order1);
+		    orderlist.add(order);
+			
+			String jsonInput = this.convertToJson(order);
+
+			
+	        Mockito.when(iOrderService.getAllOrders()).thenReturn(orderlist);
+	        MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get(URI).accept(MediaType.APPLICATION_JSON)).andReturn();
+	        MockHttpServletResponse mockHttpServletResponse = mvcResult.getResponse();
+	        String jsonOutput = mockHttpServletResponse.getContentAsString();
+	        //assertThat(jsonInput).isEqualTo(jsonOutput);
+	        Assert.assertNotNull(jsonOutput);
+	    }
 	
 	private String convertToJson(Object orderEntity)throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
