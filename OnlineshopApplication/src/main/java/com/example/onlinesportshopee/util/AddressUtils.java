@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.onlinesportshopee.entities.AddressEntity;
-import com.example.onlinesportshopee.entities.CustomerEntity;
 import com.example.onlinesportshopee.model.Address;
-import com.example.onlinesportshopee.model.Customer;
 
 public class AddressUtils {
 	//

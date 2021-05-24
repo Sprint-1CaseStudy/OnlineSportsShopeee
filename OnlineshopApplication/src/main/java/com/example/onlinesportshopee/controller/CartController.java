@@ -14,8 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
  
-
-import com.example.onlinesportshopee.entities.CartEntity;
 import com.example.onlinesportshopee.exception.CartException;
 import com.example.onlinesportshopee.model.Cart;
 import com.example.onlinesportshopee.services.ICartService;
@@ -32,23 +30,23 @@ public class CartController {
     private ICartService cartService;
     
     @PostMapping("/cart/addtocart/{ProdID}")
-    public  ResponseEntity<Object> addtocart(@PathVariable long ProdID) throws CartException{
+    public  ResponseEntity<Object> addtocart(@PathVariable long ProdId) throws CartException{
         LOGGER.info("add-cart URL is opened");
         LOGGER.info("addtocart() is initiated");
-        Cart cartDTO = null;
+        Cart cartDto = null;
         ResponseEntity<Object> cartResponse = null;
-        cartDTO = cartService.addCart(ProdID);
-        cartResponse = new ResponseEntity<>(cartDTO, HttpStatus.ACCEPTED);
+        cartDto = cartService.addCart(ProdId);
+        cartResponse = new ResponseEntity<>(cartDto, HttpStatus.ACCEPTED);
         LOGGER.info("addtocart() has Executed");
         return cartResponse;
     }
     
     @DeleteMapping("/cart/removefromcart/{delID}")
-    public ResponseEntity<Object> deletecart(@PathVariable long delID)throws CartException{
+    public ResponseEntity<Object> deletecart(@PathVariable long delId)throws CartException{
         LOGGER.info("remove-cart URL is opened");
         LOGGER.info("deletecart() is initiated");
-        Cart cartDTO = cartService.deleteCart(delID);
-        ResponseEntity<Object> cartResponse = new ResponseEntity<>(cartDTO, HttpStatus.ACCEPTED);
+        Cart cartDto = cartService.deleteCart(delId);
+        ResponseEntity<Object> cartResponse = new ResponseEntity<>(cartDto, HttpStatus.ACCEPTED);
         LOGGER.info("deletecart() has Executed");
         return cartResponse;
 

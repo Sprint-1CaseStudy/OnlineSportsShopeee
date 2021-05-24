@@ -1,13 +1,13 @@
 package com.example.onlinesportshopee.entities;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.*;
 
-import com.example.onlinesportshopee.model.Address;
-import com.example.onlinesportshopee.entities.AddressEntity;
+
+
 
 @Entity
 @Table(name = "Customer")
@@ -79,12 +79,6 @@ public class CustomerEntity
 	}
 	public CustomerEntity() {}
 
-	/*
-	 * {"id":5, "name":"Rama", "email":"rama@gmail.com", "contactNo":"9876543456",
-	 * "doB":"2018-11-01", "address":[{ "street":"3rdmain", "area":"rrnagar",
-	 * "city":"blore", "state":"karnataka", "pincode":"566001"}], "orders":[{
-	 * "id":11, "amount":7777.82, "billingDate":"2021-11-01"}] }
-	 */
 	
 	
 	

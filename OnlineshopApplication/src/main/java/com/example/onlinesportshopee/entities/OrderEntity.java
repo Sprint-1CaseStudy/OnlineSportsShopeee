@@ -2,7 +2,7 @@ package com.example.onlinesportshopee.entities;
 
 
 import java.time.LocalDate;
-import java.util.List;
+
 import javax.persistence.*;
 
 @Entity

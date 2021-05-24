@@ -21,7 +21,7 @@ import com.example.onlinesportshopee.util.CartUtils;
 @Service
 public class CartServiceImpl implements ICartService {
 	
-	static final Logger LOGGER = LoggerFactory.getLogger(CartController.class);
+	static final Logger LOGGER = LoggerFactory.getLogger(CartServiceImpl.class);
 	
 	@Autowired 
 	private ICartRepository iCartRepository;
@@ -30,14 +30,14 @@ public class CartServiceImpl implements ICartService {
 	private IProductRepository iProductRepository;
 	
 	@Override
-	public Cart addCart(Long ProdID) throws CartException {
+	public Cart addCart(Long ProdId) throws CartException {
 		LOGGER.info("addtocart() service is initiated");
-		ProductEntity proEntity = iProductRepository.findById(ProdID).get();
+		ProductEntity proEntity = iProductRepository.findById(ProdId).get();
 		CartEntity carEntity = null;
 		if(proEntity==null)
 			carEntity=null;
 		else {
-			CartEntity cartEntity = new CartEntity(proEntity.getProductName(),1,proEntity.getMrp(),proEntity.getPriceAfterDiscount());;
+			CartEntity cartEntity = new CartEntity(proEntity.getProductName(),1,proEntity.getMrp(),proEntity.getPriceAfterDiscount());
 			carEntity = iCartRepository.save(cartEntity);
 		}
 		LOGGER.info("addtocart() service has Executed");

@@ -2,7 +2,6 @@ package com.example.onlinesportshopee.model;
 
 import java.time.LocalDate;
 
-import com.example.onlinesportshopee.entities.PaymentEntity;
 
 
 public class Card {

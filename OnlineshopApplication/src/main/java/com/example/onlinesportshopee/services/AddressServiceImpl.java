@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.onlinesportshopee.dao.IAddressRepository;
 import com.example.onlinesportshopee.entities.AddressEntity;
-import com.example.onlinesportshopee.entities.CustomerEntity;
 import com.example.onlinesportshopee.exception.AddressNotFoundException;
 import com.example.onlinesportshopee.model.Address;
 import com.example.onlinesportshopee.util.AddressUtils;
@@ -50,7 +49,7 @@ public class AddressServiceImpl {
 	}
 	
 	public Address updateAddress(long custId, AddressEntity address) throws AddressNotFoundException{
-		// TODO Auto-generated method stub
+
 		LOGGER.info("updateAddress() service is initiated");
 		AddressEntity addressentity = null;
 		AddressEntity updateaddress = iaddressRepository.findById(custId).orElse(null);
@@ -67,7 +66,7 @@ public class AddressServiceImpl {
 	
 	public List<Address> getAllAddress() throws AddressNotFoundException{
 		LOGGER.info("getAddress() service is initiated");
-		List<AddressEntity> getAddress = iaddressRepository.findAll();;
+		List<AddressEntity> getAddress = iaddressRepository.findAll();
 		if(getAddress == null)
 		{
 			throw new AddressNotFoundException("AddressNotFound");

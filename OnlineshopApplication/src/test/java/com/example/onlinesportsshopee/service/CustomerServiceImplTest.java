@@ -85,7 +85,7 @@ class CustomerServiceImplTest {
 		}
 		
 		@Test
-		void testgetAllCustomers01() {
+		void testGetAllCustomers01() {
 			CustomerEntity customerentity1 = new CustomerEntity();
 			customerentity1.setId((long)125);
 	        customerentity1.setName("Azeem");

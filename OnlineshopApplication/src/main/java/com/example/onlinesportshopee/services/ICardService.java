@@ -2,7 +2,7 @@ package com.example.onlinesportshopee.services;
 
 import java.util.List;
 
-import com.example.onlinesportshopee.entities.CardEntity;
+
 import com.example.onlinesportshopee.model.Card;
 
 public interface ICardService {

@@ -11,10 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.onlinesportshopee.entities.CustomerEntity;
+
 import com.example.onlinesportshopee.exception.CustomerNotFoundException;
 import com.example.onlinesportshopee.model.Customer;
-import com.example.onlinesportshopee.services.CustomerServiceImpl;
+
 import com.example.onlinesportshopee.services.ICustomerService;
 
 //
@@ -81,7 +81,7 @@ public class CustomerController
         LOGGER.info("Customers URL is opened");
         LOGGER.info("getAllCustomers() is initiated");
         LOGGER.info("getAllCustomers() has executed");
-        //ResponseEntity<Object> customerResponse = null;
+       
         return (List<Customer>)iCustomerService.getAllCustomers();
 	}
 	

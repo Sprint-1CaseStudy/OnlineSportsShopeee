@@ -1,6 +1,6 @@
 package com.example.onlinesportshopee.model;
 
-import com.example.onlinesportshopee.entities.CustomerEntity;
+
 
 public class Address 
 {
@@ -64,12 +64,6 @@ public class Address
 		this.pincode = pincode;
 	}
 	
-
-	/*
-	 * public CustomerEntity getCustomerEntity() { return customerEntity; } public
-	 * void setCustomerEntity(CustomerEntity customerEntity) { this.customerEntity =
-	 * customerEntity; }
-	 */
 	@Override
 	public String toString() {
 		return "Address [doorNo=" + doorNo + ", street=" + street + ", area=" + area + ", city=" + city + ", state="

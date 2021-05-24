@@ -11,11 +11,11 @@ import com.example.onlinesportshopee.dao.ICartRepository;
 import com.example.onlinesportshopee.dao.IOrderRepository;
 import com.example.onlinesportshopee.entities.CartEntity;
 import com.example.onlinesportshopee.entities.OrderEntity;
-import com.example.onlinesportshopee.entities.ProductEntity;
+
 import com.example.onlinesportshopee.exception.InvalidOrderIdException;
 import com.example.onlinesportshopee.exception.OrderNotFoundException;
 import com.example.onlinesportshopee.model.Order;
-import com.example.onlinesportshopee.util.CartUtils;
+
 import com.example.onlinesportshopee.util.OrderUtils;
 
 @Service

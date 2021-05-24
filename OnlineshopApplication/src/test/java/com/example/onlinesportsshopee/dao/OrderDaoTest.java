@@ -87,7 +87,7 @@ class OrderDaoTest {
 		testEntityManager.remove(orderEntity2);
 		
 		List<OrderEntity> orderList=(List<OrderEntity>)iOrderRepository.findAll();
-		Assert.assertEquals(orderList.size(),1);
+		Assert.assertEquals(1,orderList.size());
 		
 	}
 	@Test

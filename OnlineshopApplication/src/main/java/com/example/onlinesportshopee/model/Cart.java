@@ -1,8 +1,8 @@
 package com.example.onlinesportshopee.model;
 
-import java.util.List;
 
-import com.example.onlinesportshopee.entities.ProductEntity;
+
+
 
 public class Cart {
 	

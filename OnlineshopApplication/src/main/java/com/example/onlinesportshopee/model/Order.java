@@ -1,12 +1,12 @@
 package com.example.onlinesportshopee.model;
 
 import java.time.LocalDate;
-import java.util.List;
+
 
 import com.example.onlinesportshopee.entities.CartEntity;
-import com.example.onlinesportshopee.entities.CustomerEntity;
-import com.example.onlinesportshopee.entities.PaymentEntity;
-import com.example.onlinesportshopee.entities.ProductEntity;
+
+
+
 
 public class Order {
 

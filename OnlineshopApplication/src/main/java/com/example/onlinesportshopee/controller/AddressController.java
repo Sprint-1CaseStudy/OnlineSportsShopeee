@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.onlinesportshopee.entities.AddressEntity;
 import com.example.onlinesportshopee.exception.AddressNotFoundException;
 import com.example.onlinesportshopee.model.Address;
-import com.example.onlinesportshopee.model.Customer;
-import com.example.onlinesportshopee.services.IAddressService;
+
 import com.example.onlinesportshopee.services.AddressServiceImpl;
 
 @RestController
@@ -27,7 +26,7 @@ public class AddressController {
 	static final Logger LOGGER = LoggerFactory.getLogger(AddressController.class);
 	
 	@Autowired
-	private AddressServiceImpl AddressServiceImpl;
+	private AddressServiceImpl addressServiceImpl;
 
 	@PostMapping("/address/addAddress")
 	public ResponseEntity<Object> addAddress(@RequestBody AddressEntity address) throws AddressNotFoundException {
@@ -35,7 +34,7 @@ public class AddressController {
 		LOGGER.info("addAddress() is initiated");
 		Address addressDTO = null;
 		ResponseEntity<Object> addressResponse = null;
-		addressDTO = AddressServiceImpl.addAddress(address);
+		addressDTO = addressServiceImpl.addAddress(address);
 		addressResponse = new ResponseEntity(addressDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("addAddress() has executed");
 		return addressResponse;
@@ -47,7 +46,7 @@ public class AddressController {
 		LOGGER.info("removeAddress() is initiated");
 		Address addressDTO = null;
 		ResponseEntity<Object> addressResponse = null;
-		addressDTO = AddressServiceImpl.removeAddress(custId);
+		addressDTO = addressServiceImpl.removeAddress(custId);
 		addressResponse = new ResponseEntity(addressDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("removeAddress() has executed");
 		return addressResponse;
@@ -59,7 +58,7 @@ public class AddressController {
 		LOGGER.info("updateAddress() is initiated");
 		Address addressDTO = null;
 		ResponseEntity<Object> addressResponse = null;
-		addressDTO = AddressServiceImpl.updateAddress(custId,address);
+		addressDTO = addressServiceImpl.updateAddress(custId,address);
 		addressResponse = new ResponseEntity(addressDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("updateAddress() has executed");
 		return addressResponse;
@@ -71,7 +70,7 @@ public class AddressController {
 		LOGGER.info("getAddress() is initiated");
 		List<Address> addressDTO = null;
 		ResponseEntity<Object> addressResponse = null;
-		addressDTO = AddressServiceImpl.getAllAddress();
+		addressDTO = addressServiceImpl.getAllAddress();
 		addressResponse = new ResponseEntity(addressDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("getAddress() has executed");
 		return addressResponse;

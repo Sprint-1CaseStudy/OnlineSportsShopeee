@@ -3,12 +3,11 @@ package com.example.onlinesportshopee.model;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.OneToMany;
+
+
 
 import com.example.onlinesportshopee.entities.AddressEntity;
-import com.example.onlinesportshopee.entities.OrderEntity;
-import com.example.onlinesportshopee.model.Address;
+
 
 public class Customer 
 {

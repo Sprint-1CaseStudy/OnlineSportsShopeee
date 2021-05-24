@@ -2,9 +2,9 @@ package com.example.onlinesportshopee.services;
 
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
 
-import com.example.onlinesportshopee.entities.ProductEntity;
+
+
 import com.example.onlinesportshopee.exception.ProductNotFoundException;
 import com.example.onlinesportshopee.model.Product;
 
