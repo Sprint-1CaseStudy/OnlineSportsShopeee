@@ -43,13 +43,8 @@ class CustomerDaoTest {
 		customer.setName("Arjuna");
 		customer.setEmail("Panadava3@gmail.com");
 		customer.setContactNo("9512357468");
-<<<<<<< HEAD
 		customer.setDoB(LocalDate.parse("1997-10-21"));
-		return customer; 
-=======
-		customer.setDoB(LocalDate.parse("21/10/1997"));
 		return customer;
->>>>>>> branch 'master' of https://github.com/Sprint-1CaseStudy/OnlineSportsShopeee.git
 	}
 	
 	@Test
